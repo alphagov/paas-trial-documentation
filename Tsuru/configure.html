@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+  </head>
+  <body style="font-family:verdana; border-style: solid; border-top-width: 50px; border-left-width: 200px; border-color: #FFFFFF; border-right-width: 300px;  border-bottom-width: 200px;">
+
+  	<h1>Configuring your machine to use the Government PaaS</h1>
+    <p>
+      Configuring your machine is as easy as installing the correct CLI - start here: <a href="http://docs.tsuru.io/en/stable/using/install-client.html">http://docs.tsuru.io/en/stable/using/install-client.html</a>
+    </p>
+    <p>
+      Tsuru has 3 different apps that can be downloaded (crane, tsuru, tsuru-admin) you will <b>only</b> need the tsuru app.
+    </p>
+    <p>
+      For OSX you should download the darwin_amd64 binary.
+    </p>
+    <p>
+      Once you have downloaded and installed the CLI client for your OS you should be able to login to the environment using the following:
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+      <p>
+        $  tsuru target-add trial https://trial-api.tsuru.paas.alphagov.co.uk -s
+      </p>
+      <p>
+        $  tsuru login
+      </p>
+      <p>
+        Email: your@email.gov.uk
+      </p>
+      <p>
+        Password: yourpassword
+      </p>
+    </span>
+    <p>
+      Now that you're setup head on over to the <a href="samples.html">samples</a> to try deploying an application.
+  </body>
+</html>
