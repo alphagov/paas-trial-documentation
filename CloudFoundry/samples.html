@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+  </head>
+  <body style="font-family:verdana; border-style: solid; border-top-width: 50px; border-left-width: 200px; border-bottom-width: 200px; border-color: #FFFFFF; border-right-width: 300px;  border-bottom-width: 200px;">
+
+  	<h1>Deploying some sample apps</h1>
+    <p>
+      To make life a little easier for trialling our PaaS options, here’s a selection of sample applications which should help when getting started with the platforms.
+    </p>
+    <p>
+      <em>Note:</em> Because this is a shared environment if your attempt to create an app may fail if one already exists with the same name. You can simply append something unique - like your name - in order to overcome this. There are ways to configure domains that will allow apps with the same names across teams but this is a more advanced topic than this document is intended to cover.
+    </p>
+    <h2>Spring Music :</h2>
+    <p>
+    	A simple java app using the Spring Framework for managing your record collection. This application supports working with a variety of different database backends - the default deployment uses a simple in-memory database.
+    </p>
+
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		git clone https://github.com/cloudfoundry-samples/spring-music.git
+	    </p>
+		<p>
+			cd spring-music
+		</p>
+		<p>
+			./gradlew assemble
+		</p>
+		<p>
+			cf push
+		</p>
+	</span>
+	<p>
+		The app is deployed using an in-memory database with a ${random-word} in it’s URL:
+	</p>
+	<p>
+		The <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">cf apps </span>command will list the URLs associated with the app.
+	</p>
+	<p>
+		To switch from in-memory database to a postgresql backend:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			cf marketplace # view the services available
+		</p>
+		<p>
+			cf create-service Postgresql "Basic PostgreSQL Plan" my_spring_db
+		</p>
+		<p>
+			cf bind-service spring-music my_spring_db
+		</p>
+		<p>
+			cf restart spring-music # restart the app to detect the new db service
+		</p>
+    </span>
+    <p>
+    	Now that the application is using a postgreSQL database backend, you may wish to scale up the number of deployed app instances as follows.
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	cf scale -i 2 spring-music # run two instances of the app
+    </span>
+    <p>
+    	You should now find that both instances of the app return the same data every time. The load balancer will round-robin connections between the different instances, so hitting shift-refresh in your browser a couple of times will switch between deployed instances. 
+    </p>
+    <h2>Flask SQLAlchemy Sample App :</h2>
+    <p>
+    	A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default <b>username / password </b> for the flask-sqlalchemy app is <b>admin / default</b>
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+    	</p>
+		<p>
+			cd flask-sqlalchemy-postgres-heroku-example
+		</p>
+		<p>
+			cf push flask_app --no-start
+		</p>
+	</span>
+	<p>
+		The Flask-sqlalchemy application requires a backend data service to run, so you will need to create a service instance of postgresql and bind it to the application as follows.
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		cf marketplace # view the services available
+    	</p>
+    	<p>
+    		cf create-service Postgresql "Basic PostgreSQL Plan" my_flaskapp_db
+    	</p>
+    	<p>
+    		cf bind-service flask_app my_flaskapp_db
+    	</p>
+    	<p>
+    		cf restart flask_app # restart the app to detect the new db service
+    	</p>
+    </span>
+    <p>
+    	The <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">cf apps</span> command will list the URLs associated with the app.
+    </p>
+    <p>
+    	The flask-sqlalchemy application supports running multiple instances and can be scaled using:
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>cf scale -i 3 flask_app # run three instances of the app</p>
+    </span>
+    <h2>Etherpad-lite Sample App :</h2>
+    <p>
+    	Etherpad is a real-time collaborative document editing app built using nodeJS. The master branch of the github source for Etherpad was not working at the time this document was written, so you’ll need to download a tagged release from the releases page.	
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		wget https://github.com/cloudfoundry-community/etherpad-lite-cf/releases/download/1.5.7-cf/etherpad-lite-cf.zip
+    	</p>
+		<p>
+			mkdir etherpad
+		</p>
+		<p>
+			cd etherpad
+		</p>
+		<p>
+			unzip ../etherpad-lite-cf.zip
+		</p>
+		<p>
+			cf push etherpad-lite -m 512M 
+		</p>
+		<p>
+			# The -m flag allows you to configures the amount of allocated memory
+		</p>
+	</span>
+	<p>
+		The <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">cf apps</span> command will list the URLs associated with the app.
+	</p>
+	<p>
+		The etherpad application does not support running more than one instance as there is no shared backend data service support, so if you attempt to scale this app to multiple instances then they will not all share the same data.
+	</p>
+	<h2>
+		Next steps...
+	</h2>
+	<p>
+		Now that you're familiar with the platform why not try ticking off all the items on our <a href="list.html">list</a> of tasks to try out on the platform.
+	</p>
+  </body>
+</html>
+
