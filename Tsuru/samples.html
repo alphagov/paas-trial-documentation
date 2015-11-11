@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+  </head>
+  <body style="font-family:verdana; border-style: solid; border-top-width: 50px; border-left-width: 200px; border-bottom-width: 200px; border-color: #FFFFFF; border-right-width: 300px;  border-bottom-width: 200px;">
+
+  	<h1>Deploying some sample apps</h1>
+    <p>
+      To make life a little easier for trialling our PaaS options, here’s a selection of sample applications which should help when getting started with the platforms.
+    </p>
+    <p>
+      <em>Note:</em> Because this is a shared environment if your attempt to create an app may fail if one already exists with the same name. You can simply append something unique - like your name - in order to overcome this. There are ways to configure domains that will allow apps with the same names across teams but this is a more advanced topic than this document is intended to cover.
+    </p>
+    <h2>Spring Music :</h2>
+    <p>
+    	A simple java app using the Spring Framework for managing your record collection. This application supports working with a variety of different database backends - the default deployment uses a simple in-memory database.
+    </p>
+
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		git clone https://github.com/cloudfoundry-samples/spring-music.git
+	    </p>
+		<p>
+			cd spring-music
+		</p>
+	</span>
+	<p>
+		Create a tsuru.yaml file with the following contents:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			hooks:
+		</p>
+		<p>
+	  		build:
+	  	</p>
+	  	<p>
+  	    	- ./gradlew assemble
+  	    </p>
+  	    	- mv build/libs/spring-music.war ROOT.war
+		</p>
+	</span>
+	<p>
+		Finally create an app instance in Tsuru and deploy:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			tsuru app-create spring-music java
+		</p>
+		<p>
+			tsuru app-deploy .
+		</p>
+	</span>
+	<p>
+		Alternatively, you can build locally and only push (deploy) the war file:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			git clone https://github.com/cloudfoundry-samples/spring-music.git
+		</p>
+		<p>
+			cd spring-music
+		</p>
+		<p>
+			./gradlew assemble
+		</p>
+		<p>
+			mv build/libs/spring-music.war ROOT.war
+		</p>
+		<p>
+			tsuru app-create spring-music java
+		</p>
+		<p>
+			tsuru app-deploy ROOT.war
+		</p>
+	</span>
+    <h2>Flask SQLAlchemy Sample App :</h2>
+    <p>
+    	A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default <b>username / password </b> for the flask-sqlalchemy app is <b>admin / default</b>
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+    	</p>
+		<p>
+			cd flask-sqlalchemy-postgres-heroku-example
+		</p>
+		<p>
+			tsuru app-create flask python
+		</p>
+		<p>
+			tsuru service-add postgresql flasksql shared
+		</p>
+		<p>
+			tsuru service-bind flasksql -a flask
+		</p>
+		<p>
+			tsuru app-deploy . -a flask
+		</p>
+	</span>
+	<p>
+		To scale application up in tsuru by X instances, use:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		tsuru unit-add <X> -a flask
+    	</p>
+    </span>
+	<p>
+		To scale application down by X instances, use:
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		tsuru unit-remove <X> -a flask
+    	</p>
+    </span>
+    <p>
+    	The <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">cf apps</span> command will list the URLs associated with the app.
+    </p>
+
+    <h2>Etherpad-lite Sample App :</h2>
+    <p>
+    	Etherpad is a real-time collaborative document editing app built using nodeJS. The master branch of the github source for Etherpad was not working at the time this document was written, so you’ll need to download a tagged release from the releases page.	
+    </p>
+    <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+    	<p>
+    		wget https://github.com/cloudfoundry-community/etherpad-lite-cf/releases/download/1.5.7-cf/etherpad-lite-cf.zip
+    	</p>
+		<p>
+			mkdir etherpad
+		</p>
+		<p>
+			cd etherpad
+		</p>
+		<p>
+			unzip ../etherpad-lite-cf.zip
+		</p>
+	</span>
+	<p>
+		edit <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">bin/installDeps.sh.</span> Remove or comment out this section (lines 53-58):
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			#if [ ! $NODE_V_MINOR = "v0.10" ] && [ ! $NODE_V_MINOR = "v0.11" ] && [ ! $NODE_V_MINOR = "v0.12" ]; then
+		</p>
+		<p>
+			#  if [ ! $IOJS_VERSION ]; then
+		</p>
+		<p>
+			#    echo "You're running a wrong version of node, or io.js is not installed. You're using $NODE_VERSION, we need v0.10.x, v0.11.x or v0.12.x" >&2
+		</p>
+		<p>
+			#    exit 1
+		</p>
+		<p>
+			#  fi
+		</p>
+		<p>
+			#fi
+		</p>
+	</span>
+	<p>
+		edit <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">package.json</span> to add a <span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">license</span> field at the end (note the comma placement)
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			},
+		</p>
+		<p>
+			"version": "1.5.7-cf",
+		</p>
+		<p>
+			"license": "Apache-2.0"
+		</p>
+		<p>
+			}
+		</p>
+	</span>
+	<p>
+		Then run
+	</p>
+	<span style="font-size:13.3333333333333px;font-family:'Courier New';vertical-align:baseline;background-color:transparent">
+		<p>
+			bin/installDeps.sh 
+		</p>
+		<p>
+			tsuru app-create etherpad nodejs
+		</p>
+		<p>
+			tsuru app-deploy .
+		</p>
+	</span>
+	<p>
+		The etherpad application does not support running more than one instance as there is no shared backend data service support, so if you attempt to scale this app to multiple instances then they will not all share the same data.
+	</p>
+	<h2>
+		Next steps...
+	</h2>
+	<p>
+		Now that you're familiar with the platform why not try ticking off all the items on our <a href="list.html">list</a> of tasks to try out on the platform.
+	</p>
+  </body>
+</html>
+
