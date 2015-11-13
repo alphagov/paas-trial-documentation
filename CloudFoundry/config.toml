@@ -1,0 +1,19 @@
+baseurl = "http://documentation.trial.cf.paas.alphagov.co.uk/"
+MetaDataFormat = "yaml"
+title = "Govt PaaS"
+
+[params]
+  description = "Govt PaaS documentation"
+  author = "Brett Ansley"
+
+
+[[menu.main]]
+    name = "Getting Started"
+    identifier = "getting-started"
+    pre = "<i class='fa fa-road'></i>"
+    weight = -120
+[[menu.main]]
+    name = "Deploying Apps"
+    identifier = "apps"
+    pre = "<i class='fa fa-file-text'></i>"
+    weight = -110

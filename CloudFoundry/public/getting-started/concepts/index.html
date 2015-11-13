@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Concepts</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Concepts</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li class="active"><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>Official glossary: <a href="http://docs.cloudfoundry.org/concepts/glossary.html">http://docs.cloudfoundry.org/concepts/glossary.html</a></p>
+
+<h2 id="organizations:f672fea773fb5554fdcc9faa6e7b5093">Organizations</h2>
+
+<p>Cloud Foundry groups its users by <a href="http://docs.cloudfoundry.org/concepts/roles.html#orgs">organizations</a>, or &ldquo;orgs&rdquo; for short. Orgs group together users for management and present a shared perimeter for services, domains and quotas. When your account is created, it will be given permissions to an org and a personal space.</p>
+
+<h3 id="naming-convention:f672fea773fb5554fdcc9faa6e7b5093">Naming convention</h3>
+
+<p>Within the trial, the <code>ORGNAME</code> will correspond to a project/client.</p>
+
+<h3 id="list-available-orgs:f672fea773fb5554fdcc9faa6e7b5093">List available orgs</h3>
+
+<pre><code class="language-bash">cf orgs
+</code></pre>
+
+<p>Only orgs where you&rsquo;ve been assigned an org-role or those which contain a space where you&rsquo;ve been assigned a space-role will appear.</p>
+
+<h3 id="see-details-about-a-specific-org:f672fea773fb5554fdcc9faa6e7b5093">See details about a specific org</h3>
+
+<p>&hellip;including quotas, routing domains and which spaces it includes:</p>
+
+<pre><code class="language-bash">cf org ORGNAME
+</code></pre>
+
+<h3 id="target-an-org:f672fea773fb5554fdcc9faa6e7b5093">Target an org</h3>
+
+<p>In order to work with spaces, you&rsquo;ll need to do this first:</p>
+
+<pre><code class="language-bash">cf target -o ORGNAME
+</code></pre>
+
+<h2 id="spaces:f672fea773fb5554fdcc9faa6e7b5093">Spaces</h2>
+
+<p>Every application is scoped to a <a href="http://docs.cloudfoundry.org/concepts/roles.html#spaces">space</a>. Applications in the same space share a location for app development, deployment, and maintenance.</p>
+
+<h3 id="naming-convention-1:f672fea773fb5554fdcc9faa6e7b5093">Naming convention</h3>
+
+<p>Within the trial, the <code>SPACENAME</code> will correspond to an environment, e.g. <code>dev</code> or <code>prod</code>. If the org is more general (e.g. <code>devops</code>), the space may correspond to the name of the project (e.g. <code>hubot</code>).</p>
+
+<h3 id="management:f672fea773fb5554fdcc9faa6e7b5093">Management</h3>
+
+<p>To create a space:</p>
+
+<pre><code class="language-bash">cf create-space SPACENAME
+</code></pre>
+
+<p><strong>Note:</strong>  To create a space within a given org you must have the <code>OrgManager</code> role. You can check to see which users and managers for your org with:</p>
+
+<pre><code class="language-bash">cf org-users ORGNAME
+</code></pre>
+
+<h2 id="target:f672fea773fb5554fdcc9faa6e7b5093">Target</h2>
+
+<p>The Cloud Foundry CLI keeps a global state of whatever <a href="#organizations:f672fea773fb5554fdcc9faa6e7b5093">organization</a>+<a href="#spaces:f672fea773fb5554fdcc9faa6e7b5093">space</a> you&rsquo;re interacting with. This is known as the &ldquo;target&rdquo;, and is set via</p>
+
+<pre><code class="language-bash">cf target -o ORGNAME -s SPACENAME
+</code></pre>
+
+<h2 id="buildpacks:f672fea773fb5554fdcc9faa6e7b5093">Buildpacks</h2>
+
+<p>All apps need to use a &lsquo;buildpack&rsquo; specific to their language, which sets up dependencies for particular language stacks. There are standard buildpacks for most lanugages, and they will usually be auto-detected by CF. Using the standard buildpacks is strongly encouraged. In the rare case where the buildpack does not get detected correctly, or to use a custom buildpack, it can be specified in the manifest (as below) or with the <code>-b</code> flag. Use either the buildpack name:</p>
+
+<pre><code>buildpack: python_buildpack
+</code></pre>
+
+<p>or a URL to reference it.</p>
+
+<pre><code>buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+</code></pre>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

@@ -1,0 +1,30 @@
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          {{ $currentNode := . }}
+          {{ range .Site.Menus.main }}
+              {{ if .HasChildren }}
+
+            <li class="sub-menu{{if $currentNode.HasMenuCurrent "main" . }} active{{end}}">
+            <a href="javascript:;" class="">
+                {{ .Pre }}
+                <!--<i class="icon_desktop"></i>-->
+                <span>{{ .Name }}</span>
+                <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent "main" . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
+            </a>
+                <ul class="sub{{if $currentNode.HasMenuCurrent "main" . }} open{{end}}">
+                    {{ range .Children }}
+                    <li{{if $currentNode.IsMenuCurrent "main" . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a> </li>
+                    {{ end }}
+                </ul>
+              {{end}}
+              </li>
+          {{end}}
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->

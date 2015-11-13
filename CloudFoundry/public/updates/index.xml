@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Updates on docs.cloud.gov</title>
+    <link>http://localhost:1313/updates/</link>
+    <description>Recent content in Updates on docs.cloud.gov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <atom:link href="http://localhost:1313/updates/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>5/29/2015</title>
+      <link>http://localhost:1313/updates/2015-05-29/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/updates/2015-05-29/</guid>
+      <description>
+
+&lt;h2 id=&#34;updates-for-the-week-of-5-29-2015:1c8c84a0612f1b992908af38cf63d5ce&#34;&gt;Updates for the week of 5/29/2015&lt;/h2&gt;
+
+&lt;h3 id=&#34;platform:1c8c84a0612f1b992908af38cf63d5ce&#34;&gt;Platform&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upgraded to release &lt;a href=&#34;https://github.com/cloudfoundry/cf-release/releases/tag/v210&#34;&gt;210&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Binary and Static buildpacks are now built in the deployment&lt;/li&gt;
+&lt;li&gt;Added Newrelic Insights and Plugins for platform monitoring data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;services:1c8c84a0612f1b992908af38cf63d5ce&#34;&gt;Services&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The rds service now encrypts the passwords&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

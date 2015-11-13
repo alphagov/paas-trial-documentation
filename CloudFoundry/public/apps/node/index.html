@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Deploying node.js</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Deploying node.js</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li class="active"><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+<p>Deploying a basic node.js application to Cloud Foundry is relatively uncomplicated. The <a href="http://docs.cloudfoundry.org/buildpacks/node/node-tips.html">node.js tips document</a> on cloudfoundry.org covers the process in detail.</p>
+
+<p><strong>Summary:</strong></p>
+
+<ul>
+<li><p>Include a package.json file to specify dependencies and a <code>start</code> command. The presence of this file is essential to have the application <a href="https://github.com/cloudfoundry/nodejs-buildpack/blob/master/bin/detect">detected as node.js</a> and the start script specified within will be <a href="https://github.com/cloudfoundry/nodejs-buildpack/blob/94949f6d7c2ee6c84ee04edcc9c94a5454047b75/bin/compile#L134-147">used to launch your app</a>.</p>
+
+<pre><code class="language-javascript">{
+  // ...
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node app.js&quot;
+  }
+}
+</code></pre></li>
+
+<li><p>Avoid using the <code>command:</code> manifest key to start your application, as this functionality <a href="https://github.com/cloudfoundry/nodejs-buildpack/pull/11#issuecomment-67666273">may be removed</a>. The aforementioned npm start script is preferred.</p></li>
+
+<li><p>Use the <a href="https://www.npmjs.com/package/cfenv">cfenv</a> module to assist with parsing the <code>VCAP_APPLICATION</code> and <code>VCAP_SERVICES</code> environment variables.</p>
+
+<pre><code class="language-javascript">{
+  // ...
+  &quot;dependencies&quot;: {
+    &quot;cfenv&quot;: &quot;*&quot;,
+    // ...
+  }
+}
+</code></pre>
+
+<pre><code class="language-javascript">var cfenv = require(&quot;cfenv&quot;);
+var appEnv = cfenv.getAppEnv();
+uri = appEnv.getServiceURL(&quot;beckley-es&quot;);
+</code></pre></li>
+
+<li><p>Ensure the app listens on the Cloud Foundry assigned port.</p>
+
+<pre><code class="language-javascript">config.app.port = appEnv.port;
+</code></pre></li>
+
+<li><p>Include dependencies for any service bindings.</p>
+
+<pre><code class="language-javascript">{
+  // ...
+  &quot;dependencies&quot;: {
+    &quot;es&quot;: &quot;*&quot;,
+    // ...
+  }
+}
+</code></pre></li>
+
+<li><p>Optionally run <code>npm install</code> prior to <code>cf push</code> to preinstall dependencies rather than having them added during staging.</p></li>
+</ul>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

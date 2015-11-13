@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cloud.gov documentation">
+    <meta name="author" content="18f">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Creating a Stemcell Building VM</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">docs.cloud.gov</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Creating a Stemcell Building VM</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/meteor/">Deploying Meteor</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/rails/">Deploying Rails</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/durable-logging/">Durable Logging with the ELK Service</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/production-ready/">Production Ready Checklist</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-wrench'></i>
+                
+                <span>Operations</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/ops/aws-onboarding/">AWS Onboarding</a> </li>
+                    
+                    <li><a href="/ops/accessing-v1-managed-services/">Accessing v1 Managed Services</a> </li>
+                    
+                    <li><a href="/ops/changing-password/">Changing a password</a> </li>
+                    
+                    <li class="active"><a href="/ops/creating-a-stemcell-building-vm/">Creating a Stemcell Building VM</a> </li>
+                    
+                    <li><a href="/ops/creating-a-development-environment-with-bosh-lite/">Creating a dev environment</a> </li>
+                    
+                    <li><a href="/ops/creating-a-local-dev-environment-in-Virtual-Box/">Creating a local dev environment with Virtual Box</a> </li>
+                    
+                    <li><a href="/ops/create-user/">Creating a user</a> </li>
+                    
+                    <li><a href="/ops/creating-a-new-admin-user/">Creating an admin user</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-docker-broker/">Deploying the Docker Broker</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-admin-ui/">Deploying the admin UI</a> </li>
+                    
+                    <li><a href="/ops/elb/">ELB termination</a> </li>
+                    
+                    <li><a href="/ops/repos/">Github Repos</a> </li>
+                    
+                    <li><a href="/ops/making-announcements/">Making announcements</a> </li>
+                    
+                    <li><a href="/ops/metrics/">Metrics</a> </li>
+                    
+                    <li><a href="/ops/plugins/">Plugins</a> </li>
+                    
+                    <li><a href="/ops/policies/">Policies</a> </li>
+                    
+                    <li><a href="/ops/ports/">Port Descriptions</a> </li>
+                    
+                    <li><a href="/ops/multiple-instances/">Running Multiple Instances</a> </li>
+                    
+                    <li><a href="/ops/updating-cf/">Updating Cloud Foundry</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-columns'></i>
+                
+                <span>Updates</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/updates/2015-05-29/">5/29/2015</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="https://github.com/18f/cloud-foundry-notes/issues" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            
+              <li><a href="https://github.com/18f/cloud-foundry-notes/edit/master/content/ops/creating-a-stemcell-building-vm.md" target="blank"><i class='fa fa-edit'></i> Refine this Page</a> </li>
+            
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>How to create a vagrant machine on AWS for building new bosh stemcells.</p>
+
+<h4 id="prerequisites:c5482efc8719173aef3686550ec9b6dc">Prerequisites</h4>
+
+<p>Vagrant with the vagrant-aws, vagrant-berkshelf and vagrant-omnibus plugins.</p>
+
+<pre><code>brew install vagrant
+vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-aws
+</code></pre>
+
+<p>The AWS CLI (Amazon Web Services Command Line Interface) is not strictly necessary, but this guide assumes a recent version it. Install or update it with:</p>
+
+<pre><code>sudo pip install awscli -U
+</code></pre>
+
+<p>Git.</p>
+
+<pre><code>brew install git
+</code></pre>
+
+<h4 id="procedure:c5482efc8719173aef3686550ec9b6dc">Procedure</h4>
+
+<h6 id="create-a-user-keypair-and-access-keys-for-use-by-bosh:c5482efc8719173aef3686550ec9b6dc">Create a user, keypair and access keys for use by bosh.</h6>
+
+<p>You&rsquo;ll need a recent version of the AWS CLI for some of these commands. The current release is 1.7.12 as of this writing. Earlier versions may not have all the required commands.</p>
+
+<p>Create the bosh user.</p>
+
+<pre><code>aws iam create-user --user-name bosh
+</code></pre>
+
+<p>Apply a policy that will allow bosh to perform actions in the AWS environment.</p>
+
+<pre><code>aws iam attach-user-policy --user-name bosh --policy-arn 'arn:aws:iam::aws:policy/AmazonEC2FullAccess'
+</code></pre>
+
+<p>Create the bosh keypair.</p>
+
+<pre><code>aws ec2 create-key-pair --key-name bosh --query 'KeyMaterial' --output text &gt; bosh.pem
+</code></pre>
+
+<p>Create the bosh access key and secret key.</p>
+
+<pre><code>aws iam create-access-key --user-name bosh
+</code></pre>
+
+<p>Export the required environment variables using key file and credentials create above.</p>
+
+<p>This is the path to the private portion of the bosh keypair (bosh.pem).</p>
+
+<pre><code>export BOSH_KEY_PATH=/path/to/bosh.pem
+</code></pre>
+
+<p>This is AWS access key to be used by bosh.</p>
+
+<pre><code>export BOSH_AWS_ACCESS_KEY_ID=ABCDEFGHIJKLMNOPQRST
+</code></pre>
+
+<p>This is AWS secret key to be used by bosh.</p>
+
+<pre><code>export BOSH_AWS_SECRET_ACCESS_KEY=abcdefghijklmnopqrstuvwxyz0123456789abcd
+</code></pre>
+
+<h6 id="create-a-bosh-stemcell-security-group-which-allows-ssh-in-your-aws-environment:c5482efc8719173aef3686550ec9b6dc">Create a bosh-stemcell security group which allows SSH in your AWS environment.</h6>
+
+<p>Again the AWS CLI is nice to have here.</p>
+
+<p>Create the security group.</p>
+
+<pre><code>aws ec2 create-security-group --group-name bosh-stemcell --description 'SSH access to the bosh stemcell creation VM.'
+</code></pre>
+
+<p>Add your own public IP at minimum.</p>
+
+<pre><code>aws ec2 authorize-security-group-ingress --group-name bosh-stemcells --protocol tcp --port 22 --cidr $(curl icanhazip.com)/32
+</code></pre>
+
+<h4 id="building-the-vm:c5482efc8719173aef3686550ec9b6dc">Building the VM</h4>
+
+<h6 id="clone-the-bosh-repo:c5482efc8719173aef3686550ec9b6dc">Clone the bosh repo.</h6>
+
+<pre><code>git clone --recursive https://github.com/cloudfoundry/bosh.git
+</code></pre>
+
+<p>We’re cloning recursively to include the bosh-agent repo as a submodule. Otherwise, the <code>vagrant up</code> step may fail with the following error.</p>
+
+<pre><code>vm:
+* The host path of the shared folder is missing: ../.git/modules
+</code></pre>
+
+<p>Add the vagrant box needed to launch replacing <code>bosh-stemcell-937f30</code> with the current release specified in <code>Vagrantfile</code> if necessary.</p>
+
+<pre><code>vagrant box add --name bosh-stemcell-937f30 https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-vagrant-boxes/bosh-stemcell-937f30-aws.box
+</code></pre>
+
+<p>Otherwise, the <a href="#build-the-stemcell-builder-vm:c5482efc8719173aef3686550ec9b6dc">vagrant up</a> step below may fail with the error.</p>
+
+<pre><code>AWS Provider:
+* vagrant_aws.config.ami_required
+</code></pre>
+
+<h6 id="build-the-stemcell-builder-vm:c5482efc8719173aef3686550ec9b6dc">Build the Stemcell Builder VM</h6>
+
+<p>With the environment prepared we can finally launch the stemcell building VM.</p>
+
+<pre><code>vagrant up remote --provider=aws
+</code></pre>
+
+<p>The build process takes a while, during the writing of this guide, the build required 12 minutes.</p>
+
+<p>Confirm that the remote VM is up and running with vagrant status.</p>
+
+<h4 id="using-the-vm:c5482efc8719173aef3686550ec9b6dc">Using the VM</h4>
+
+<h6 id="build-a-stemcell:c5482efc8719173aef3686550ec9b6dc">Build a Stemcell</h6>
+
+<p>With the stemcell builder VM operational we can now start building stemcells.</p>
+
+<pre><code>vagrant ssh -c '
+  cd /bosh
+  bundle exec rake stemcell:build_os_image[ubuntu,trusty,/tmp/ubuntu_base_image.tgz]
+' remote
+</code></pre>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built with <i class="fa fa-heart"></i> by the cloud.gov team | 
+                      <a href="https://github.com/18F/cloud-foundry-notes/issues">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Cloning Applications</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Cloning Applications</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li class="active"><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>Say you have an existing deployment on Cloud Foundry, and you want to make a new staging environment. Below are the different scenarios around <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html">application manifests</a>.</p>
+
+<h2 id="if-you-have-a-single-manifest:694aaf6bb8eef58529ced737905d0d1a">If you have a single manifest</h2>
+
+<ol>
+<li>Run <code>cf push &lt;NEW_APP_NAME&gt;</code>.</li>
+<li>Use the CLI to do any other necessary configuration.</li>
+</ol>
+
+<h2 id="if-you-have-environment-specific-manifests:694aaf6bb8eef58529ced737905d0d1a">If you have environment-specific manifests</h2>
+
+<ol>
+<li>Use <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#multi-manifests">manifest inheritance</a> to do any necessary configuration.</li>
+<li>Run <code>cf push &lt;NEW_APP_NAME&gt; -f &lt;PATH_TO_MANIFEST&gt;</code>.</li>
+<li>Make sure to run any necessary database setup commands, etc.</li>
+</ol>
+
+<h2 id="if-you-don-t-have-a-manifest:694aaf6bb8eef58529ced737905d0d1a">If you don&rsquo;t have a manifest</h2>
+
+<ol>
+<li><p>Generate a manifest from an existing application:</p>
+
+<pre><code class="language-bash">cf target -o &lt;EXISTING_APP_ORG&gt; -s &lt;EXISTING_APP_SPACE&gt;
+cf create-app-manifest &lt;EXISTING_APP_NAME&gt;
+cp &lt;EXISTING_APP_NAME&gt;_manifest.yml &lt;NEW_APP_NAME&gt;_manifest.yml
+</code></pre></li>
+
+<li><p>Clean up <code>&lt;NEW_APP_NAME&gt;_manifest.yml</code>. You probably only need the following properties:</p>
+
+<ul>
+<li><code>name</code> (required) – make sure to change it to the new app name</li>
+<li><code>env</code> – change any environment-specific variables, e.g. the <code>DATABASE_URL</code></li>
+<li><code>services</code></li>
+</ul></li>
+
+<li><p>Deploy the new environment:</p>
+
+<pre><code class="language-bash">cf push &lt;NEW_APP_NAME&gt; -f &lt;NEW_APP_NAME&gt;_manifest.yml
+</code></pre></li>
+
+<li><p>Make sure to run any necessary database setup commands, etc. for the new application.</p></li>
+</ol>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

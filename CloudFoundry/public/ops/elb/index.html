@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cloud.gov documentation">
+    <meta name="author" content="18f">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>ELB termination</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">docs.cloud.gov</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">ELB termination</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/meteor/">Deploying Meteor</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/rails/">Deploying Rails</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/durable-logging/">Durable Logging with the ELK Service</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/production-ready/">Production Ready Checklist</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-wrench'></i>
+                
+                <span>Operations</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/ops/aws-onboarding/">AWS Onboarding</a> </li>
+                    
+                    <li><a href="/ops/accessing-v1-managed-services/">Accessing v1 Managed Services</a> </li>
+                    
+                    <li><a href="/ops/changing-password/">Changing a password</a> </li>
+                    
+                    <li><a href="/ops/creating-a-stemcell-building-vm/">Creating a Stemcell Building VM</a> </li>
+                    
+                    <li><a href="/ops/creating-a-development-environment-with-bosh-lite/">Creating a dev environment</a> </li>
+                    
+                    <li><a href="/ops/creating-a-local-dev-environment-in-Virtual-Box/">Creating a local dev environment with Virtual Box</a> </li>
+                    
+                    <li><a href="/ops/create-user/">Creating a user</a> </li>
+                    
+                    <li><a href="/ops/creating-a-new-admin-user/">Creating an admin user</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-docker-broker/">Deploying the Docker Broker</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-admin-ui/">Deploying the admin UI</a> </li>
+                    
+                    <li class="active"><a href="/ops/elb/">ELB termination</a> </li>
+                    
+                    <li><a href="/ops/repos/">Github Repos</a> </li>
+                    
+                    <li><a href="/ops/making-announcements/">Making announcements</a> </li>
+                    
+                    <li><a href="/ops/metrics/">Metrics</a> </li>
+                    
+                    <li><a href="/ops/plugins/">Plugins</a> </li>
+                    
+                    <li><a href="/ops/policies/">Policies</a> </li>
+                    
+                    <li><a href="/ops/ports/">Port Descriptions</a> </li>
+                    
+                    <li><a href="/ops/multiple-instances/">Running Multiple Instances</a> </li>
+                    
+                    <li><a href="/ops/updating-cf/">Updating Cloud Foundry</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-columns'></i>
+                
+                <span>Updates</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/updates/2015-05-29/">5/29/2015</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="https://github.com/18f/cloud-foundry-notes/issues" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            
+              <li><a href="https://github.com/18f/cloud-foundry-notes/edit/master/content/ops/elb.md" target="blank"><i class='fa fa-edit'></i> Refine this Page</a> </li>
+            
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>Currently, we are fronting Cloud Foundry apps with an Elastic Load Balancer (ELB) in the Cloud Foundry VPC. The ELB terminates HTTPS, and forwards HTTP traffic within the VPC.</p>
+
+<p>ELBs need to be created directly through the AWS console or API, not using <code>cf</code> commands.</p>
+
+<h3 id="creating-and-uploading-the-https-certificate:9e12f281d8a4b1679b13bc1a8c55228d">Creating and uploading the HTTPS certificate</h3>
+
+<p>Go get a HTTPS certificate using <a href="https://github.com/18F/https">18F&rsquo;s standard  process</a>, and follow the instructions there to <a href="https://github.com/18F/https#in-an-elb">upload the key and certificate to the AWS ELB</a>.</p>
+
+<p>The name you set as part of the ELB certificate upload command will be used later.</p>
+
+<h3 id="creating-the-elb-with-cloudformation:9e12f281d8a4b1679b13bc1a8c55228d">Creating the ELB with CloudFormation</h3>
+
+<p>Use <a href="https://github.com/18F/cloud-foundry-manifests/blob/master/provisioning/elb.json">this CloudFormation JSON template</a> to create the ELB, filling in parameters as needed.</p>
+
+<ul>
+<li><strong>CertName</strong>: Pick the name of the HTTPS certificate you&rsquo;ve uploaded.</li>
+<li><strong>ClientTag</strong>: The value that corresponds to your project&rsquo;s assigned billing tag. <strong>This is mandatory.</strong></li>
+<li><strong>ELBSecGroups</strong>: Select the security groups. (See <a href="https://github.com/18F/DevOps/blob/master/cf/create-elb.sh"><code>create-elb.sh</code></a> for current information.)</li>
+<li><strong>ELBSubnets</strong>: Select the subnets. (See <a href="https://github.com/18F/DevOps/blob/master/cf/create-elb.sh"><code>create-elb</code></a> for current information.)</li>
+<li><strong>HostedZoneName</strong>: Type in the name of the hosted zone, e.g. <code>open.foia.gov</code>.</li>
+
+<li><p><strong>ZoneName</strong>: Type in the name of the subdomain in front of the hosted zone domain, if one applies.
+t</p>
+
+<h3 id="creating-the-elb-by-hand:9e12f281d8a4b1679b13bc1a8c55228d">Creating the ELB by hand</h3></li>
+</ul>
+
+<p>The CloudFormation JSON above is built to represent the following workflow:</p>
+
+<ul>
+<li><p>Create a new ELB in <code>us-east-1</code> (N. Virginia).</p></li>
+
+<li><p>Pick a name, and select the <code>CloudFoundry-live</code> VPC. Select HTTPS for the Load Balancer protocol, and HTTP for the Instance protocol.</p></li>
+
+<li><p>Select the HTTPS certificate that corresponds to the domain name being used for the ELB. Find it by the name you selected when you uploaded the certificate and key.</p></li>
+
+<li><p>Pick whatever health check makes sense (usually <code>/</code>).</p></li>
+
+<li><p>Select subnets. (See <a href="https://github.com/18F/DevOps/blob/master/cf/create-elb.sh"><code>create-elb</code></a> for current information.)</p></li>
+
+<li><p>Select security groups. (See <a href="https://github.com/18F/DevOps/blob/master/cf/create-elb.sh"><code>create-elb</code></a> for current information.)</p></li>
+
+<li><p>Choose which instance to point the Load Balancer to. (See <a href="https://github.com/18F/DevOps/blob/master/cf/create-elb.sh"><code>create-elb</code></a> for current information.)</p></li>
+
+<li><p>At the tag screen, <strong>you must tag the ELB</strong> with a tag named <code>client</code>, with the value that <strong>corresponds to your project&rsquo;s assigned billing tag</strong>.</p></li>
+</ul>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built with <i class="fa fa-heart"></i> by the cloud.gov team | 
+                      <a href="https://github.com/18F/cloud-foundry-notes/issues">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

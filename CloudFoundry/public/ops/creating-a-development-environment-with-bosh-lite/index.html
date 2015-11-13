@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cloud.gov documentation">
+    <meta name="author" content="18f">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Creating a dev environment</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">docs.cloud.gov</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Creating a dev environment</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/meteor/">Deploying Meteor</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/rails/">Deploying Rails</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/durable-logging/">Durable Logging with the ELK Service</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/production-ready/">Production Ready Checklist</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-wrench'></i>
+                
+                <span>Operations</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/ops/aws-onboarding/">AWS Onboarding</a> </li>
+                    
+                    <li><a href="/ops/accessing-v1-managed-services/">Accessing v1 Managed Services</a> </li>
+                    
+                    <li><a href="/ops/changing-password/">Changing a password</a> </li>
+                    
+                    <li><a href="/ops/creating-a-stemcell-building-vm/">Creating a Stemcell Building VM</a> </li>
+                    
+                    <li class="active"><a href="/ops/creating-a-development-environment-with-bosh-lite/">Creating a dev environment</a> </li>
+                    
+                    <li><a href="/ops/creating-a-local-dev-environment-in-Virtual-Box/">Creating a local dev environment with Virtual Box</a> </li>
+                    
+                    <li><a href="/ops/create-user/">Creating a user</a> </li>
+                    
+                    <li><a href="/ops/creating-a-new-admin-user/">Creating an admin user</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-docker-broker/">Deploying the Docker Broker</a> </li>
+                    
+                    <li><a href="/ops/deploying-the-admin-ui/">Deploying the admin UI</a> </li>
+                    
+                    <li><a href="/ops/elb/">ELB termination</a> </li>
+                    
+                    <li><a href="/ops/repos/">Github Repos</a> </li>
+                    
+                    <li><a href="/ops/making-announcements/">Making announcements</a> </li>
+                    
+                    <li><a href="/ops/metrics/">Metrics</a> </li>
+                    
+                    <li><a href="/ops/plugins/">Plugins</a> </li>
+                    
+                    <li><a href="/ops/policies/">Policies</a> </li>
+                    
+                    <li><a href="/ops/ports/">Port Descriptions</a> </li>
+                    
+                    <li><a href="/ops/multiple-instances/">Running Multiple Instances</a> </li>
+                    
+                    <li><a href="/ops/updating-cf/">Updating Cloud Foundry</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+              </li>
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-columns'></i>
+                
+                <span>Updates</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/updates/2015-05-29/">5/29/2015</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="https://github.com/18f/cloud-foundry-notes/issues" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            
+              <li><a href="https://github.com/18f/cloud-foundry-notes/edit/master/content/ops/creating-a-development-environment-with-bosh-lite.md" target="blank"><i class='fa fa-edit'></i> Refine this Page</a> </li>
+            
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>BOSH Lite is designed to provide a local development environment for BOSH and by extension Cloud Foundry. Though BOSH Lite can be run locally via Virtualbox, this guide is primarily concerned with bringing up a single-instance environment on Amazon EC2.</p>
+
+<h3 id="prerequisites:f1d8a00fb5fb307b0273aad3302f191e">Prerequisites:</h3>
+
+<ol>
+<li><a href="#vagrant:f1d8a00fb5fb307b0273aad3302f191e">Vagrant</a></li>
+<li><a href="#aws-cli:f1d8a00fb5fb307b0273aad3302f191e">AWS CLI</a></li>
+<li><a href="#git:f1d8a00fb5fb307b0273aad3302f191e">Git</a></li>
+<li><a href="#cloud-foundry-cli:f1d8a00fb5fb307b0273aad3302f191e">Cloud Foundry CLI</a></li>
+<li><a href="#bosh-iam-user:f1d8a00fb5fb307b0273aad3302f191e">Bosh IAM User</a></li>
+<li><a href="#bosh-ec2-security-group:f1d8a00fb5fb307b0273aad3302f191e">Bosh EC2 Security Group</a></li>
+</ol>
+
+<h5 id="vagrant:f1d8a00fb5fb307b0273aad3302f191e">Vagrant</h5>
+
+<p>The bosh-lite repo provides a Vagrantfile and box for quickly standing up a bosh lite director on AWS.</p>
+
+<pre><code>brew install vagrant
+vagrant plugin install vagrant-aws
+</code></pre>
+
+<h5 id="aws-cli:f1d8a00fb5fb307b0273aad3302f191e">AWS CLI</h5>
+
+<p>(Amazon Web Services Command Line Interface)</p>
+
+<p>While not strictly necessary, but this guide assumes a recent version it. Install or update it with:</p>
+
+<pre><code>sudo pip install awscli -U
+</code></pre>
+
+<h5 id="git:f1d8a00fb5fb307b0273aad3302f191e">Git</h5>
+
+<p>Needed to clone the bosh-lite repo.</p>
+
+<pre><code>brew install git
+</code></pre>
+
+<h5 id="cloud-foundry-cli:f1d8a00fb5fb307b0273aad3302f191e">Cloud Foundry CLI</h5>
+
+<p>The <code>cf</code> command is our gateway to the Cloud Foundry environment, it handles everything from the creation of users and organizations to pushing and scaling applications.</p>
+
+<pre><code>brew tap pivotal/tap
+brew install cloudfoundry-cli
+</code></pre>
+
+<h5 id="bosh-iam-user:f1d8a00fb5fb307b0273aad3302f191e">Bosh IAM User</h5>
+
+<p>You&rsquo;ll need a recent version of the AWS CLI for some of these commands. The current release is 1.7.12 as of this writing. Earlier versions may not have all the required commands.</p>
+
+<ol>
+<li><p>Create the bosh user.</p>
+
+<pre><code>aws iam create-user --user-name bosh
+</code></pre></li>
+
+<li><p>Apply a policy that will allow bosh to perform actions in the AWS environment.</p>
+
+<pre><code>aws iam attach-user-policy --user-name bosh --policy-arn 'arn:aws:iam::aws:policy/AmazonEC2FullAccess'
+</code></pre></li>
+
+<li><p>Create the bosh keypair.</p>
+
+<pre><code>aws ec2 create-key-pair --key-name bosh --query 'KeyMaterial' --output text &gt; bosh.pem
+</code></pre></li>
+
+<li><p>Create the bosh access key and secret key.</p>
+
+<pre><code>aws iam create-access-key --user-name bosh
+</code></pre></li>
+
+<li><p>Export the required environment variables using key file and credentials create above.</p>
+
+<p>This is the path to the private portion of the bosh keypair (bosh.pem).</p>
+
+<pre><code>export BOSH_LITE_KEY_PATH=/path/to/bosh.pem
+</code></pre>
+
+<p>This is AWS access key to be used by bosh.</p>
+
+<pre><code>export BOSH_AWS_ACCESS_KEY_ID=YOUR-AWS-ACCESS-KEY
+</code></pre>
+
+<p>This is AWS secret key to be used by bosh.</p>
+
+<pre><code>export BOSH_AWS_SECRET_ACCESS_KEY=YOUR-AWS-SECRET-KEY
+</code></pre></li>
+</ol>
+
+<h5 id="bosh-ec2-security-group:f1d8a00fb5fb307b0273aad3302f191e">Bosh EC2 Security Group</h5>
+
+<p>A EC2 security group which allows SSH and HTTP/S into your AWS environment:</p>
+
+<p>Again the AWS CLI is nice to have here.</p>
+
+<ol>
+<li><p>Create the security group. By default, the bosh-lite Vagrantfile expects this security group to be named inception.  You can call it something else, but you&rsquo;ll need to make the new name available to vagrant with <code>export BOSH_LITE_SECURITY_GROUP=NEW-SECURITY-GROUP-NAME</code>.</p>
+
+<pre><code>aws ec2 create-security-group --group-name inception --description 'Access to Cloud Foundry.'
+</code></pre></li>
+
+<li><p>Add your own public IP at minimum.</p>
+
+<pre><code>aws ec2 authorize-security-group-ingress --group-name bosh-inception --protocol tcp --port 22 --cidr $(curl icanhazip.com)/32
+</code></pre></li>
+</ol>
+
+<p>With the prerequisites out of the way, we can use Vagrant to deploy the instance which will run the BOSH Lite directory and wardenized Cloud Foundry services.</p>
+
+<h3 id="procedure:f1d8a00fb5fb307b0273aad3302f191e">Procedure:</h3>
+
+<h5 id="prepare-vagrant:f1d8a00fb5fb307b0273aad3302f191e">Prepare Vagrant</h5>
+
+<p>Grab the bosh-lite repo.</p>
+
+<pre><code>git clone https://github.com/cloudfoundry/bosh-lite.git
+cd bosh-lite
+</code></pre>
+
+<p>Add the bosh-lite vagrant box.</p>
+
+<pre><code>vagrant box add cloudfoundry/bosh-lite
+</code></pre>
+
+<h5 id="launch-vagrant:f1d8a00fb5fb307b0273aad3302f191e">Launch Vagrant</h5>
+
+<p>Bring the vagrant machine up.</p>
+
+<pre><code>vagrant up
+</code></pre>
+
+<p>The initial <code>vagrant up</code> includes provisioning scripts which set up port forwarding rules via iptables to expose Cloud Foundry service VMs running as warden containers on the instance.  If the machine is restarted or halted for any reason we’ll need to follow the steps in <a href="#reprovisioning:f1d8a00fb5fb307b0273aad3302f191e">reprovisioning</a> below.</p>
+
+<p>Grab the public IP of the resulting instance and keep it handy. We’ll need it later in the deployment and when accessing the resulting environment with the Cloud Foundry CLI.</p>
+
+<pre><code>aws ec2 describe-instances \
+--instance-id $(cat .vagrant/machines/default/aws/id) \
+--query 'Reservations[0].Instances[0].PublicIpAddress'
+</code></pre>
+
+<h5 id="finish-building-the-ec2-instance:f1d8a00fb5fb307b0273aad3302f191e">Finish Building the EC2 Instance:</h5>
+
+<p>Connect to the AWS instance via SSH.</p>
+
+<pre><code>vagrant ssh
+</code></pre>
+
+<p>There are a few utilities that we&rsquo;ll need to configure the Cloud Foundry environment which aren&rsquo;t included with the BOSH Lite public AMI.</p>
+
+<pre><code>sudo apt-get update &amp;&amp; apt-get -y install git unzip
+</code></pre>
+
+<p>Add the spiff utility.</p>
+
+<pre><code>wget https://github.com/cloudfoundry-incubator/spiff/releases/download/v1.0.3/spiff_linux_amd64.zip
+unzip spiff_linux_amd64.zip -d /usr/local/bin
+</code></pre>
+
+<p>Create a workspace directory.</p>
+
+<pre><code>mkdir workspace
+cd workspace
+</code></pre>
+
+<p>Target the local bosh director.</p>
+
+<pre><code>bosh target 127.0.0.1
+</code></pre>
+
+<p>Clone the bosh bosh-lite repo.</p>
+
+<pre><code>git clone https://github.com/cloudfoundry/bosh-lite.git
+cd bosh-lite
+</code></pre>
+
+<h5 id="configure-cloud-foundry:f1d8a00fb5fb307b0273aad3302f191e">Configure Cloud Foundry:</h5>
+
+<p>Update the deployment stub to reflect the public IP of your instance as recorded above by adding a <code>domain:</code> key to the properties section of <code>manifests/cf-stubb-spiff.yml</code>. The resulting file  should look something like this:</p>
+
+<pre><code>...
+properties:
+  domain: INSTANCE-PUBLIC-IP.xip.io
+...
+</code></pre>
+
+<p>Ensure the Cloud Foundry services will be able to access each other via the external address.</p>
+
+<pre><code>aws ec2 authorize-security-group-ingress --group-name bosh-inception --protocol tcp --port 0-65536 --cidr INSTANCE-PUBLIC-IP/32
+</code></pre>
+
+<h5 id="provision-cloud-foundry:f1d8a00fb5fb307b0273aad3302f191e">Provision Cloud Foundry:</h5>
+
+<p>Run the automated provisioning script.</p>
+
+<pre><code>sudo ./bin/provision_cf
+</code></pre>
+
+<p>This script automates the process of:</p>
+
+<ol>
+<li>Recursively cloning the cf-release repository.</li>
+<li>Uploading the latest release to the director.</li>
+<li>Uploading a public stemcell to the director.</li>
+<li>Generating a deployment manifest from the included templates.</li>
+<li>Deploying the generated manifest to a set of warden containers inside the instance.</li>
+</ol>
+
+<p>This process takes quite a while, up to an hour on the default <code>m3.xlarge</code> instance type.</p>
+
+<p>When complete, use bosh vms to have a look at the resulting environment.</p>
+
+<pre><code>ubuntu@agent-id-bosh-0:~/workspace/bosh-lite$ bosh vms
+
+Deployment `cf-warden'
+
+Director task 4
+
+Task 4 done
+
++------------------------------------+---------+---------------+--------------+
+| Job/index                          | State   | Resource Pool | IPs          |
++------------------------------------+---------+---------------+--------------+
+| api_z1/0                           | running | large_z1      | 10.244.0.138 |
+| etcd_z1/0                          | running | medium_z1     | 10.244.0.42  |
+| ha_proxy_z1/0                      | running | router_z1     | 10.244.0.34  |
+| hm9000_z1/0                        | running | medium_z1     | 10.244.0.142 |
+| loggregator_trafficcontroller_z1/0 | running | small_z1      | 10.244.0.150 |
+| loggregator_z1/0                   | running | medium_z1     | 10.244.0.146 |
+| login_z1/0                         | running | medium_z1     | 10.244.0.134 |
+| nats_z1/0                          | running | medium_z1     | 10.244.0.6   |
+| postgres_z1/0                      | running | medium_z1     | 10.244.0.30  |
+| router_z1/0                        | running | router_z1     | 10.244.0.22  |
+| runner_z1/0                        | running | runner_z1     | 10.244.0.26  |
+| uaa_z1/0                           | running | medium_z1     | 10.244.0.130 |
++------------------------------------+---------+---------------+--------------+
+
+VMs total: 12
+</code></pre>
+
+<p>We&rsquo;re done provisioning, now we&rsquo;ll disconnect and access the environment via the Cloud Foundry CLI.</p>
+
+<h5 id="reprovisioning:f1d8a00fb5fb307b0273aad3302f191e">Reprovisioning:</h5>
+
+<p>If the Vagrant machine is halted or restarted for any reason there are  several steps we&rsquo;ll need to take to recreate the environment.</p>
+
+<p>1.) Recreate forwarding rules.</p>
+
+<pre><code>vagrant provision
+</code></pre>
+
+<p>2.) Repair the VMs.</p>
+
+<pre><code>bosh cck cf-warden
+</code></pre>
+
+<p>Choose option 2 &ldquo;Recreate VM using last known apply spec&rdquo; for each VM then confirm the choices. A new director task will be created to recreate each VM in turn. This will take several minutes to complete.</p>
+
+<p>3.) If necessary, re-deploy using the new public IP address.</p>
+
+<p>Update <code>manifests/cf-stub-spiff.yml</code> to reflect the new public IP address, then run:</p>
+
+<pre><code>./bin/make_manifest_spiff
+bosh deploy
+</code></pre>
+
+<p>If the machine will be regularly restarted, consider associating an elastic IP to avoid having to repeat the third step above.</p>
+
+<h4 id="initial-cloud-foundry-configuration:f1d8a00fb5fb307b0273aad3302f191e">Initial Cloud Foundry Configuration:</h4>
+
+<p>Connect using the Cloud Foundry CLI.</p>
+
+<pre><code>cf api --skip-ssl-validation https://api.INSTANCE-PUBLIC-IP.xip.io
+cf auth admin admin
+</code></pre>
+
+<p><strong>Note:</strong> This step will fail with a 500 error if the VMs cannot reach each other via <code>https://xyz.INSTANCE-PUBLIC-IP.xip.io</code>.</p>
+
+<p>Create and target an organization.</p>
+
+<pre><code>cf create-org MY-ORGANIZATION
+cf target -o MY-ORGANIZATION
+</code></pre>
+
+<p>Create and target a space.</p>
+
+<pre><code>cf create-space MY-SPACE
+cf target -s MY-SPACE
+</code></pre>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built with <i class="fa fa-heart"></i> by the cloud.gov team | 
+                      <a href="https://github.com/18F/cloud-foundry-notes/issues">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

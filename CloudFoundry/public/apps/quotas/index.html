@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Quotas</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Quotas</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li class="active"><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<h4 id="quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quotas:</h4>
+
+<p>Cloud Foundry capacity is managed by quota. Quotas provide a not to exceed reservation of memory, compute, application routes and service instances.</p>
+
+<h5 id="quota-allocations:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota allocations:</h5>
+
+<p>We have allocated trial participants a default quota of 10GB of RAM, 1000 routes and 100 service instances.</p>
+
+<ul>
+<li>1000 application routes.</li>
+<li>10.024GB of RAM.</li>
+<li>100 service instances.</li>
+</ul>
+
+<h6 id="routes:1b7cbd6ff4a5f6ecee0c1df5ee074493">Routes:</h6>
+
+<p>Hostname and domain pairs where an application that exposes a listening port can be reached.</p>
+
+<h6 id="ram:1b7cbd6ff4a5f6ecee0c1df5ee074493">RAM:</h6>
+
+<p>The amount of RAM available to your applications.</p>
+
+<h6 id="service-instances:1b7cbd6ff4a5f6ecee0c1df5ee074493">Service Instances:</h6>
+
+<p>The number of service instances available to your organization.</p>
+
+<h6 id="quota-limits:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota Limits:</h6>
+
+<p>If a new application <code>push</code> would exceed your organization&rsquo;s quota the request will fail with status code <code>400</code> and a message describing the limit that would be exceeded.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>Creating app APPLICATION in org ORG / space SPACE as USER...
+FAILED
+Server error, status code: 400, error code: 100007, message: You have exceeded the memory limit for your organization's quota.
+</code></pre>
+
+<p>In this situation you have three options:</p>
+
+<ol>
+<li>Delete existing resources with <code>cf delete</code>, <code>delete-service</code>, <code>delete-route</code> or similar.</li>
+<li>Reconfigure existing <a href="#application-quotas">Application Quotas</a> and redeploy.</li>
+<li>Request a quota change <a href="support@governmentpaas.zendesk.com">support@governmentpaas.zendesk.com</a>.</li>
+</ol>
+
+<h4 id="application-quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quotas:</h4>
+
+<p>As a Cloud Foundry user you’re free to divide your organization&rsquo;s quota capacity amongst your applications as you see fit by way of application quotas. Application limits are specified in your application manifest or as <code>cf push</code> command line options.</p>
+
+<h6 id="application-quota-options:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options:</h6>
+
+<p><code>memory: / -m</code></p>
+
+<p>The application memory limit. This setting has a dual-purpose as your application compute limit is derived from its memory limit. This relationship is explained in detail below.</p>
+
+<p><code>disk_quota / -k</code></p>
+
+<p>The maximum amount of disk space available to your app.</p>
+
+<p><code>instances: / -i</code></p>
+
+<p>Sets the number of application instances to launch. Each additional instance receives the same memory and disk reservation. An application with a manifest specifying <code>memory: 256M</code> and <code>instances: 4</code> would reserve 1GB (256M x 4) total.</p>
+
+<h6 id="application-quota-options-memory-share-equals-compute-share:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Memory Share equals Compute Share</h6>
+
+<p>As noted above, your application&rsquo;s compute limit is derived from a its memory limit. Each application receives a compute share equal to its relative share of memory.</p>
+
+<p>For example, with a 1 unit (3.75GB) quota:</p>
+
+<ul>
+<li><code>memory: 1875</code>
+
+<ul>
+<li>Guaranteed at least 50% vCPU time.</li>
+<li>Offered up to 100% vCPU time.</li>
+<li>Limited to 1.875GB of RAM.</li>
+</ul></li>
+<li><code>memory: 375</code>
+
+<ul>
+<li>Guaranteed at least 10% vCPU time.</li>
+<li>Offered up to 100% vCPU time.</li>
+<li>Limited to 375MB of RAM.</li>
+</ul></li>
+</ul>
+
+<p><strong>Guaranteed:</strong></p>
+
+<p>Your application will receive at least this much vCPU time even if there are other applications competing for time.</p>
+
+<p><strong>Offered:</strong></p>
+
+<p>Your application can use all available CPU time. If there are other applications competing for time, each application&rsquo;s guaranteed share determines how much time it will receive.</p>
+
+<p><strong>Limited:</strong></p>
+
+<p>The application cannot access more than the specified amount of memory.</p>
+
+<h6 id="application-quota-options-sizing:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Sizing</h6>
+
+<ul>
+<li><p>The environment default of 512MB <code>memory:</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code>cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</p>
+
+<pre><code>requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: 
+last uploaded: Wed Jul 22 20:09:56 UTC 2015
+
+
+     state     since                    cpu    memory          disk          
+#0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M      
+</code></pre></li>
+
+<li><p>Any application which exceeds its memory quota will be automatically restarted. Use <code>cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</p>
+
+<pre><code>... description   
+... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
+</code></pre></li>
+</ul>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+
