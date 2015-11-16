@@ -336,7 +336,100 @@ cf push etherpad-lite -m 512M
 
 &lt;h3 id=&#34;next-steps:b48eb78eb73a63686d5f48ab65f6f075&#34;&gt;Next steps&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Now that you&amp;rsquo;re familiar with the platform why not try ticking off all the items on our &lt;a href=&#34;list.html&#34;&gt;list&lt;/a&gt; of tasks to try out on the platform.&lt;/p&gt;
+&lt;p&gt;Now that you&amp;rsquo;re familiar with the platform why not try ticking off all the items on our &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/index.html&#34;&gt;list&lt;/a&gt; of tasks to try out on the platform.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cloning Applications</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</guid>
+      <description>
+
+&lt;p&gt;Say you have an existing deployment on Cloud Foundry, and you want to make a new staging environment. Below are the different scenarios around &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html&#34;&gt;application manifests&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;if-you-have-a-single-manifest:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you have a single manifest&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Run &lt;code&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Use the CLI to do any other necessary configuration.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;if-you-have-environment-specific-manifests:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you have environment-specific manifests&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#multi-manifests&#34;&gt;manifest inheritance&lt;/a&gt; to do any necessary configuration.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt; -f &amp;lt;PATH_TO_MANIFEST&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Make sure to run any necessary database setup commands, etc.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;if-you-don-t-have-a-manifest:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you don&amp;rsquo;t have a manifest&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Generate a manifest from an existing application:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;EXISTING_APP_ORG&amp;gt; -s &amp;lt;EXISTING_APP_SPACE&amp;gt;
+cf create-app-manifest &amp;lt;EXISTING_APP_NAME&amp;gt;
+cp &amp;lt;EXISTING_APP_NAME&amp;gt;_manifest.yml &amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Clean up &lt;code&gt;&amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml&lt;/code&gt;. You probably only need the following properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt; (required) – make sure to change it to the new app name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;env&lt;/code&gt; – change any environment-specific variables, e.g. the &lt;code&gt;DATABASE_URL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;services&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Deploy the new environment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt; -f &amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Make sure to run any necessary database setup commands, etc. for the new application.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using apt-get</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</guid>
+      <description>&lt;p&gt;The Govt Trial Cloud Foundry does not allow the use of &lt;code&gt;sudo&lt;/code&gt; inside of buildpacks. If your app depends on a library that is &lt;code&gt;apt-get&lt;/code&gt; installable, use the CF-flavor of the &lt;a href=&#34;https://github.com/pivotal-cf-experimental/apt-buildpack&#34;&gt;&lt;code&gt;apt-buildpack&lt;/code&gt;&lt;/a&gt;. This works great with &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/&#34;&gt;&lt;code&gt;buildpack-multi&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Databases</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</guid>
+      <description>
+
+&lt;h2 id=&#34;services:063b65ec7c2204b9aadd81138ab83dc3&#34;&gt;Services&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to set up a database is via &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/services/&#34;&gt;services&lt;/a&gt;, which are managed by Cloud Foundry itself. To see what database options are available, run &lt;code&gt;cf marketplace&lt;/code&gt;. You will now see a list of &lt;code&gt;service&lt;/code&gt;s, each with a corresponding list of &lt;code&gt;plan&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;p&gt;To start a database service instance within Cloud Foundry (where &lt;code&gt;DB_NAME&lt;/code&gt; is something like &lt;code&gt;APP_NAME-ENV-db&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf create-service &amp;lt;SERVICE&amp;gt; &amp;lt;PLAN&amp;gt; &amp;lt;DB_NAME&amp;gt;
+cf bind-service &amp;lt;APP_NAME&amp;gt; &amp;lt;DB_NAME&amp;gt;
+cf restage &amp;lt;APP_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To use the &lt;code&gt;redis&lt;/code&gt; service with &lt;code&gt;myapp&lt;/code&gt; in your staging environment, for example, you would do something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf create-service redis shared-vm myapp-staging-redis
+cf bind-service myapp myapp-staging-redis
+cf restage myapp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;cf bind-service&lt;/code&gt; will provide a &lt;code&gt;DATABASE_URL&lt;/code&gt; environment variable for your app, which is then picked up by the &lt;code&gt;restage&lt;/code&gt;. Note that for a Rails app, &lt;code&gt;bind-service&lt;/code&gt; will &lt;a href=&#34;http://docs.cloudfoundry.org/buildpacks/ruby/ruby-service-bindings.html#rails-applications-have-autoconfigured-database-yml&#34;&gt;overwrite your &lt;code&gt;database.yml&lt;/code&gt;&lt;/a&gt;. The full documentation for managing service instances is &lt;a href=&#34;https://docs.cloudfoundry.org/devguide/services/managing-services.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -444,99 +537,6 @@ Buildpack activity.&lt;/p&gt;
 
 &lt;p&gt;Avoid placing long running or multi-step tasks in the application start command. Consider using worker apps as part of a multi-application manifest instead.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Databases</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</guid>
-      <description>
-
-&lt;h2 id=&#34;services:063b65ec7c2204b9aadd81138ab83dc3&#34;&gt;Services&lt;/h2&gt;
-
-&lt;p&gt;The easiest way to set up a database is via &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/services/&#34;&gt;services&lt;/a&gt;, which are managed by Cloud Foundry itself. To see what database options are available, run &lt;code&gt;cf marketplace&lt;/code&gt;. You will now see a list of &lt;code&gt;service&lt;/code&gt;s, each with a corresponding list of &lt;code&gt;plan&lt;/code&gt;s.&lt;/p&gt;
-
-&lt;p&gt;To start a database service instance within Cloud Foundry (where &lt;code&gt;DB_NAME&lt;/code&gt; is something like &lt;code&gt;APP_NAME-ENV-db&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf create-service &amp;lt;SERVICE&amp;gt; &amp;lt;PLAN&amp;gt; &amp;lt;DB_NAME&amp;gt;
-cf bind-service &amp;lt;APP_NAME&amp;gt; &amp;lt;DB_NAME&amp;gt;
-cf restage &amp;lt;APP_NAME&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To use the &lt;code&gt;redis&lt;/code&gt; service with &lt;code&gt;myapp&lt;/code&gt; in your staging environment, for example, you would do something like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf create-service redis shared-vm myapp-staging-redis
-cf bind-service myapp myapp-staging-redis
-cf restage myapp
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;cf bind-service&lt;/code&gt; will provide a &lt;code&gt;DATABASE_URL&lt;/code&gt; environment variable for your app, which is then picked up by the &lt;code&gt;restage&lt;/code&gt;. Note that for a Rails app, &lt;code&gt;bind-service&lt;/code&gt; will &lt;a href=&#34;http://docs.cloudfoundry.org/buildpacks/ruby/ruby-service-bindings.html#rails-applications-have-autoconfigured-database-yml&#34;&gt;overwrite your &lt;code&gt;database.yml&lt;/code&gt;&lt;/a&gt;. The full documentation for managing service instances is &lt;a href=&#34;https://docs.cloudfoundry.org/devguide/services/managing-services.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Cloning Applications</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</guid>
-      <description>
-
-&lt;p&gt;Say you have an existing deployment on Cloud Foundry, and you want to make a new staging environment. Below are the different scenarios around &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html&#34;&gt;application manifests&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;if-you-have-a-single-manifest:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you have a single manifest&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Run &lt;code&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Use the CLI to do any other necessary configuration.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;if-you-have-environment-specific-manifests:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you have environment-specific manifests&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Use &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#multi-manifests&#34;&gt;manifest inheritance&lt;/a&gt; to do any necessary configuration.&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt; -f &amp;lt;PATH_TO_MANIFEST&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Make sure to run any necessary database setup commands, etc.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;if-you-don-t-have-a-manifest:694aaf6bb8eef58529ced737905d0d1a&#34;&gt;If you don&amp;rsquo;t have a manifest&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Generate a manifest from an existing application:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;EXISTING_APP_ORG&amp;gt; -s &amp;lt;EXISTING_APP_SPACE&amp;gt;
-cf create-app-manifest &amp;lt;EXISTING_APP_NAME&amp;gt;
-cp &amp;lt;EXISTING_APP_NAME&amp;gt;_manifest.yml &amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Clean up &lt;code&gt;&amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml&lt;/code&gt;. You probably only need the following properties:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;name&lt;/code&gt; (required) – make sure to change it to the new app name&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;env&lt;/code&gt; – change any environment-specific variables, e.g. the &lt;code&gt;DATABASE_URL&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;services&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Deploy the new environment:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf push &amp;lt;NEW_APP_NAME&amp;gt; -f &amp;lt;NEW_APP_NAME&amp;gt;_manifest.yml
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Make sure to run any necessary database setup commands, etc. for the new application.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Using apt-get</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</guid>
-      <description>&lt;p&gt;The Govt Trial Cloud Foundry does not allow the use of &lt;code&gt;sudo&lt;/code&gt; inside of buildpacks. If your app depends on a library that is &lt;code&gt;apt-get&lt;/code&gt; installable, use the CF-flavor of the &lt;a href=&#34;https://github.com/pivotal-cf-experimental/apt-buildpack&#34;&gt;&lt;code&gt;apt-buildpack&lt;/code&gt;&lt;/a&gt;. This works great with &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/&#34;&gt;&lt;code&gt;buildpack-multi&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -806,6 +806,48 @@ applications:
     </item>
     
     <item>
+      <title>Moving apps between spaces</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</guid>
+      <description>&lt;p&gt;If you have an app that exists in one org/space but you need to move it to another:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Deploy the new application instance using the appropriate steps on the &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/&#34;&gt;cloning&lt;/a&gt; page.
+
+&lt;ul&gt;
+&lt;li&gt;Make sure to run &lt;code&gt;cf target -o &amp;lt;NEW_ORG&amp;gt; -s &amp;lt;NEW_SPACE&amp;gt;&lt;/code&gt; before running &lt;code&gt;cf push&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If you keep the app name the same, you may need to use a different &lt;code&gt;host&lt;/code&gt; to avoid route conflicts.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Go back to the old space.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;OLD_ORG&amp;gt; -s &amp;lt;OLD_SPACE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If you are changing orgs, remove the &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/domains-routes.html#delete-domains&#34;&gt;domain&lt;/a&gt;/&lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/domains-routes.html#delete-route&#34;&gt;route&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf delete-domain &amp;lt;DOMAIN&amp;gt;
+# or
+cf delete-route &amp;lt;SHARED_DOMAIN&amp;gt; -n &amp;lt;HOST&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Go back to the new space.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;NEW_ORG&amp;gt; -s &amp;lt;NEW_SPACE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Delete the old app.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;OLD_ORG&amp;gt; -s &amp;lt;OLD_SPACE&amp;gt;
+cf delete &amp;lt;APP_NAME&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Deploying node.js</title>
       <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -862,48 +904,6 @@ uri = appEnv.getServiceURL(&amp;quot;beckley-es&amp;quot;);
 
 &lt;li&gt;&lt;p&gt;Optionally run &lt;code&gt;npm install&lt;/code&gt; prior to &lt;code&gt;cf push&lt;/code&gt; to preinstall dependencies rather than having them added during staging.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Moving apps between spaces</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</guid>
-      <description>&lt;p&gt;If you have an app that exists in one org/space but you need to move it to another:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Deploy the new application instance using the appropriate steps on the &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/&#34;&gt;cloning&lt;/a&gt; page.
-
-&lt;ul&gt;
-&lt;li&gt;Make sure to run &lt;code&gt;cf target -o &amp;lt;NEW_ORG&amp;gt; -s &amp;lt;NEW_SPACE&amp;gt;&lt;/code&gt; before running &lt;code&gt;cf push&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;If you keep the app name the same, you may need to use a different &lt;code&gt;host&lt;/code&gt; to avoid route conflicts.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Go back to the old space.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;OLD_ORG&amp;gt; -s &amp;lt;OLD_SPACE&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;If you are changing orgs, remove the &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/domains-routes.html#delete-domains&#34;&gt;domain&lt;/a&gt;/&lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/domains-routes.html#delete-route&#34;&gt;route&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf delete-domain &amp;lt;DOMAIN&amp;gt;
-# or
-cf delete-route &amp;lt;SHARED_DOMAIN&amp;gt; -n &amp;lt;HOST&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Go back to the new space.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;NEW_ORG&amp;gt; -s &amp;lt;NEW_SPACE&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Delete the old app.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;OLD_ORG&amp;gt; -s &amp;lt;OLD_SPACE&amp;gt;
-cf delete &amp;lt;APP_NAME&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

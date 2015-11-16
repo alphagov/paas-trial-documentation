@@ -92,4 +92,4 @@ The etherpad application does not support running more than one instance as ther
 
 ### Next steps...
 
-Now that you're familiar with the platform why not try ticking off all the items on our <a href="list.html">list</a> of tasks to try out on the platform.
+Now that you're familiar with the platform why not try ticking off all the items on our <a href="/getting-started/bucketlist/index.html">list</a> of tasks to try out on the platform.
