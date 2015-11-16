@@ -93,15 +93,11 @@
                     
                     <li><a href="/apps/cloning/">Cloning Applications</a> </li>
                     
-                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
-                    
                     <li><a href="/apps/databases/">Databases</a> </li>
                     
                     <li><a href="/apps/django/">Deploying Django</a> </li>
                     
                     <li><a href="/apps/flask/">Deploying Flask</a> </li>
-                    
-                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
                     
                     <li><a href="/apps/static/">Deploying Static Sites</a> </li>
                     
@@ -115,7 +111,7 @@
               
               </li>
           
-            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
         </ul>
         
     </div>
@@ -139,33 +135,33 @@
 
 
 
-<h4 id="quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quotas:</h4>
+<h2 id="quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quotas:</h2>
 
 <p>Cloud Foundry capacity is managed by quota. Quotas provide a not to exceed reservation of memory, compute, application routes and service instances.</p>
 
-<h5 id="quota-allocations:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota allocations:</h5>
+<h3 id="quota-allocations:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota allocations:</h3>
 
-<p>We have allocated trial participants a default quota of 10GB of RAM, 1000 routes and 100 service instances.</p>
+<p>We have allocated trial participants a default quota of:</p>
 
 <ul>
 <li>1000 application routes.</li>
-<li>10.024GB of RAM.</li>
+<li>10GB of RAM.</li>
 <li>100 service instances.</li>
 </ul>
 
-<h6 id="routes:1b7cbd6ff4a5f6ecee0c1df5ee074493">Routes:</h6>
+<h4 id="routes:1b7cbd6ff4a5f6ecee0c1df5ee074493">Routes:</h4>
 
 <p>Hostname and domain pairs where an application that exposes a listening port can be reached.</p>
 
-<h6 id="ram:1b7cbd6ff4a5f6ecee0c1df5ee074493">RAM:</h6>
+<h4 id="ram:1b7cbd6ff4a5f6ecee0c1df5ee074493">RAM:</h4>
 
 <p>The amount of RAM available to your applications.</p>
 
-<h6 id="service-instances:1b7cbd6ff4a5f6ecee0c1df5ee074493">Service Instances:</h6>
+<h4 id="service-instances:1b7cbd6ff4a5f6ecee0c1df5ee074493">Service Instances:</h4>
 
 <p>The number of service instances available to your organization.</p>
 
-<h6 id="quota-limits:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota Limits:</h6>
+<h4 id="quota-limits:1b7cbd6ff4a5f6ecee0c1df5ee074493">Quota Limits:</h4>
 
 <p>If a new application <code>push</code> would exceed your organization&rsquo;s quota the request will fail with status code <code>400</code> and a message describing the limit that would be exceeded.</p>
 
@@ -184,11 +180,11 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 <li>Request a quota change <a href="support@governmentpaas.zendesk.com">support@governmentpaas.zendesk.com</a>.</li>
 </ol>
 
-<h4 id="application-quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quotas:</h4>
+<h3 id="application-quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quotas:</h3>
 
 <p>As a Cloud Foundry user you’re free to divide your organization&rsquo;s quota capacity amongst your applications as you see fit by way of application quotas. Application limits are specified in your application manifest or as <code>cf push</code> command line options.</p>
 
-<h6 id="application-quota-options:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options:</h6>
+<h4 id="application-quota-options:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options:</h4>
 
 <p><code>memory: / -m</code></p>
 
@@ -202,28 +198,13 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 
 <p>Sets the number of application instances to launch. Each additional instance receives the same memory and disk reservation. An application with a manifest specifying <code>memory: 256M</code> and <code>instances: 4</code> would reserve 1GB (256M x 4) total.</p>
 
-<h6 id="application-quota-options-memory-share-equals-compute-share:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Memory Share equals Compute Share</h6>
+<h4 id="application-quota-options-memory-share-equals-compute-share:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Memory Share equals Compute Share</h4>
 
 <p>As noted above, your application&rsquo;s compute limit is derived from a its memory limit. Each application receives a compute share equal to its relative share of memory.</p>
 
-<p>For example, with a 1 unit (3.75GB) quota:</p>
+<p>Your application will be guaranteed to receive a portion of the vCPU compute power equal to it&rsquo;s portion of memory allocation.</p>
 
-<ul>
-<li><code>memory: 1875</code>
-
-<ul>
-<li>Guaranteed at least 50% vCPU time.</li>
-<li>Offered up to 100% vCPU time.</li>
-<li>Limited to 1.875GB of RAM.</li>
-</ul></li>
-<li><code>memory: 375</code>
-
-<ul>
-<li>Guaranteed at least 10% vCPU time.</li>
-<li>Offered up to 100% vCPU time.</li>
-<li>Limited to 375MB of RAM.</li>
-</ul></li>
-</ul>
+<p>Your application will be offered 100% of the vCPU compute power.</p>
 
 <p><strong>Guaranteed:</strong></p>
 
@@ -237,7 +218,7 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 
 <p>The application cannot access more than the specified amount of memory.</p>
 
-<h6 id="application-quota-options-sizing:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Sizing</h6>
+<h4 id="application-quota-options-sizing:1b7cbd6ff4a5f6ecee0c1df5ee074493">Application Quota Options : Sizing</h4>
 
 <ul>
 <li><p>The environment default of 512MB <code>memory:</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code>cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</p>

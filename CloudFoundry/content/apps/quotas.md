@@ -6,31 +6,31 @@ title: Quotas
 weight: -10
 ---
 
-#### Quotas:
+## Quotas:
 
 Cloud Foundry capacity is managed by quota. Quotas provide a not to exceed reservation of memory, compute, application routes and service instances. 
 
-##### Quota allocations:
+### Quota allocations:
 
-We have allocated trial participants a default quota of 10GB of RAM, 1000 routes and 100 service instances.
+We have allocated trial participants a default quota of:
 
 - 1000 application routes.
-- 10.024GB of RAM.
+- 10GB of RAM.
 - 100 service instances.
 
-###### Routes:
+#### Routes:
 
 Hostname and domain pairs where an application that exposes a listening port can be reached.
 
-###### RAM:
+#### RAM:
 
 The amount of RAM available to your applications.
 
-###### Service Instances:
+#### Service Instances:
 
 The number of service instances available to your organization. 
 
-###### Quota Limits:
+#### Quota Limits:
 
 If a new application `push` would exceed your organization's quota the request will fail with status code `400` and a message describing the limit that would be exceeded.
 
@@ -46,11 +46,11 @@ In this situation you have three options:
 2. Reconfigure existing [Application Quotas](#application-quotas) and redeploy.
 3. Request a quota change [support@governmentpaas.zendesk.com](support@governmentpaas.zendesk.com).
 
-#### Application Quotas:
+### Application Quotas:
 
 As a Cloud Foundry user you’re free to divide your organization's quota capacity amongst your applications as you see fit by way of application quotas. Application limits are specified in your application manifest or as `cf push` command line options.
 
-###### Application Quota Options:
+#### Application Quota Options:
 
 `memory: / -m`
 
@@ -64,20 +64,13 @@ The maximum amount of disk space available to your app.
 
 Sets the number of application instances to launch. Each additional instance receives the same memory and disk reservation. An application with a manifest specifying `memory: 256M` and `instances: 4` would reserve 1GB (256M x 4) total.
 
-###### Application Quota Options : Memory Share equals Compute Share
+#### Application Quota Options : Memory Share equals Compute Share
 
 As noted above, your application's compute limit is derived from a its memory limit. Each application receives a compute share equal to its relative share of memory.
 
-For example, with a 1 unit (3.75GB) quota:
+Your application will be guaranteed to receive a portion of the vCPU compute power equal to it's portion of memory allocation. 
 
-- `memory: 1875`
-	- Guaranteed at least 50% vCPU time.
-	- Offered up to 100% vCPU time. 
-	- Limited to 1.875GB of RAM.
-- `memory: 375`
-	- Guaranteed at least 10% vCPU time. 
-	- Offered up to 100% vCPU time. 
-	- Limited to 375MB of RAM.
+Your application will be offered 100% of the vCPU compute power.
 
 **Guaranteed:**
 
@@ -92,7 +85,7 @@ Your application can use all available CPU time. If there are other applications
 The application cannot access more than the specified amount of memory.
 
 
-###### Application Quota Options : Sizing
+#### Application Quota Options : Sizing
 
 - The environment default of 512MB `memory:` is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use `cf app APPNAME` to check your application's current memory and compute utilization.
 
