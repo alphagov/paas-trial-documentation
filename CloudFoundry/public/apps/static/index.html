@@ -93,15 +93,11 @@
                     
                     <li><a href="/apps/cloning/">Cloning Applications</a> </li>
                     
-                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
-                    
                     <li><a href="/apps/databases/">Databases</a> </li>
                     
                     <li><a href="/apps/django/">Deploying Django</a> </li>
                     
                     <li><a href="/apps/flask/">Deploying Flask</a> </li>
-                    
-                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
                     
                     <li class="active"><a href="/apps/static/">Deploying Static Sites</a> </li>
                     
@@ -115,7 +111,7 @@
               
               </li>
           
-            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
         </ul>
         
     </div>
@@ -137,7 +133,12 @@
                     <section class="panel">
                       <div class="panel-body">
 
+<p>There is a built-in buildpack specifically for static sites - it requires that you add a single file to the root of the project to indicate that this is a static site:</p>
 
+<p>Create a file that tells Cloud Foundry that this is a static site:</p>
+
+<pre><code>$ touch Staticfile
+</code></pre>
 
 <p>Create <code>index.html</code>:</p>
 
@@ -156,13 +157,12 @@
 &lt;/html&gt;
 </code></pre>
 
-<p>Create a <code>manifest.yml</code> that uses the <a href="https://github.com/cloudfoundry/staticfile-buildpack"><code>staticfile-buildpack</code></a>:</p>
+<p>Create a <code>manifest.yml</code> that uses the <code>staticfile-buildpack</code>:</p>
 
 <pre><code class="language-yml">---
 applications:
 - name: my-static-site
   memory: 64M
-  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   env:
     FORCE_HTTPS: true
 </code></pre>
@@ -173,24 +173,6 @@ applications:
 
 <pre><code>$ cf push
 </code></pre>
-
-<h3 id="continuous-deployment-with-travis-ci:d0787c13b8a4561bb718106ef30e7fec">Continuous deployment with Travis-CI</h3>
-
-<p>Add your repo to Travis-CI.</p>
-
-<p>Create a <code>.travis.yml</code> file with <code>edge</code> set to <code>true</code>:</p>
-
-<pre><code class="language-yml">edge: true
-</code></pre>
-
-<p>Run the Cloud Foundry set-up script:</p>
-
-<pre><code>$ travis setup cloudfoundry
-</code></pre>
-
-<p>Follow the prompts. When you&rsquo;re done, the script will have appended all the necessary markup to the <code>.travis.yml</code> file.</p>
-
-<p>Once you merge a Pull Request, Travis will run and deploy the site.</p>
 
                       <hr style="margin: 2em auto 0.25em;">
                     </div>
