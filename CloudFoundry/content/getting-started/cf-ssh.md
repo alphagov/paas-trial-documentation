@@ -14,8 +14,6 @@ There are a couple ways to run one off tasks in Cloud Foundry. The easiest one i
 
 `cf-ssh` will spin up an instance of your environment uploading your **local** code. Note that this may not be in sync with your running container.
 
-Our `cf-ssh` is customized to our Cloud Foundry installation so please **do not use the community version**.
-
 ### Install `cf-ssh`
 
 1. Download `cf-ssh` for your environment https://github.com/cloudfoundry-community/cf-ssh/releases
