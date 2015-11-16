@@ -27,20 +27,7 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</loc>
-    <lastmod>2015-07-10T14:32:59-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</loc>
-  </url>
-  
-  <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</loc>
-  </url>
-  
-  <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
   </url>
   
   <url>
@@ -48,7 +35,11 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</loc>
   </url>
   
   <url>
@@ -56,15 +47,15 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
-  </url>
-  
-  <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
   </url>
   
   <url>
     <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
   </url>
   
   <url>
@@ -76,11 +67,11 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
   </url>
   
 </urlset>

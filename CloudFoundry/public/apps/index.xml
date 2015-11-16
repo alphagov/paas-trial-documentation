@@ -68,33 +68,33 @@
       <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/quotas/</guid>
       <description>
 
-&lt;h4 id=&#34;quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quotas:&lt;/h4&gt;
+&lt;h2 id=&#34;quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quotas:&lt;/h2&gt;
 
 &lt;p&gt;Cloud Foundry capacity is managed by quota. Quotas provide a not to exceed reservation of memory, compute, application routes and service instances.&lt;/p&gt;
 
-&lt;h5 id=&#34;quota-allocations:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quota allocations:&lt;/h5&gt;
+&lt;h3 id=&#34;quota-allocations:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quota allocations:&lt;/h3&gt;
 
-&lt;p&gt;We have allocated trial participants a default quota of 10GB of RAM, 1000 routes and 100 service instances.&lt;/p&gt;
+&lt;p&gt;We have allocated trial participants a default quota of:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;1000 application routes.&lt;/li&gt;
-&lt;li&gt;10.024GB of RAM.&lt;/li&gt;
+&lt;li&gt;10GB of RAM.&lt;/li&gt;
 &lt;li&gt;100 service instances.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h6 id=&#34;routes:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Routes:&lt;/h6&gt;
+&lt;h4 id=&#34;routes:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Routes:&lt;/h4&gt;
 
 &lt;p&gt;Hostname and domain pairs where an application that exposes a listening port can be reached.&lt;/p&gt;
 
-&lt;h6 id=&#34;ram:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;RAM:&lt;/h6&gt;
+&lt;h4 id=&#34;ram:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;RAM:&lt;/h4&gt;
 
 &lt;p&gt;The amount of RAM available to your applications.&lt;/p&gt;
 
-&lt;h6 id=&#34;service-instances:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Service Instances:&lt;/h6&gt;
+&lt;h4 id=&#34;service-instances:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Service Instances:&lt;/h4&gt;
 
 &lt;p&gt;The number of service instances available to your organization.&lt;/p&gt;
 
-&lt;h6 id=&#34;quota-limits:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quota Limits:&lt;/h6&gt;
+&lt;h4 id=&#34;quota-limits:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quota Limits:&lt;/h4&gt;
 
 &lt;p&gt;If a new application &lt;code&gt;push&lt;/code&gt; would exceed your organization&amp;rsquo;s quota the request will fail with status code &lt;code&gt;400&lt;/code&gt; and a message describing the limit that would be exceeded.&lt;/p&gt;
 
@@ -113,11 +113,11 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 &lt;li&gt;Request a quota change &lt;a href=&#34;support@governmentpaas.zendesk.com&#34;&gt;support@governmentpaas.zendesk.com&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&#34;application-quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quotas:&lt;/h4&gt;
+&lt;h3 id=&#34;application-quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quotas:&lt;/h3&gt;
 
 &lt;p&gt;As a Cloud Foundry user you’re free to divide your organization&amp;rsquo;s quota capacity amongst your applications as you see fit by way of application quotas. Application limits are specified in your application manifest or as &lt;code&gt;cf push&lt;/code&gt; command line options.&lt;/p&gt;
 
-&lt;h6 id=&#34;application-quota-options:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options:&lt;/h6&gt;
+&lt;h4 id=&#34;application-quota-options:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options:&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;memory: / -m&lt;/code&gt;&lt;/p&gt;
 
@@ -131,28 +131,13 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 
 &lt;p&gt;Sets the number of application instances to launch. Each additional instance receives the same memory and disk reservation. An application with a manifest specifying &lt;code&gt;memory: 256M&lt;/code&gt; and &lt;code&gt;instances: 4&lt;/code&gt; would reserve 1GB (256M x 4) total.&lt;/p&gt;
 
-&lt;h6 id=&#34;application-quota-options-memory-share-equals-compute-share:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options : Memory Share equals Compute Share&lt;/h6&gt;
+&lt;h4 id=&#34;application-quota-options-memory-share-equals-compute-share:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options : Memory Share equals Compute Share&lt;/h4&gt;
 
 &lt;p&gt;As noted above, your application&amp;rsquo;s compute limit is derived from a its memory limit. Each application receives a compute share equal to its relative share of memory.&lt;/p&gt;
 
-&lt;p&gt;For example, with a 1 unit (3.75GB) quota:&lt;/p&gt;
+&lt;p&gt;Your application will be guaranteed to receive a portion of the vCPU compute power equal to it&amp;rsquo;s portion of memory allocation.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;memory: 1875&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Guaranteed at least 50% vCPU time.&lt;/li&gt;
-&lt;li&gt;Offered up to 100% vCPU time.&lt;/li&gt;
-&lt;li&gt;Limited to 1.875GB of RAM.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;memory: 375&lt;/code&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Guaranteed at least 10% vCPU time.&lt;/li&gt;
-&lt;li&gt;Offered up to 100% vCPU time.&lt;/li&gt;
-&lt;li&gt;Limited to 375MB of RAM.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Your application will be offered 100% of the vCPU compute power.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Guaranteed:&lt;/strong&gt;&lt;/p&gt;
 
@@ -166,7 +151,7 @@ Server error, status code: 400, error code: 100007, message: You have exceeded t
 
 &lt;p&gt;The application cannot access more than the specified amount of memory.&lt;/p&gt;
 
-&lt;h6 id=&#34;application-quota-options-sizing:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options : Sizing&lt;/h6&gt;
+&lt;h4 id=&#34;application-quota-options-sizing:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Application Quota Options : Sizing&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;The environment default of 512MB &lt;code&gt;memory:&lt;/code&gt; is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use &lt;code&gt;cf app APPNAME&lt;/code&gt; to check your application&amp;rsquo;s current memory and compute utilization.&lt;/p&gt;
@@ -234,11 +219,11 @@ cf restart spring-music # restart the app to detect the new db service
 
 &lt;p&gt;You should now find that both instances of the app return the same data every time. The load balancer will round-robin connections between the different instances, so hitting shift-refresh in your browser a couple of times will switch between deployed instances.&lt;/p&gt;
 
-&lt;p&gt;### Flask SQLAlchemy Sample App:&lt;/p&gt;
+&lt;h3 id=&#34;flask-sqlalchemy-sample-app:b48eb78eb73a63686d5f48ab65f6f075&#34;&gt;Flask SQLAlchemy Sample App:&lt;/h3&gt;
 
 &lt;p&gt;A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default &lt;strong&gt;username / password&lt;/strong&gt; for the flask-sqlalchemy app is &lt;strong&gt;admin / default&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt; git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
 cd flask-sqlalchemy-postgres-heroku-example
 cf push flask_app --no-start
 &lt;/code&gt;&lt;/pre&gt;
@@ -277,44 +262,6 @@ cf push etherpad-lite -m 512M
 &lt;h3 id=&#34;next-steps:b48eb78eb73a63686d5f48ab65f6f075&#34;&gt;Next steps&amp;hellip;&lt;/h3&gt;
 
 &lt;p&gt;Now that you&amp;rsquo;re familiar with the platform why not try ticking off all the items on our &lt;a href=&#34;list.html&#34;&gt;list&lt;/a&gt; of tasks to try out on the platform.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Deploying Multi-language Projects</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</link>
-      <pubDate>Fri, 10 Jul 2015 14:32:59 -0400</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</guid>
-      <description>
-
-&lt;p&gt;CloudFoundry is capable of deploying, multi-language projects by using a special &lt;a href=&#34;https://github.com/ddollar/heroku-buildpack-multi&#34;&gt;buildpack&lt;/a&gt;. In short, this buildpack applies any buildpacks listed in &lt;code&gt;.buildpacks&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;h2 id=&#34;preparing-and-app-for-a-multi-buildpack-deploy:5fe63e6dcca6781baf1a588fbeaf5fe9&#34;&gt;Preparing and app for a multi-buildpack deploy&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-update-the-application-manifest:5fe63e6dcca6781baf1a588fbeaf5fe9&#34;&gt;1. Update the application manifest&lt;/h3&gt;
-
-&lt;p&gt;The application manifest should link to &lt;a href=&#34;https://github.com/ddollar/heroku-buildpack-multi.git&#34;&gt;this buildpack&lt;/a&gt; as in the example below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;memory: 512m
-applications:
-- name: complexapp
-  buildpack: https://github.com/ddollar/heroku-buildpack-multi.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The buildpack can also be set by using the &lt;code&gt;-b&lt;/code&gt; flag on the &lt;code&gt;cf push&lt;/code&gt; command; however, we recommend changing the manifest to avoid oversights while deploying.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-add-a-buildpacks-file:5fe63e6dcca6781baf1a588fbeaf5fe9&#34;&gt;2. Add a &lt;code&gt;.buildpacks&lt;/code&gt; file&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;.buildpacks&lt;/code&gt; file contains all the buildpacks needed to install/run the app. The example below is for an app that uses a Flask backend and a BackboneJS front-end.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;https://github.com/cloudfoundry/python-buildpack
-https://github.com/cloudfoundry/nodejs-buildpack
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;debugging:5fe63e6dcca6781baf1a588fbeaf5fe9&#34;&gt;Debugging&lt;/h2&gt;
-
-&lt;p&gt;Multi-buildpacks deploys can be difficult to debug because &lt;a href=&#34;https://github.com/ddollar/heroku-buildpack-multi.git&#34;&gt;heroku-buildpack-multi&lt;/a&gt; hides the error logs. For more verbose output use &lt;a href=&#34;https://github.com/ozzyjohnson/heroku-buildpack-multi&#34;&gt;ozzyjohnson/heroku-buildpack-multi&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -475,194 +422,6 @@ cp &amp;lt;EXISTING_APP_NAME&amp;gt;_manifest.yml &amp;lt;NEW_APP_NAME&amp;gt;_m
 
 &lt;li&gt;&lt;p&gt;Make sure to run any necessary database setup commands, etc. for the new application.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Continuous Deployment</title>
-      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</guid>
-      <description>
-
-&lt;p&gt;Setting up continuous deployment allows you to automatically upload your
-changes to your desired environment.&lt;/p&gt;
-
-&lt;h2 id=&#34;zero-downtime-deployment:f004fb092dc02b12177935ccc2735e2f&#34;&gt;Zero-downtime deployment&lt;/h2&gt;
-
-&lt;p&gt;Use the &lt;a href=&#34;https://github.com/concourse/autopilot&#34;&gt;autopilot&lt;/a&gt; Cloud Foundry CLI plugin or the &lt;a href=&#34;https://github.com/18F/cf-blue-green&#34;&gt;&lt;code&gt;cf-blue-green&lt;/code&gt;&lt;/a&gt; tool; see instructions in the respective repositories.&lt;/p&gt;
-
-&lt;h2 id=&#34;continuous-integration-services:f004fb092dc02b12177935ccc2735e2f&#34;&gt;Continuous integration services&lt;/h2&gt;
-
-&lt;p&gt;The first thing you need to do is ask an admin to setup a &amp;ldquo;deployer&amp;rdquo; user in your organization and give it permission to deploy to the desired space:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cf create-user ORGNAME_deployer RANDOM-PASSWORD
-cf set-space-role ORGNAME_deployer ORG SPACE SpaceDeveloper
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Depending on your CI system the setup is going to be a bit different. &lt;strong&gt;For all cases you will need a &lt;code&gt;manifest.yml&lt;/code&gt; file.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;travis:f004fb092dc02b12177935ccc2735e2f&#34;&gt;Travis&lt;/h3&gt;
-
-&lt;p&gt;Per &lt;a href=&#34;http://docs.travis-ci.com/user/deployment/cloudfoundry/&#34;&gt;http://docs.travis-ci.com/user/deployment/cloudfoundry/&lt;/a&gt; you need to add this section to your &lt;code&gt;.travis.yml&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;deploy:
-  edge: true
-  provider: cloudfoundry
-  username: DEPLOYER_USER
-  password:
-  api: https://api.trial.cf.paas.alphagov.co.uk
-  organization: ORG
-  space: SPACE
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You will also need to require &lt;code&gt;sudo&lt;/code&gt; rights for your Travis build (now off by default) in your &lt;code&gt;.travis.yml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;sudo: required
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Replace &lt;code&gt;DEPLOYER_USER&lt;/code&gt;, &lt;code&gt;ORG&lt;/code&gt;, and &lt;code&gt;SPACE&lt;/code&gt; accordingly and run &lt;code&gt;travis encrypt --add deploy.password --skip-version-check&lt;/code&gt; to enter the deployer&amp;rsquo;s password.&lt;/p&gt;
-
-&lt;h4 id=&#34;jekyll-site:f004fb092dc02b12177935ccc2735e2f&#34;&gt;Jekyll Site&lt;/h4&gt;
-
-&lt;p&gt;Deploying a Jekyll site requires a few changes to your &lt;code&gt;.travis.yml&lt;/code&gt; and &lt;code&gt;manifest.yml&lt;/code&gt; as well as the addition of a &lt;code&gt;Staticfile&lt;/code&gt; and &lt;code&gt;Gemfile&lt;/code&gt;. Add or update your Gemfile to include the jekyll gem.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Gemfile&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;source &amp;quot;https://rubygems.org&amp;quot;
-
-gem &amp;quot;jekyll&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add the following lines to the top of your &lt;code&gt;.travis.yml&lt;/code&gt; to pull Ruby and build the site.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;.travis.yml:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;language: ruby
-rvm:
-- 2.1
-script: jekyll build ./_site
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add a Staticfile pointing to the root of the built site as specified above. The static buildpack will interpret with file.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Staticfile&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;root: _site
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update manifest.yml to use the static buildpack.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;manifest.yml&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Additional Resources:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://jekyllrb.com/docs/continuous-integration/&#34;&gt;Jekyll - Continuous Integration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.travis-ci.com/user/deployment/cloudfoundry/&#34;&gt;Travis - Cloud Foundry Deployment&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.travis-ci.com/user/build-lifecycle/&#34;&gt;Travis - The Lifecycle of a Travis CI Build&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&#34;circleci:f004fb092dc02b12177935ccc2735e2f&#34;&gt;CircleCI&lt;/h3&gt;
-
-&lt;p&gt;Add this items to your &lt;code&gt;circle.yml&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;dependencies:
-  pre:
-    - wget http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb -qO temp.deb
-    - sudo dpkg -i temp.deb
-    - cf -v
-
-test:
-  post:
-    - cf login -a https://api.trial.cf.paas.alphagov.co.uk -u DEPLOYER_USER -p $CF_PASS -o ORG -s SPACE
-
-deployment:
-  production:
-    branch: master
-    commands:
-      - cf push
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Replace &lt;code&gt;DEPLOYER_USER&lt;/code&gt;, &lt;code&gt;ORG&lt;/code&gt;, and &lt;code&gt;SPACE&lt;/code&gt; accordingly and export the &lt;code&gt;CF_PASS&lt;/code&gt; environment variable in the Circle interface to add the deployer&amp;rsquo;s password.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: if your &lt;code&gt;manifest.yml&lt;/code&gt; describes more than one app you might want to specify which app to push in the &lt;code&gt;cf push&lt;/code&gt; line.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&#34;wercker:f004fb092dc02b12177935ccc2735e2f&#34;&gt;Wercker&lt;/h3&gt;
-
-&lt;p&gt;On your &lt;code&gt;wercker.yml&lt;/code&gt; file add:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;steps:
-  ...
-  - dlapiduz/cloud-foundry-deploy
-  ...
-deploy:
-  steps:
-    - dlapiduz/cloud-foundry-deploy:
-        api: $CF_API
-        username: $CF_USER
-        password: $CF_PASS
-        organization: $CF_ORG
-        space: $CF_SPACE
-        appname: myapp
-        domain: trial.cf.paas.alphagov.co.uk
-        hostname: myapp
-        skip_ssl: true
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(make sure to change the &amp;ldquo;domain&amp;rdquo; and &amp;ldquo;hostname&amp;rdquo; as needed)&lt;/p&gt;
-
-&lt;p&gt;And setup the following environment variables in a &amp;ldquo;deploy target&amp;rdquo;:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;CF_API&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;api.cloud.gov&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CF_USER&lt;/td&gt;
-&lt;td&gt;deployer username&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CF_PASS&lt;/td&gt;
-&lt;td&gt;deployer password&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CF_ORG&lt;/td&gt;
-&lt;td&gt;target organization&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;CF_SPACE&lt;/td&gt;
-&lt;td&gt;target space&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;You can also add the &lt;code&gt;alt_appname&lt;/code&gt; attribute to do &lt;a href=&#34;http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/blue-green.html&#34;&gt;Blue-Green deploys&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
 </description>
     </item>
     
@@ -872,7 +631,7 @@ DATABASES[&#39;default&#39;] =  dj_database_url.config()
 
 &lt;p&gt;Switching your Flask app to serve with Waitress instead of the built-in server is fairly simple. The first thing you&amp;rsquo;ll want to do is the app&amp;rsquo;s port to the &lt;code&gt;VCAP_APP_PORT&lt;/code&gt; environment variable. This is set by Cloud Foundry for you so you don&amp;rsquo;t have to worry about it, but you &lt;em&gt;do&lt;/em&gt; need to let Flask know about it. And while you&amp;rsquo;re developing locally you might want to set a local &lt;code&gt;VCAP_APP_PORT&lt;/code&gt;. You can do that with this code:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;port = port = int(os.getenv(&amp;quot;VCAP_APP_PORT&amp;quot;))
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;port = int(os.getenv(&amp;quot;VCAP_APP_PORT&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here&amp;rsquo;s how a basic Flask app might look:&lt;/p&gt;
@@ -967,7 +726,12 @@ applications:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/static/</guid>
-      <description>
+      <description>&lt;p&gt;There is a built-in buildpack specifically for static sites - it requires that you add a single file to the root of the project to indicate that this is a static site:&lt;/p&gt;
+
+&lt;p&gt;Create a file that tells Cloud Foundry that this is a static site:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ touch Staticfile
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Create &lt;code&gt;index.html&lt;/code&gt;:&lt;/p&gt;
 
@@ -986,13 +750,12 @@ applications:
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Create a &lt;code&gt;manifest.yml&lt;/code&gt; that uses the &lt;a href=&#34;https://github.com/cloudfoundry/staticfile-buildpack&#34;&gt;&lt;code&gt;staticfile-buildpack&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Create a &lt;code&gt;manifest.yml&lt;/code&gt; that uses the &lt;code&gt;staticfile-buildpack&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;---
 applications:
 - name: my-static-site
   memory: 64M
-  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   env:
     FORCE_HTTPS: true
 &lt;/code&gt;&lt;/pre&gt;
@@ -1003,24 +766,6 @@ applications:
 
 &lt;pre&gt;&lt;code&gt;$ cf push
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;continuous-deployment-with-travis-ci:d0787c13b8a4561bb718106ef30e7fec&#34;&gt;Continuous deployment with Travis-CI&lt;/h3&gt;
-
-&lt;p&gt;Add your repo to Travis-CI.&lt;/p&gt;
-
-&lt;p&gt;Create a &lt;code&gt;.travis.yml&lt;/code&gt; file with &lt;code&gt;edge&lt;/code&gt; set to &lt;code&gt;true&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;edge: true
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Run the Cloud Foundry set-up script:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ travis setup cloudfoundry
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Follow the prompts. When you&amp;rsquo;re done, the script will have appended all the necessary markup to the &lt;code&gt;.travis.yml&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;Once you merge a Pull Request, Travis will run and deploy the site.&lt;/p&gt;
 </description>
     </item>
     

@@ -93,15 +93,11 @@
                     
                     <li><a href="/apps/cloning/">Cloning Applications</a> </li>
                     
-                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
-                    
                     <li><a href="/apps/databases/">Databases</a> </li>
                     
                     <li><a href="/apps/django/">Deploying Django</a> </li>
                     
                     <li class="active"><a href="/apps/flask/">Deploying Flask</a> </li>
-                    
-                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
                     
                     <li><a href="/apps/static/">Deploying Static Sites</a> </li>
                     
@@ -115,7 +111,7 @@
               
               </li>
           
-            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
         </ul>
         
     </div>
@@ -163,7 +159,7 @@
 
 <p>Switching your Flask app to serve with Waitress instead of the built-in server is fairly simple. The first thing you&rsquo;ll want to do is the app&rsquo;s port to the <code>VCAP_APP_PORT</code> environment variable. This is set by Cloud Foundry for you so you don&rsquo;t have to worry about it, but you <em>do</em> need to let Flask know about it. And while you&rsquo;re developing locally you might want to set a local <code>VCAP_APP_PORT</code>. You can do that with this code:</p>
 
-<pre><code class="language-python">port = port = int(os.getenv(&quot;VCAP_APP_PORT&quot;))
+<pre><code class="language-python">port = int(os.getenv(&quot;VCAP_APP_PORT&quot;))
 </code></pre>
 
 <p>Here&rsquo;s how a basic Flask app might look:</p>
