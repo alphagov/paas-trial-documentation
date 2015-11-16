@@ -162,6 +162,11 @@ sudo mv cf /usr/local/bin
 
 &lt;pre&gt;&lt;code&gt;buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To see a list of buildpacks that are available on the platform you can use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf buildpacks
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

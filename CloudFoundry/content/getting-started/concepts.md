@@ -79,4 +79,10 @@ All apps need to use a 'buildpack' specific to their language, which sets up dep
 or a URL to reference it.
 
     buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+
+To see a list of buildpacks that are available on the platform you can use:
+
+```bash
+cf buildpacks
+```
     

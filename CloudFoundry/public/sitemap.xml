@@ -27,7 +27,7 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</loc>
   </url>
   
   <url>
@@ -35,11 +35,11 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
   </url>
   
   <url>
@@ -47,11 +47,11 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
   </url>
   
   <url>

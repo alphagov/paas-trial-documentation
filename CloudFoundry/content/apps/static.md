@@ -41,6 +41,7 @@ Create a `manifest.yml` that uses the `staticfile-buildpack`:
 applications:
 - name: my-static-site
   memory: 64M
+  buildpack: staticfile_buildpack
   env:
     FORCE_HTTPS: true
 ```
