@@ -93,15 +93,11 @@
                     
                     <li><a href="/apps/cloning/">Cloning Applications</a> </li>
                     
-                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
-                    
                     <li><a href="/apps/databases/">Databases</a> </li>
                     
                     <li><a href="/apps/django/">Deploying Django</a> </li>
                     
                     <li><a href="/apps/flask/">Deploying Flask</a> </li>
-                    
-                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
                     
                     <li><a href="/apps/static/">Deploying Static Sites</a> </li>
                     
@@ -115,7 +111,7 @@
               
               </li>
           
-            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
         </ul>
         
     </div>
@@ -174,11 +170,11 @@ cf restart spring-music # restart the app to detect the new db service
 
 <p>You should now find that both instances of the app return the same data every time. The load balancer will round-robin connections between the different instances, so hitting shift-refresh in your browser a couple of times will switch between deployed instances.</p>
 
-<p>### Flask SQLAlchemy Sample App:</p>
+<h3 id="flask-sqlalchemy-sample-app:b48eb78eb73a63686d5f48ab65f6f075">Flask SQLAlchemy Sample App:</h3>
 
 <p>A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default <strong>username / password</strong> for the flask-sqlalchemy app is <strong>admin / default</strong></p>
 
-<pre><code class="language-bash"> git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+<pre><code class="language-bash">git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
 cd flask-sqlalchemy-postgres-heroku-example
 cf push flask_app --no-start
 </code></pre>

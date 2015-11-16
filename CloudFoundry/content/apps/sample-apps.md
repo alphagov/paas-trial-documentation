@@ -45,13 +45,13 @@ cf scale -i 2 spring-music # run two instances of the app
 You should now find that both instances of the app return the same data every time. The load balancer will round-robin connections between the different instances, so hitting shift-refresh in your browser a couple of times will switch between deployed instances.
 
 
- ### Flask SQLAlchemy Sample App:
+### Flask SQLAlchemy Sample App:
 
  
  A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default **username / password** for the flask-sqlalchemy app is **admin / default**
 
  ``` bash
- git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
 cd flask-sqlalchemy-postgres-heroku-example
 cf push flask_app --no-start
 ```
