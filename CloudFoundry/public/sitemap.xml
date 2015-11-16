@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/quotas/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/sample-apps/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/django/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/static/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Sample apps</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Sample apps</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/bucketlist/">Things to try out</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li class="active"><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<h2 id="deploying-some-sample-apps:b48eb78eb73a63686d5f48ab65f6f075">Deploying some sample apps</h2>
+
+<p>To make life a little easier for trialling our PaaS options, here’s a selection of sample applications which should help when getting started with the platforms.</p>
+
+<p><strong>Note:</strong> Because this is a shared environment if your attempt to create an app may fail if one already exists with the same name. You can simply append something unique - like your name - in order to overcome this. There are ways to configure domains that will allow apps with the same names across teams but this is a more advanced topic than this document is intended to cover.</p>
+
+<h3 id="spring-music:b48eb78eb73a63686d5f48ab65f6f075">Spring Music:</h3>
+
+<p>A simple java app using the Spring Framework for managing your record collection. This application supports working with a variety of different database backends - the default deployment uses a simple in-memory database.</p>
+
+<pre><code class="language-bash">git clone https://github.com/cloudfoundry-samples/spring-music.git
+cd spring-music
+./gradlew assemble
+cf push
+</code></pre>
+
+<p>The app is deployed using an in-memory database with a ${random-word} in it’s URL:</p>
+
+<p>The <code>cf apps</code> command will list the URLs associated with the app.</p>
+
+<p>To switch from in-memory database to a postgresql backend:</p>
+
+<pre><code class="language-bash">cf marketplace # view the services available
+cf create-service Postgresql &quot;Basic PostgreSQL Plan&quot; my_spring_db
+cf bind-service spring-music my_spring_db
+cf restart spring-music # restart the app to detect the new db service
+</code></pre>
+
+<p>Now that the application is using a postgreSQL database backend, you may wish to scale up the number of deployed app instances as follows.</p>
+
+<pre><code class="language-bash">cf scale -i 2 spring-music # run two instances of the app
+</code></pre>
+
+<p>You should now find that both instances of the app return the same data every time. The load balancer will round-robin connections between the different instances, so hitting shift-refresh in your browser a couple of times will switch between deployed instances.</p>
+
+<h3 id="flask-sqlalchemy-sample-app:b48eb78eb73a63686d5f48ab65f6f075">Flask SQLAlchemy Sample App:</h3>
+
+<p>A simple microblog app built using Python/Flask using SQLAlchemy to support a postgres DB backend. The default <strong>username / password</strong> for the flask-sqlalchemy app is <strong>admin / default</strong></p>
+
+<pre><code class="language-bash">git clone https://github.com/alphagov/flask-sqlalchemy-postgres-heroku-example.git
+cd flask-sqlalchemy-postgres-heroku-example
+cf push flask_app --no-start
+</code></pre>
+
+<p>The Flask-sqlalchemy application requires a backend data service to run, so you will need to create a service instance of postgresql and bind it to the application as follows.</p>
+
+<pre><code class="language-bash">cf marketplace # view the services available
+cf create-service Postgresql &quot;Basic PostgreSQL Plan&quot; my_flaskapp_db
+cf bind-service flask_app my_flaskapp_db
+cf restart flask_app # restart the app to detect the new db service
+</code></pre>
+
+<p>The <code>cf apps</code> command will list the URLs associated with the app.</p>
+
+<p>The flask-sqlalchemy application supports running multiple instances and can be scaled using:</p>
+
+<pre><code class="language-bash">cf scale -i 3 flask_app # run three instances of the app
+</code></pre>
+
+<h3 id="etherpad-lite:b48eb78eb73a63686d5f48ab65f6f075">Etherpad-lite:</h3>
+
+<p>Etherpad is a real-time collaborative document editing app built using nodeJS. The master branch of the github source for Etherpad was not working at the time this document was written, so you’ll need to download a tagged release from the releases page.</p>
+
+<pre><code class="language-bash">wget https://github.com/cloudfoundry-community/etherpad-lite-cf/releases/download/1.5.7-cf/etherpad-lite-cf.zip
+mkdir etherpad
+cd etherpad
+unzip ../etherpad-lite-cf.zip
+cf push etherpad-lite -m 512M 
+# The -m flag allows you to configures the amount of allocated memory
+</code></pre>
+
+<p>The <code>cf apps</code> command will list the URLs associated with the app.</p>
+
+<p>The etherpad application does not support running more than one instance as there is no shared backend data service support, so if you attempt to scale this app to multiple instances then they will not all share the same data.</p>
+
+<h3 id="next-steps:b48eb78eb73a63686d5f48ab65f6f075">Next steps&hellip;</h3>
+
+<p>Now that you&rsquo;re familiar with the platform why not try ticking off all the items on our <a href="/getting-started/bucketlist/index.html">list</a> of tasks to try out on the platform.</p>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
+

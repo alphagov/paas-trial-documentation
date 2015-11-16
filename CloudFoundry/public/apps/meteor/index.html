@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Deploying Meteor</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Deploying Meteor</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/continuous-deployment/">Continuous Deployment</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li class="active"><a href="/apps/meteor/">Deploying Meteor</a> </li>
+                    
+                    <li><a href="/apps/multi-buildpack-deploys/">Deploying Multi-language Projects</a> </li>
+                    
+                    <li><a href="/apps/rails/">Deploying Rails</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/durable-logging/">Durable Logging with the ELK Service</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/production-ready/">Production Ready Checklist</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="mailto:support@governmentpaas.zendesk.com" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<h1 id="about-meteor:48e026c0e83d0c2d35c1335d577eda8a">About Meteor</h1>
+
+<p><a href="https://www.meteor.com/">Meteor</a> is a Javascript framework that makes it very easy to synchronize data between the client and server. Moreover it&rsquo;s also very easy to share code between client and server.</p>
+
+<p>Meteor includes nearly everything you need to get a web application up and running:</p>
+
+<ul>
+<li>Javascript server framework</li>
+<li>Javascript client framework</li>
+<li>MongoDB for persistence</li>
+<li>Asset pipeline (automagically include and minify CSS, JS, etc)</li>
+</ul>
+
+<h1 id="hello-world:48e026c0e83d0c2d35c1335d577eda8a">Hello world</h1>
+
+<h2 id="install-meteor-locally:48e026c0e83d0c2d35c1335d577eda8a">Install Meteor locally</h2>
+
+<p>See <a href="https://www.meteor.com/install">https://www.meteor.com/install</a>. On OSX or Linux you can just run this in the terminal:</p>
+
+<pre><code class="language-bash">curl https://install.meteor.com/ | sh
+</code></pre>
+
+<h2 id="create-a-boilerplate-app:48e026c0e83d0c2d35c1335d577eda8a">Create a boilerplate app</h2>
+
+<pre><code>$ meteor create hello
+$ cd hello
+$ meteor
+# this starts the Meteor server
+# view the local site in a browser to ensure everything works
+# press ctrl-c to exit the server when you are done
+</code></pre>
+
+<h2 id="adding-the-manifest-yml:48e026c0e83d0c2d35c1335d577eda8a">Adding the manifest.yml</h2>
+
+<p>Create at the root of your application a file called <code>manifest.yml</code> and add:</p>
+
+<pre><code class="language-yaml">---
+applications:
+- name: hello-meteor
+  memory: 128M
+  instances: 1
+  domain: 18f.gov
+  buildpack: https://github.com/18F/cf-meteor-buildpack.git
+  env:
+    FORCE_HTTPS: true
+</code></pre>
+
+<p>You should customize the application name.</p>
+
+<h2 id="deploy:48e026c0e83d0c2d35c1335d577eda8a">Deploy</h2>
+
+<p>Simply run</p>
+
+<pre><code class="language-bash">cf push
+</code></pre>
+
+<h1 id="with-a-database:48e026c0e83d0c2d35c1335d577eda8a">With a database</h1>
+
+<p>To truly take advantage of Meteor&rsquo;s data syncing, you should set up a database collection using MongoDB.</p>
+
+<h2 id="make-a-todo-list:48e026c0e83d0c2d35c1335d577eda8a">Make a Todo list</h2>
+
+<p>Follow this <a href="https://www.meteor.com/tutorials/blaze/creating-an-app">tutorial</a>. Make sure everything works fine locally.</p>
+
+<h2 id="set-up-a-cloud-foundry-mongo-instance:48e026c0e83d0c2d35c1335d577eda8a">Set up a Cloud Foundry Mongo Instance</h2>
+
+<p>Peruse the Marketplace for available services:</p>
+
+<pre><code>$ cf marketplace
+# You should see `mongodb-new`
+</code></pre>
+
+<p>Create the service:</p>
+
+<pre><code class="language-bash">cf create-service mongodb-new hello-meteor-mongo
+</code></pre>
+
+<p>Bind the service:</p>
+
+<pre><code class="language-bash">cf bind-service hello-meteor hello-meteor-mongo
+</code></pre>
+
+<p>Restage:</p>
+
+<pre><code class="language-bash">cf restage hello-meteor
+</code></pre>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  <script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+

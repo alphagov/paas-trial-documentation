@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting-Starteds on Govt PaaS</title>
+    <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/</link>
+    <description>Recent content in Getting-Starteds on Govt PaaS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <atom:link href="http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Setup</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</guid>
+      <description>
+
+&lt;h2 id=&#34;installing-the-cli:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Installing the CLI&lt;/h2&gt;
+
+&lt;p&gt;Interacting with Cloud Foundry is easiest through the &lt;code&gt;cf&lt;/code&gt; command line interface.&lt;/p&gt;
+
+&lt;h3 id=&#34;osx:2cc0b07f42930e4520820be1fe66f913&#34;&gt;OSX&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew tap pivotal/tap
+brew install cloudfoundry-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;linux:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Linux&lt;/h3&gt;
+
+&lt;p&gt;Download and uncompress the binary, and move it somewhere in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget &#39;https://cli.run.pivotal.io/stable?release=linux64-binary&amp;amp;source=github&#39; -O cf.tgz
+tar -zxvf cf.tgz
+sudo mv cf /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;manual-download:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Manual download&lt;/h3&gt;
+
+&lt;p&gt;You can also download the binaries &lt;a href=&#34;https://github.com/cloudfoundry/cli#downloads&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;confirm-the-installation:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Confirm the installation&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As of this writing the current cf CLI version is &lt;code&gt;6.13.0-e68ce0f&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-up-your-account:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setting up your account&lt;/h2&gt;
+
+&lt;p&gt;You will need a Cloud Foundry account before continuing. Your password is in your welcome email.&lt;/p&gt;
+
+&lt;h3 id=&#34;log-in:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Log in&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf login -a api.trial.cf.paas.alphagov.co.uk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once you log in for the first time, you&amp;rsquo;ll probably want to change your password with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf passwd
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Things to try out</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</guid>
+      <description>
+
+&lt;h2 id=&#34;we-d-love-you-to-try-doing-some-of-these:9ecc59cf6de5223428ac47df064067d1&#34;&gt;We&amp;rsquo;d love you to try doing some of these:&lt;/h2&gt;
+
+&lt;p&gt;While you&amp;rsquo;re experimenting with the platform we&amp;rsquo;d love for you to try to perform some (or all) of these tasks (and then give us feedback on how it went):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Deploy an application&lt;/li&gt;
+&lt;li&gt;Bind an application to a backing service (Postgres / Redis)&lt;/li&gt;
+&lt;li&gt;Scale the number of instances of your app (up and down)&lt;/li&gt;
+&lt;li&gt;Connect to your application from the outside world to ensure it works&lt;/li&gt;
+&lt;li&gt;Drive traffic to your application (if you have the tools to do this)&lt;/li&gt;
+&lt;li&gt;Perform a zero-downtime deploy of a new version of your app (for bonus points try this with traffic being driven to the app at the same time)&lt;/li&gt;
+&lt;li&gt;Remove your app&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Concepts</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</guid>
+      <description>
+
+&lt;p&gt;Official glossary: &lt;a href=&#34;http://docs.cloudfoundry.org/concepts/glossary.html&#34;&gt;http://docs.cloudfoundry.org/concepts/glossary.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;organizations:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Organizations&lt;/h2&gt;
+
+&lt;p&gt;Cloud Foundry groups its users by &lt;a href=&#34;http://docs.cloudfoundry.org/concepts/roles.html#orgs&#34;&gt;organizations&lt;/a&gt;, or &amp;ldquo;orgs&amp;rdquo; for short. Orgs group together users for management and present a shared perimeter for services, domains and quotas. When your account is created, it will be given permissions to an org and a personal space.&lt;/p&gt;
+
+&lt;h3 id=&#34;naming-convention:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Naming convention&lt;/h3&gt;
+
+&lt;p&gt;Within the trial, the &lt;code&gt;ORGNAME&lt;/code&gt; will correspond to a project/client.&lt;/p&gt;
+
+&lt;h3 id=&#34;list-available-orgs:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;List available orgs&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf orgs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Only orgs where you&amp;rsquo;ve been assigned an org-role or those which contain a space where you&amp;rsquo;ve been assigned a space-role will appear.&lt;/p&gt;
+
+&lt;h3 id=&#34;see-details-about-a-specific-org:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;See details about a specific org&lt;/h3&gt;
+
+&lt;p&gt;&amp;hellip;including quotas, routing domains and which spaces it includes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf org ORGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;target-an-org:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Target an org&lt;/h3&gt;
+
+&lt;p&gt;In order to work with spaces, you&amp;rsquo;ll need to do this first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o ORGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;spaces:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Spaces&lt;/h2&gt;
+
+&lt;p&gt;Every application is scoped to a &lt;a href=&#34;http://docs.cloudfoundry.org/concepts/roles.html#spaces&#34;&gt;space&lt;/a&gt;. Applications in the same space share a location for app development, deployment, and maintenance.&lt;/p&gt;
+
+&lt;h3 id=&#34;naming-convention-1:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Naming convention&lt;/h3&gt;
+
+&lt;p&gt;Within the trial, the &lt;code&gt;SPACENAME&lt;/code&gt; will correspond to an environment, e.g. &lt;code&gt;dev&lt;/code&gt; or &lt;code&gt;prod&lt;/code&gt;. If the org is more general (e.g. &lt;code&gt;devops&lt;/code&gt;), the space may correspond to the name of the project (e.g. &lt;code&gt;hubot&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;management:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Management&lt;/h3&gt;
+
+&lt;p&gt;To create a space:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf create-space SPACENAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;  To create a space within a given org you must have the &lt;code&gt;OrgManager&lt;/code&gt; role. You can check to see which users and managers for your org with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf org-users ORGNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;target:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Target&lt;/h2&gt;
+
+&lt;p&gt;The Cloud Foundry CLI keeps a global state of whatever &lt;a href=&#34;#organizations:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;organization&lt;/a&gt;+&lt;a href=&#34;#spaces:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;space&lt;/a&gt; you&amp;rsquo;re interacting with. This is known as the &amp;ldquo;target&amp;rdquo;, and is set via&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o ORGNAME -s SPACENAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;buildpacks:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Buildpacks&lt;/h2&gt;
+
+&lt;p&gt;All apps need to use a &amp;lsquo;buildpack&amp;rsquo; specific to their language, which sets up dependencies for particular language stacks. There are standard buildpacks for most lanugages, and they will usually be auto-detected by CF. Using the standard buildpacks is strongly encouraged. In the rare case where the buildpack does not get detected correctly, or to use a custom buildpack, it can be specified in the manifest (as below) or with the &lt;code&gt;-b&lt;/code&gt; flag. Use either the buildpack name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;buildpack: python_buildpack
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or a URL to reference it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To see a list of buildpacks that are available on the platform you can use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf buildpacks
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Running one off tasks</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</guid>
+      <description>
+
+&lt;p&gt;There are a couple ways to run one off tasks in Cloud Foundry. The easiest one is running CF SSH.&lt;/p&gt;
+
+&lt;h2 id=&#34;cf-ssh:af54944f4e53a8258f8891c10a30381e&#34;&gt;CF SSH&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;cf-ssh&lt;/code&gt; is a shared ssh session with an application container that you can connect to. This allows you to debug the environment and your application without disturbing a running container.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;cf-ssh&lt;/code&gt; will spin up an instance of your environment uploading your &lt;strong&gt;local&lt;/strong&gt; code. Note that this may not be in sync with your running container.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-cf-ssh:af54944f4e53a8258f8891c10a30381e&#34;&gt;Install &lt;code&gt;cf-ssh&lt;/code&gt;&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Download &lt;code&gt;cf-ssh&lt;/code&gt; for your environment &lt;a href=&#34;https://github.com/cloudfoundry-community/cf-ssh/releases&#34;&gt;https://github.com/cloudfoundry-community/cf-ssh/releases&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/Downloads
+chmod a+x cf-ssh
+mv cf-ssh /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;usage:af54944f4e53a8258f8891c10a30381e&#34;&gt;Usage&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you don&amp;rsquo;t have an &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html&#34;&gt;application manifest&lt;/a&gt; yet, generate one from an existing app with &lt;code&gt;cf create-app-manifest &amp;lt;APP_NAME&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;In your project folder, run &lt;code&gt;cf-ssh -f &amp;lt;PATH_TO_MANIFEST&amp;gt;&lt;/code&gt; (&lt;code&gt;-f&lt;/code&gt; option only needed if the file isn&amp;rsquo;t named &lt;code&gt;manifest.yml&lt;/code&gt;).
+
+&lt;ul&gt;
+&lt;li&gt;If you want to receive more feedback about what &lt;code&gt;cf-ssh&lt;/code&gt; is doing please run it with the &lt;code&gt;--verbose&lt;/code&gt; flag.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The process takes between 2 to 10 minutes to start the session since it is compiling your application in the background. When it completes, you will see a command prompt.&lt;/li&gt;
+&lt;li&gt;When done, run &lt;code&gt;exit&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>Deploying Flask</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">Deploying Flask</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/bucketlist/">Things to try out</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li class="active"><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<p>Deploying a Flask app is similar to deploying a Django app but is a bit simpler.</p>
+
+<h2 id="creating-the-app:c35eab89814973a38e39d2a98101f8ad">Creating the App</h2>
+
+<p>There&rsquo;s no explicit command to create an app, but:</p>
+
+<pre><code class="language-bash">cf push APPNAME
+</code></pre>
+
+<p>will create or deploy the app APPNAME. But before you deploy, let&rsquo;s set up a few things.</p>
+
+<h3 id="ignoring-files:c35eab89814973a38e39d2a98101f8ad">Ignoring files</h3>
+
+<ol>
+<li>Add <code>*.pyc</code> and any other files you want Cloud Foundry to your <code>.gitignore</code>.</li>
+<li><a href="/apps/deployment/#excluding-files:98159bafc57a07057ca8a36ea636fe50">Exclude your <code>.gitignore</code>d files from Cloud Foundry.</a></li>
+</ol>
+
+<h3 id="wsgi-configuration:c35eab89814973a38e39d2a98101f8ad">WSGI Configuration</h3>
+
+<p>You <em>could</em> use the built-in Werkzeug server to send out your Flask app, <a href="http://flask.pocoo.org/docs/0.10/deploying/">but it&rsquo;s not recommended</a>. As with Django, we recommend installing and using <code>waitress</code> for a WSGI server. Install it with <code>pip install waitress</code>.</p>
+
+<p>Switching your Flask app to serve with Waitress instead of the built-in server is fairly simple. The first thing you&rsquo;ll want to do is the app&rsquo;s port to the <code>VCAP_APP_PORT</code> environment variable. This is set by Cloud Foundry for you so you don&rsquo;t have to worry about it, but you <em>do</em> need to let Flask know about it. And while you&rsquo;re developing locally you might want to set a local <code>VCAP_APP_PORT</code>. You can do that with this code:</p>
+
+<pre><code class="language-python">port = int(os.getenv(&quot;VCAP_APP_PORT&quot;))
+</code></pre>
+
+<p>Here&rsquo;s how a basic Flask app might look:</p>
+
+<pre><code class="language-python">from flask import Flask
+# do stuff
+if __name__ == &quot;__main__&quot;:
+  app.run(host='0.0.0.0', port=port)
+</code></pre>
+
+<p>We recommend modifying it like this:</p>
+
+<pre><code class="language-python">from flask import Flask
+from waitress import serve
+# do stuff
+if __name__ == &quot;__main__&quot;:
+  serve(app, port=port)
+</code></pre>
+
+<p>If you still want to use the built-in server in development you could add an environment variable and do something like this:</p>
+
+<pre><code class="language-python">from flask import Flask
+from waitress import serve
+# do stuff
+if __name__ == &quot;__main__&quot;:
+  if os.environ['PRODUCTION'] == &quot;0&quot;:
+    app.run(host='0.0.0.0', port=port)
+  else:
+    serve(app, port=port)
+</code></pre>
+
+<p>To add that environment variable, run:</p>
+
+<pre><code class="language-bash">cf set-env APPNAME PRODUCTION VALUE
+</code></pre>
+
+<p>In that example, <code>APPNAME</code> is the name your your app and <code>VALUE</code> is whatever you want it to be (as long as it&rsquo;s not <code>&quot;0&quot;</code>).</p>
+
+<h3 id="the-procfile:c35eab89814973a38e39d2a98101f8ad">The Procfile</h3>
+
+<p>The Procfile contains commands that Cloud Foundry will run to keep your site up. Create a file called <code>Procfile</code> and in it put</p>
+
+<pre><code>web: python index.py
+</code></pre>
+
+<p><code>index.py</code> should be replaced with whatever your app&rsquo;s main python file is.</p>
+
+<h3 id="the-manifest-yml:c35eab89814973a38e39d2a98101f8ad">The <code>manifest.yml</code></h3>
+
+<p>The <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html">manifest file</a> tells <code>cf push</code> what to do with your app. Here&rsquo;s an example:</p>
+
+<pre><code class="language-yaml">---
+# all applications use these settings and services
+memory: 512M
+instances: 1
+applications:
+- name: APPNAME
+  path: .
+  timeout: 180
+  host: trial.cf.paas.alphagov.co.uk
+</code></pre>
+
+<p>As you can see, it specifies the number of instances, the memory allocated to the application, and the application itself.</p>
+
+<h3 id="create-the-app:c35eab89814973a38e39d2a98101f8ad">Create the App</h3>
+
+<p>To create and deploy your app:</p>
+
+<pre><code class="language-bash">cf push APPNAME
+</code></pre>
+
+<p>If you&rsquo;re going to set up a database you probably need to run <code>cf push --no-start</code> while you figure out how to get the database going.</p>
+
+<h2 id="setting-up-the-database:c35eab89814973a38e39d2a98101f8ad">Setting Up the Database</h2>
+
+<p>You don&rsquo;t need a database to work with Flask but if you want to try, be sure to update this page with how you did it. <strong>I&rsquo;d start with reading <a href="/apps/databases/">the database guide</a>.</strong></p>
+
+<h3 id="running-the-app:c35eab89814973a38e39d2a98101f8ad">Running the app</h3>
+
+<p>Now try running the push command without the <code>--no-start</code> flag:</p>
+
+<pre><code class="language-bash">cf push APPNAME
+</code></pre>
+
+<p>It should now be running at <code>APPNAME.trial.cf.paas.alphagov.co.uk</code>!</p>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
+

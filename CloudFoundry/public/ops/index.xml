@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ops on docs.cloud.gov</title>
+    <link>http://localhost:1313/ops/</link>
+    <description>Recent content in Ops on docs.cloud.gov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 27 May 2015 13:32:00 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/ops/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running Multiple Instances</title>
+      <link>http://localhost:1313/ops/multiple-instances/</link>
+      <pubDate>Wed, 27 May 2015 13:32:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/ops/multiple-instances/</guid>
+      <description>
+
+&lt;h2 id=&#34;starting-multiple-instances:6f00fb16b8456c9b421dd482dcbacf36&#34;&gt;Starting Multiple Instances&lt;/h2&gt;
+
+&lt;p&gt;There are three ways to start multiple app instances in Cloud Foundry:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;In the &lt;code&gt;cf push&lt;/code&gt; command&lt;/li&gt;
+&lt;li&gt;In the &lt;code&gt;manifest.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Using the &lt;code&gt;cf scale&lt;/code&gt; command&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;push-command-method:6f00fb16b8456c9b421dd482dcbacf36&#34;&gt;Push Command Method&lt;/h4&gt;
+
+&lt;p&gt;When pushing an app use the &lt;code&gt;-i&lt;/code&gt; flag to declare the number of instances. The example below demonstrates pushing an app with 2 instances.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf push &amp;lt;&amp;lt;APP_NAME&amp;gt;&amp;gt; -i 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;manifest-method:6f00fb16b8456c9b421dd482dcbacf36&#34;&gt;Manifest Method&lt;/h4&gt;
+
+&lt;p&gt;The number of instances can also be defined using the &lt;code&gt;instances&lt;/code&gt; key in the &lt;code&gt;manifest.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;memory: 512mb
+instances: 2
+applications:
+  - name: &amp;lt;&amp;lt;APP_NAME&amp;gt;&amp;gt;
+    path: .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;scale-command-method:6f00fb16b8456c9b421dd482dcbacf36&#34;&gt;Scale Command Method&lt;/h4&gt;
+
+&lt;p&gt;The number of instances can be changed for a running app using the &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html&#34;&gt;cf-scale&lt;/a&gt; command.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf scale &amp;lt;&amp;lt;APP_NAME&amp;gt;&amp;gt; -i 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;managing-multiple-instances-with-cf-instance-index-http-docs-run-pivotal-io-devguide-deploy-apps-environment-variable-html-cf-instance-index:6f00fb16b8456c9b421dd482dcbacf36&#34;&gt;Managing Multiple Instances with &lt;a href=&#34;http://docs.run.pivotal.io/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX&#34;&gt;CF-INSTANCE-INDEX&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Running multiple instances may sometimes cause scheduled tasks or a data loads to run multiple times. This issues can be prevented by using the &lt;a href=&#34;http://docs.run.pivotal.io/devguide/deploy-apps/environment-variable.html#CF-INSTANCE-INDEX&#34;&gt;CF-INSTANCE-INDEX&lt;/a&gt; environment variable. This variable denotes the specific instance number.&lt;/p&gt;
+
+&lt;p&gt;The example below shows a bash load script for a Python project. The commands within the &lt;code&gt;if&lt;/code&gt; condition are only run when the first app instances is starting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/bash
+echo &amp;quot;------ Starting APP ------&amp;quot;
+if [ $CF_INSTANCE_INDEX = &amp;quot;0&amp;quot; ]; then
+    echo &amp;quot;----- Migrating Database -----&amp;quot;
+    python manage.py migrate --noinput
+    echo &amp;quot;----- Loading Agency Contacts -----&amp;quot;
+    python manage.py load_agency_contacts
+fi
+gunicorn foia_hub.wsgi:application --log-file -
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AWS Onboarding</title>
+      <link>http://localhost:1313/ops/aws-onboarding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/aws-onboarding/</guid>
+      <description>&lt;p&gt;If you are going to be a Cloud Foundry operator you need to be onboarded to AWS.&lt;/p&gt;
+
+&lt;p&gt;Things you will need:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Access to EC2, RDS and CloudFormation&lt;/li&gt;
+&lt;li&gt;Your key added to the jumpbox&lt;/li&gt;
+&lt;li&gt;The IP of the jumpbox (look at the CloudFormation stack for it)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Accessing v1 Managed Services</title>
+      <link>http://localhost:1313/ops/accessing-v1-managed-services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/accessing-v1-managed-services/</guid>
+      <description>
+
+&lt;h4 id=&#34;background:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Background:&lt;/h4&gt;
+
+&lt;p&gt;Cloud Foundry Managed Services provide applications with on-demand access to services outside of the stateless application environment. Typical managed services include databases, queues and key-value stores.&lt;/p&gt;
+
+&lt;p&gt;The v1 services in &lt;a href=&#34;https://github.com/cloudfoundry-community/cf-services-contrib-release&#34;&gt;cf-services-contrib-release&lt;/a&gt; are a straightforward way to get started quickly with a suite of useful service bindings. Services included are elasticsearch, memcached, mongodb, postgresql, rabbitmq, redis, vblob and swift.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; These v1 services are currently deprecated and set to be removed in a future Cloud Foundry release. Consider using the v2 &lt;a href=&#34;https://github.com/cf-platform-eng/cf-containers-broker&#34;&gt;containers service broker&lt;/a&gt; with an appropriate Docker image going forward.&lt;/p&gt;
+
+&lt;h4 id=&#34;prerequisites:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Prerequisites:&lt;/h4&gt;
+
+&lt;p&gt;1.) Cloud Foundry &lt;a href=&#34;https://github.com/cloudfoundry/cli&#34;&gt;CLI&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew tap pivotal/tap
+brew install cloudfoundry-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.) The utility &lt;a href=&#34;http://stedolan.github.io/jq/&#34;&gt;jq&lt;/a&gt; JSON parsing utility is not strictly necessary, but comes into play in of one of the examples below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3.) An fully deployed and authorized v1 Cloud Foundry service such as the contrib services mentioned above.&lt;/p&gt;
+
+&lt;h4 id=&#34;procedure:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Procedure:&lt;/h4&gt;
+
+&lt;p&gt;In order to create a service instance and binding for use with an application we first need to identify the available services and their respective plans.&lt;/p&gt;
+
+&lt;h5 id=&#34;list-v1-services:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;List v1 Services:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;cf service-auth-tokens
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Getting service auth tokens as USERNAME...
+OK
+
+label           provider   
+postgresql      core   
+elasticsearch   core   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;list-v1-service-plans:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;List v1 Service Plans:&lt;/h5&gt;
+
+&lt;p&gt;Unfortunately, the &lt;code&gt;cf&lt;/code&gt; cli lacks a command to query for v1 service plans directly, but we can get that information from the Cloud Foundry API with the help of &lt;code&gt;cf curl&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Identify the &lt;code&gt;service_plan_url&lt;/code&gt; for the service &lt;code&gt;entity&lt;/code&gt; (service label) you&amp;rsquo;re interested in.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf curl /v2/services
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Access the entity &lt;code&gt;service_plan_url&lt;/code&gt; with &lt;code&gt;cf curl&lt;/code&gt; to see available plans.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf curl SERVICE_PLAN_URL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can do this as a one-liner with some help from jq.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf curl `cf curl /v2/services | jq -r &#39;(.resources[] | select(.entity.label == SERVICE_LABEL) | .entity.service_plans_url)&#39;`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;create-a-service-instance:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Create a Service Instance:&lt;/h5&gt;
+
+&lt;p&gt;Target the org and space which will hold the app to which the service instance will be bound.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf target -o ORG -s SPACE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a new service instance by specifying a service label, plan and a name of your choice for the service instance. Note that service instance names must be unique and they can be renamed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-service SERVICE_LABEL SERVICE_PLAN INSTANCE_NAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example, the create an instance of the elasticsearch service using the free plan with name &amp;lsquo;es&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-service elasticsearch free es
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;bind-the-service-instance:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Bind the Service Instance:&lt;/h5&gt;
+
+&lt;p&gt;A service instance must be bound to the application which will access it. This can be done in a single step by adding a binding to the application&amp;rsquo;s &lt;code&gt;manifest.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;manifest.yml&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+applications:
+- name: app
+  command: node app.js
+  services:
+   - es
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A service binding will be created with the next &lt;code&gt;cf push&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, a service instance can also bound to an existing application via the &lt;code&gt;cf&lt;/code&gt; cli.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf bind-service APPLICATION SERVICE_INSTANCE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;understand-the-service-configuration:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Understand the Service Configuration:&lt;/h5&gt;
+
+&lt;p&gt;Use &lt;code&gt;cf env APPLICATION&lt;/code&gt; to to display the application environment variables including &lt;code&gt;VCAP_SERVICES&lt;/code&gt; which holds information for each bound service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+ &amp;quot;VCAP_SERVICES&amp;quot;: {
+  &amp;quot;elasticsearch-0.20&amp;quot;: [
+   {
+    &amp;quot;credentials&amp;quot;: {
+     &amp;quot;host&amp;quot;: &amp;quot;10.10.3.129&amp;quot;,
+     &amp;quot;hostname&amp;quot;: &amp;quot;10.10.3.129&amp;quot;,
+     &amp;quot;name&amp;quot;: &amp;quot;elasticsearch-UUID-A&amp;quot;,
+     &amp;quot;password&amp;quot;: &amp;quot;UUID-B&amp;quot;,
+     &amp;quot;port&amp;quot;: 45001,
+     &amp;quot;url&amp;quot;: &amp;quot;http://UUID-C:UUID-B@10.10.3.129:45001&amp;quot;,
+     &amp;quot;username&amp;quot;: &amp;quot;UUID-C&amp;quot;
+    },
+    &amp;quot;label&amp;quot;: &amp;quot;elasticsearch-0.20&amp;quot;,
+    &amp;quot;name&amp;quot;: &amp;quot;es&amp;quot;,
+    &amp;quot;plan&amp;quot;: &amp;quot;free&amp;quot;,
+    &amp;quot;tags&amp;quot;: [
+     &amp;quot;object store&amp;quot;
+    ]
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case, &lt;code&gt;url&lt;/code&gt; alone could be sufficient for establishing a connection from the running application.&lt;/p&gt;
+
+&lt;h5 id=&#34;access-the-service-configuration:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Access the Service Configuration:&lt;/h5&gt;
+
+&lt;p&gt;Configuration and credentials for the bound service can be accessed in several ways.&lt;/p&gt;
+
+&lt;p&gt;1.) Manually parsing the JSON contained in the &lt;code&gt;VCAP_SERVICES&lt;/code&gt; environment variable. For specifics of the &lt;code&gt;VCAP_SERVICES&lt;/code&gt; format see the Cloud Foundry &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES&#34;&gt;environment variables documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;2.) Through a language-specific module such as &lt;a href=&#34;https://www.npmjs.org/package/cfenv&#34;&gt;cfenv&lt;/a&gt; for node.js.&lt;/p&gt;
+
+&lt;p&gt;3.) Through buildpack-populated environment variables as in the &lt;a href=&#34;http://docs.cloudfoundry.org/buildpacks/ruby/ruby-service-bindings.html#vcap-services-defines-database-url&#34;&gt;ruby buildpack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h6 id=&#34;node-js-access-example:9f5f0ada4683ab6336d22aa6c217664a&#34;&gt;Node.js Access Example:&lt;/h6&gt;
+
+&lt;p&gt;To access the elasticsearch service described above with a node app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+&amp;quot;dependencies&amp;quot;: {
+    ...
+    &amp;quot;cfenv&amp;quot;: &amp;quot;*&amp;quot;,
+    ...
+  }
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;app.js&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+var cfenv = require(&amp;quot;cfenv&amp;quot;)
+var appEnv = cfenv.getAppEnv()
+
+url = appEnv.getServiceURL(&amp;quot;es&amp;quot;)
+
+var client = new elasticsearch.Client({
+    host: url,
+});
+...
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Changing a password</title>
+      <link>http://localhost:1313/ops/changing-password/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/changing-password/</guid>
+      <description>&lt;p&gt;This document from the admin guide is useful: &lt;a href=&#34;http://docs.cloudfoundry.org/adminguide/uaa-user-management.html&#34;&gt;http://docs.cloudfoundry.org/adminguide/uaa-user-management.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In short:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install &lt;code&gt;uaac&lt;/code&gt; CLI: &lt;code&gt;gem install cf-uaac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Target UAA: &lt;code&gt;uaac target uaa.cloud.gov&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Get token: &lt;code&gt;uaac token client get admin -s MyAdminPassword&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If &lt;code&gt;uaac contexts&lt;/code&gt; doesn&amp;rsquo;t have scim.write:&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uaac client update admin --authorities &amp;quot;OTHER-EXISTING-PERMISSIONS uaa.admin clients.secret scim.read scim.write password.write&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uaac token delete&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uaac token client get admin&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Change the user&amp;rsquo;s password: `uaac password set Charlie -p YourPassword&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating a Stemcell Building VM</title>
+      <link>http://localhost:1313/ops/creating-a-stemcell-building-vm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/creating-a-stemcell-building-vm/</guid>
+      <description>
+
+&lt;p&gt;How to create a vagrant machine on AWS for building new bosh stemcells.&lt;/p&gt;
+
+&lt;h4 id=&#34;prerequisites:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Prerequisites&lt;/h4&gt;
+
+&lt;p&gt;Vagrant with the vagrant-aws, vagrant-berkshelf and vagrant-omnibus plugins.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install vagrant
+vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-aws
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The AWS CLI (Amazon Web Services Command Line Interface) is not strictly necessary, but this guide assumes a recent version it. Install or update it with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pip install awscli -U
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Git.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;procedure:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Procedure&lt;/h4&gt;
+
+&lt;h6 id=&#34;create-a-user-keypair-and-access-keys-for-use-by-bosh:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Create a user, keypair and access keys for use by bosh.&lt;/h6&gt;
+
+&lt;p&gt;You&amp;rsquo;ll need a recent version of the AWS CLI for some of these commands. The current release is 1.7.12 as of this writing. Earlier versions may not have all the required commands.&lt;/p&gt;
+
+&lt;p&gt;Create the bosh user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam create-user --user-name bosh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Apply a policy that will allow bosh to perform actions in the AWS environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam attach-user-policy --user-name bosh --policy-arn &#39;arn:aws:iam::aws:policy/AmazonEC2FullAccess&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the bosh keypair.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 create-key-pair --key-name bosh --query &#39;KeyMaterial&#39; --output text &amp;gt; bosh.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the bosh access key and secret key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam create-access-key --user-name bosh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Export the required environment variables using key file and credentials create above.&lt;/p&gt;
+
+&lt;p&gt;This is the path to the private portion of the bosh keypair (bosh.pem).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_KEY_PATH=/path/to/bosh.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is AWS access key to be used by bosh.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_AWS_ACCESS_KEY_ID=ABCDEFGHIJKLMNOPQRST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is AWS secret key to be used by bosh.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_AWS_SECRET_ACCESS_KEY=abcdefghijklmnopqrstuvwxyz0123456789abcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;create-a-bosh-stemcell-security-group-which-allows-ssh-in-your-aws-environment:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Create a bosh-stemcell security group which allows SSH in your AWS environment.&lt;/h6&gt;
+
+&lt;p&gt;Again the AWS CLI is nice to have here.&lt;/p&gt;
+
+&lt;p&gt;Create the security group.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 create-security-group --group-name bosh-stemcell --description &#39;SSH access to the bosh stemcell creation VM.&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add your own public IP at minimum.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 authorize-security-group-ingress --group-name bosh-stemcells --protocol tcp --port 22 --cidr $(curl icanhazip.com)/32
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;building-the-vm:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Building the VM&lt;/h4&gt;
+
+&lt;h6 id=&#34;clone-the-bosh-repo:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Clone the bosh repo.&lt;/h6&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone --recursive https://github.com/cloudfoundry/bosh.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We’re cloning recursively to include the bosh-agent repo as a submodule. Otherwise, the &lt;code&gt;vagrant up&lt;/code&gt; step may fail with the following error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vm:
+* The host path of the shared folder is missing: ../.git/modules
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the vagrant box needed to launch replacing &lt;code&gt;bosh-stemcell-937f30&lt;/code&gt; with the current release specified in &lt;code&gt;Vagrantfile&lt;/code&gt; if necessary.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant box add --name bosh-stemcell-937f30 https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-vagrant-boxes/bosh-stemcell-937f30-aws.box
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otherwise, the &lt;a href=&#34;#build-the-stemcell-builder-vm:c5482efc8719173aef3686550ec9b6dc&#34;&gt;vagrant up&lt;/a&gt; step below may fail with the error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AWS Provider:
+* vagrant_aws.config.ami_required
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h6 id=&#34;build-the-stemcell-builder-vm:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Build the Stemcell Builder VM&lt;/h6&gt;
+
+&lt;p&gt;With the environment prepared we can finally launch the stemcell building VM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant up remote --provider=aws
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The build process takes a while, during the writing of this guide, the build required 12 minutes.&lt;/p&gt;
+
+&lt;p&gt;Confirm that the remote VM is up and running with vagrant status.&lt;/p&gt;
+
+&lt;h4 id=&#34;using-the-vm:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Using the VM&lt;/h4&gt;
+
+&lt;h6 id=&#34;build-a-stemcell:c5482efc8719173aef3686550ec9b6dc&#34;&gt;Build a Stemcell&lt;/h6&gt;
+
+&lt;p&gt;With the stemcell builder VM operational we can now start building stemcells.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant ssh -c &#39;
+  cd /bosh
+  bundle exec rake stemcell:build_os_image[ubuntu,trusty,/tmp/ubuntu_base_image.tgz]
+&#39; remote
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating a dev environment</title>
+      <link>http://localhost:1313/ops/creating-a-development-environment-with-bosh-lite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/creating-a-development-environment-with-bosh-lite/</guid>
+      <description>
+
+&lt;p&gt;BOSH Lite is designed to provide a local development environment for BOSH and by extension Cloud Foundry. Though BOSH Lite can be run locally via Virtualbox, this guide is primarily concerned with bringing up a single-instance environment on Amazon EC2.&lt;/p&gt;
+
+&lt;h3 id=&#34;prerequisites:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Prerequisites:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#vagrant:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#aws-cli:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;AWS CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#git:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cloud-foundry-cli:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Cloud Foundry CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bosh-iam-user:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Bosh IAM User&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bosh-ec2-security-group:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Bosh EC2 Security Group&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&#34;vagrant:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Vagrant&lt;/h5&gt;
+
+&lt;p&gt;The bosh-lite repo provides a Vagrantfile and box for quickly standing up a bosh lite director on AWS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install vagrant
+vagrant plugin install vagrant-aws
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;aws-cli:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;AWS CLI&lt;/h5&gt;
+
+&lt;p&gt;(Amazon Web Services Command Line Interface)&lt;/p&gt;
+
+&lt;p&gt;While not strictly necessary, but this guide assumes a recent version it. Install or update it with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo pip install awscli -U
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;git:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Git&lt;/h5&gt;
+
+&lt;p&gt;Needed to clone the bosh-lite repo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;cloud-foundry-cli:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Cloud Foundry CLI&lt;/h5&gt;
+
+&lt;p&gt;The &lt;code&gt;cf&lt;/code&gt; command is our gateway to the Cloud Foundry environment, it handles everything from the creation of users and organizations to pushing and scaling applications.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew tap pivotal/tap
+brew install cloudfoundry-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;bosh-iam-user:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Bosh IAM User&lt;/h5&gt;
+
+&lt;p&gt;You&amp;rsquo;ll need a recent version of the AWS CLI for some of these commands. The current release is 1.7.12 as of this writing. Earlier versions may not have all the required commands.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create the bosh user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam create-user --user-name bosh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Apply a policy that will allow bosh to perform actions in the AWS environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam attach-user-policy --user-name bosh --policy-arn &#39;arn:aws:iam::aws:policy/AmazonEC2FullAccess&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create the bosh keypair.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 create-key-pair --key-name bosh --query &#39;KeyMaterial&#39; --output text &amp;gt; bosh.pem
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create the bosh access key and secret key.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws iam create-access-key --user-name bosh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Export the required environment variables using key file and credentials create above.&lt;/p&gt;
+
+&lt;p&gt;This is the path to the private portion of the bosh keypair (bosh.pem).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_LITE_KEY_PATH=/path/to/bosh.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is AWS access key to be used by bosh.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_AWS_ACCESS_KEY_ID=YOUR-AWS-ACCESS-KEY
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is AWS secret key to be used by bosh.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export BOSH_AWS_SECRET_ACCESS_KEY=YOUR-AWS-SECRET-KEY
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&#34;bosh-ec2-security-group:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Bosh EC2 Security Group&lt;/h5&gt;
+
+&lt;p&gt;A EC2 security group which allows SSH and HTTP/S into your AWS environment:&lt;/p&gt;
+
+&lt;p&gt;Again the AWS CLI is nice to have here.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create the security group. By default, the bosh-lite Vagrantfile expects this security group to be named inception.  You can call it something else, but you&amp;rsquo;ll need to make the new name available to vagrant with &lt;code&gt;export BOSH_LITE_SECURITY_GROUP=NEW-SECURITY-GROUP-NAME&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 create-security-group --group-name inception --description &#39;Access to Cloud Foundry.&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add your own public IP at minimum.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 authorize-security-group-ingress --group-name bosh-inception --protocol tcp --port 22 --cidr $(curl icanhazip.com)/32
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;With the prerequisites out of the way, we can use Vagrant to deploy the instance which will run the BOSH Lite directory and wardenized Cloud Foundry services.&lt;/p&gt;
+
+&lt;h3 id=&#34;procedure:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Procedure:&lt;/h3&gt;
+
+&lt;h5 id=&#34;prepare-vagrant:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Prepare Vagrant&lt;/h5&gt;
+
+&lt;p&gt;Grab the bosh-lite repo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cloudfoundry/bosh-lite.git
+cd bosh-lite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the bosh-lite vagrant box.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant box add cloudfoundry/bosh-lite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;launch-vagrant:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Launch Vagrant&lt;/h5&gt;
+
+&lt;p&gt;Bring the vagrant machine up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The initial &lt;code&gt;vagrant up&lt;/code&gt; includes provisioning scripts which set up port forwarding rules via iptables to expose Cloud Foundry service VMs running as warden containers on the instance.  If the machine is restarted or halted for any reason we’ll need to follow the steps in &lt;a href=&#34;#reprovisioning:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;reprovisioning&lt;/a&gt; below.&lt;/p&gt;
+
+&lt;p&gt;Grab the public IP of the resulting instance and keep it handy. We’ll need it later in the deployment and when accessing the resulting environment with the Cloud Foundry CLI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 describe-instances \
+--instance-id $(cat .vagrant/machines/default/aws/id) \
+--query &#39;Reservations[0].Instances[0].PublicIpAddress&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;finish-building-the-ec2-instance:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Finish Building the EC2 Instance:&lt;/h5&gt;
+
+&lt;p&gt;Connect to the AWS instance via SSH.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are a few utilities that we&amp;rsquo;ll need to configure the Cloud Foundry environment which aren&amp;rsquo;t included with the BOSH Lite public AMI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; apt-get -y install git unzip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the spiff utility.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget https://github.com/cloudfoundry-incubator/spiff/releases/download/v1.0.3/spiff_linux_amd64.zip
+unzip spiff_linux_amd64.zip -d /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a workspace directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir workspace
+cd workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Target the local bosh director.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh target 127.0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Clone the bosh bosh-lite repo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cloudfoundry/bosh-lite.git
+cd bosh-lite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;configure-cloud-foundry:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Configure Cloud Foundry:&lt;/h5&gt;
+
+&lt;p&gt;Update the deployment stub to reflect the public IP of your instance as recorded above by adding a &lt;code&gt;domain:&lt;/code&gt; key to the properties section of &lt;code&gt;manifests/cf-stubb-spiff.yml&lt;/code&gt;. The resulting file  should look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+properties:
+  domain: INSTANCE-PUBLIC-IP.xip.io
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ensure the Cloud Foundry services will be able to access each other via the external address.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 authorize-security-group-ingress --group-name bosh-inception --protocol tcp --port 0-65536 --cidr INSTANCE-PUBLIC-IP/32
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;provision-cloud-foundry:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Provision Cloud Foundry:&lt;/h5&gt;
+
+&lt;p&gt;Run the automated provisioning script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ./bin/provision_cf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This script automates the process of:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Recursively cloning the cf-release repository.&lt;/li&gt;
+&lt;li&gt;Uploading the latest release to the director.&lt;/li&gt;
+&lt;li&gt;Uploading a public stemcell to the director.&lt;/li&gt;
+&lt;li&gt;Generating a deployment manifest from the included templates.&lt;/li&gt;
+&lt;li&gt;Deploying the generated manifest to a set of warden containers inside the instance.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This process takes quite a while, up to an hour on the default &lt;code&gt;m3.xlarge&lt;/code&gt; instance type.&lt;/p&gt;
+
+&lt;p&gt;When complete, use bosh vms to have a look at the resulting environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ubuntu@agent-id-bosh-0:~/workspace/bosh-lite$ bosh vms
+
+Deployment `cf-warden&#39;
+
+Director task 4
+
+Task 4 done
+
++------------------------------------+---------+---------------+--------------+
+| Job/index                          | State   | Resource Pool | IPs          |
++------------------------------------+---------+---------------+--------------+
+| api_z1/0                           | running | large_z1      | 10.244.0.138 |
+| etcd_z1/0                          | running | medium_z1     | 10.244.0.42  |
+| ha_proxy_z1/0                      | running | router_z1     | 10.244.0.34  |
+| hm9000_z1/0                        | running | medium_z1     | 10.244.0.142 |
+| loggregator_trafficcontroller_z1/0 | running | small_z1      | 10.244.0.150 |
+| loggregator_z1/0                   | running | medium_z1     | 10.244.0.146 |
+| login_z1/0                         | running | medium_z1     | 10.244.0.134 |
+| nats_z1/0                          | running | medium_z1     | 10.244.0.6   |
+| postgres_z1/0                      | running | medium_z1     | 10.244.0.30  |
+| router_z1/0                        | running | router_z1     | 10.244.0.22  |
+| runner_z1/0                        | running | runner_z1     | 10.244.0.26  |
+| uaa_z1/0                           | running | medium_z1     | 10.244.0.130 |
++------------------------------------+---------+---------------+--------------+
+
+VMs total: 12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;re done provisioning, now we&amp;rsquo;ll disconnect and access the environment via the Cloud Foundry CLI.&lt;/p&gt;
+
+&lt;h5 id=&#34;reprovisioning:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Reprovisioning:&lt;/h5&gt;
+
+&lt;p&gt;If the Vagrant machine is halted or restarted for any reason there are  several steps we&amp;rsquo;ll need to take to recreate the environment.&lt;/p&gt;
+
+&lt;p&gt;1.) Recreate forwarding rules.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant provision
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.) Repair the VMs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh cck cf-warden
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Choose option 2 &amp;ldquo;Recreate VM using last known apply spec&amp;rdquo; for each VM then confirm the choices. A new director task will be created to recreate each VM in turn. This will take several minutes to complete.&lt;/p&gt;
+
+&lt;p&gt;3.) If necessary, re-deploy using the new public IP address.&lt;/p&gt;
+
+&lt;p&gt;Update &lt;code&gt;manifests/cf-stub-spiff.yml&lt;/code&gt; to reflect the new public IP address, then run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./bin/make_manifest_spiff
+bosh deploy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the machine will be regularly restarted, consider associating an elastic IP to avoid having to repeat the third step above.&lt;/p&gt;
+
+&lt;h4 id=&#34;initial-cloud-foundry-configuration:f1d8a00fb5fb307b0273aad3302f191e&#34;&gt;Initial Cloud Foundry Configuration:&lt;/h4&gt;
+
+&lt;p&gt;Connect using the Cloud Foundry CLI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf api --skip-ssl-validation https://api.INSTANCE-PUBLIC-IP.xip.io
+cf auth admin admin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This step will fail with a 500 error if the VMs cannot reach each other via &lt;code&gt;https://xyz.INSTANCE-PUBLIC-IP.xip.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create and target an organization.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-org MY-ORGANIZATION
+cf target -o MY-ORGANIZATION
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create and target a space.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-space MY-SPACE
+cf target -s MY-SPACE
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating a local dev environment with Virtual Box</title>
+      <link>http://localhost:1313/ops/creating-a-local-dev-environment-in-Virtual-Box/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/creating-a-local-dev-environment-in-Virtual-Box/</guid>
+      <description>
+
+&lt;p&gt;BOSH Lite is designed to provide a local development environment for BOSH and by extension Cloud Foundry. BOSH Lite will be used run locally via Virtualbox. This guide is primarily concerned with bringing up a single-instance environment VB.&lt;/p&gt;
+
+&lt;h3 id=&#34;prerequisites:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Prerequisites:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#vagrant:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#virtual-box:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Virtual Box&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#docker:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Docker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#git:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cloud-foundry-cli:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Cloud Foundry CLI&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&#34;vagrant:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Vagrant&lt;/h5&gt;
+
+&lt;p&gt;The bosh-lite repo provides a Vagrantfile and VM for quickly standing up a bosh lite director on VBox.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install vagrant
+vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note: If that fails goto &lt;a href=&#34;http://www.vagrantup.com/downloads&#34;&gt;http://www.vagrantup.com/downloads&lt;/a&gt; and install from web&lt;/p&gt;
+
+&lt;h5 id=&#34;virtual-box:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Virtual Box&lt;/h5&gt;
+
+&lt;p&gt;While not strictly necessary, but this guide assumes a recent version is installed. Install or update it from:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install virtualbox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Additional info can be found here: &lt;a href=&#34;https://www.virtualbox.org/wiki/Downloads&#34;&gt;https://www.virtualbox.org/wiki/Downloads&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;docker:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Docker&lt;/h5&gt;
+
+&lt;p&gt;We need to install Docker. It will be used to build the cflinuxfs2.tar.gz. Install from here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew cask install dockertoolbox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Additional info can be found here: &lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;https://docs.docker.com/mac/step_one/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;git:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Git&lt;/h5&gt;
+
+&lt;p&gt;Needed to clone the bosh-lite repo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;cloud-foundry-cli:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Cloud Foundry CLI&lt;/h5&gt;
+
+&lt;p&gt;The &lt;code&gt;cf&lt;/code&gt; command is our gateway to the Cloud Foundry environment, it handles everything from the creation of users and organizations to pushing and scaling applications.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew tap pivotal/tap
+brew install cloudfoundry-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;procedure:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Procedure:&lt;/h3&gt;
+
+&lt;h5 id=&#34;prepare-vagrant:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Prepare Vagrant&lt;/h5&gt;
+
+&lt;p&gt;Grab the bosh-lite repo.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cloudfoundry/bosh-lite.git
+cd bosh-lite
+gem install nokogiri -- --with-xml2-include=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include/libxml2
+gem install bosh_cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the bosh-lite vagrant box.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant box add cloudfoundry/bosh-lite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Choose option 2 for Virtualbox.&lt;/p&gt;
+
+&lt;h5 id=&#34;launch-vagrant:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Launch Vagrant&lt;/h5&gt;
+
+&lt;p&gt;Bring the vagrant machine up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The initial &lt;code&gt;vagrant up&lt;/code&gt; includes provisioning scripts which set up port forwarding rules via iptables to expose Cloud Foundry service VMs running as warden containers on the instance.  If the machine is restarted or halted for any reason we’ll need to follow the steps in &lt;a href=&#34;#reprovisioning:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;reprovisioning&lt;/a&gt; below.&lt;/p&gt;
+
+&lt;h5 id=&#34;finish-building-the-virtualbox-instance:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Finish Building the Virtualbox Instance:&lt;/h5&gt;
+
+&lt;p&gt;Connect to the VBox instance via SSH.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are a few utilities that we&amp;rsquo;ll need to configure the Cloud Foundry environment which aren&amp;rsquo;t included with the BOSH Lite public AMI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get -y install git unzip
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the spiff utility.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget https://github.com/cloudfoundry-incubator/spiff/releases/download/v1.0.3/spiff_linux_amd64.zip
+sudo unzip spiff_linux_amd64.zip -d /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a workspace directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir workspace
+cd workspace
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Target the local bosh director.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh target 127.0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Clone the bosh bosh-lite and cf-release repository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cloudfoundry/bosh-lite.git
+git clone https://github.com/cloudfoundry/cf-release.git
+mkdir -p ~/workspace/cf-release/blobs/rootfs    #needed for later step with docker
+cd bosh-lite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;configure-cloud-foundry:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Configure Cloud Foundry:&lt;/h5&gt;
+
+&lt;p&gt;With VirtualBox the domain will be tied to the localhost and will always be:
+    &amp;hellip;
+    domain: api.bosh-lite.com
+    &amp;hellip;&lt;/p&gt;
+
+&lt;h5 id=&#34;provision-cloud-foundry:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Provision Cloud Foundry:&lt;/h5&gt;
+
+&lt;p&gt;Add some dependency packages for the provisioning tool&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install ruby
+sudo gem install bundle
+sudo apt-get install curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Run the automated provisioning script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ./bin/provision_cf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This script automates the process of:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Uploading the latest release to the director.&lt;/li&gt;
+&lt;li&gt;Uploading a public stemcell (latest-bosh-stemcell-warden.tgz) to the director.&lt;/li&gt;
+&lt;li&gt;Generating a deployment manifest from the included templates.&lt;/li&gt;
+&lt;li&gt;Deploying the generated manifest to a set of warden containers inside the instance.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This process takes about 15-20 minutes.&lt;/p&gt;
+
+&lt;p&gt;When complete, use bosh vms to have a look at the resulting environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ubuntu@agent-id-bosh-0:~/workspace/bosh-lite$ bosh vms
+
+Deployment `cf-warden&#39;
+
+Director task #
+
+Task # done
+
++------------------------------------+---------+---------------+--------------+
+| Job/index                          | State   | Resource Pool | IPs          |
++------------------------------------+---------+---------------+--------------+
+| api_z1/0                           | running | large_z1      | 10.244.0.138 |
+| etcd_z1/0                          | running | medium_z1     | 10.244.0.42  |
+| ha_proxy_z1/0                      | running | router_z1     | 10.244.0.34  |
+| hm9000_z1/0                        | running | medium_z1     | 10.244.0.142 |
+| loggregator_trafficcontroller_z1/0 | running | small_z1      | 10.244.0.150 |
+| loggregator_z1/0                   | running | medium_z1     | 10.244.0.146 |
+| login_z1/0                         | running | medium_z1     | 10.244.0.134 |
+| nats_z1/0                          | running | medium_z1     | 10.244.0.6   |
+| postgres_z1/0                      | running | medium_z1     | 10.244.0.30  |
+| router_z1/0                        | running | router_z1     | 10.244.0.22  |
+| runner_z1/0                        | running | runner_z1     | 10.244.0.26  |
+| uaa_z1/0                           | running | medium_z1     | 10.244.0.130 |
++------------------------------------+---------+---------------+--------------+
+
+VMs total: 12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;rsquo;re done provisioning, now we&amp;rsquo;ll disconnect and access the environment via the Cloud Foundry CLI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ubuntu@agent-id-bosh-0:exit             #exit Vagrant SSH
+~/host_working_folder/bosh-lite/bin/add-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;create-and-copy-a-blob-into-the-vagrant-image:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Create and copy a blob into the vagrant image&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant plugin install vagrant-scp
+cd ~/host_working_folder/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now Docker must be installed and running on your Mac for the next procedure to work. Launch into a docker terminal to create the cflinuxfs2 container.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cloudfoundry/stacks.git
+cd stacks
+make
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Secure copy the cflinuxfs2 container to the CF VM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ../bosh-lite
+vagrant scp ~/host_working_folder/stacks/cflinuxfs2.tar.gz default:/home/vagrant/workspace/cf-release/blobs/rootfs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;initial-cloud-foundry-configuration:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Initial Cloud Foundry Configuration:&lt;/h4&gt;
+
+&lt;p&gt;Connect using the Cloud Foundry CLI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf api --skip-ssl-validation https://api.bosh-lite.com
+cf auth admin admin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; This step will fail with a 500 error if the VMs cannot reach each other via &lt;code&gt;https://api.bosh-lite.com&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Verify deployment&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Create and target an organization.
+
+    cf create-org MY-ORGANIZATION
+    cf target -o MY-ORGANIZATION
+
+Create and target a space.
+
+    cf create-space MY-SPACE
+    cf target -s MY-SPACE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;reprovisioning:d316bf5ca3b159279bf1726ee89ea21d&#34;&gt;Reprovisioning:&lt;/h5&gt;
+
+&lt;p&gt;If the Vagrant machine is halted or restarted for any reason there are  several steps we&amp;rsquo;ll need to take to recreate the environment.&lt;/p&gt;
+
+&lt;p&gt;1.) Recreate forwarding rules.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant up
+vagrant provision
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2.) Repair the VMs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh cck cf-warden
+$BOSH-LITE-WORKING-DIRECTORY/bin/add-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Choose option 2 &amp;ldquo;Recreate VM&amp;rdquo; for each VM (M of N) then confirm the choices. A new director task will be created to recreate each VM in turn. This will take several minutes to complete. Use &amp;gt;bosh vms to have a look at the resulting environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh vms        # verify that service is up
+~/&amp;lt;host_working_folder&amp;gt;/bosh-lite/bin/add-route
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Original steps found here: &lt;a href=&#34;https://github.com/cloudfoundry/bosh-lite&#34;&gt;https://github.com/cloudfoundry/bosh-lite&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Original Cloud Foundry installation with BOSH details are here if BOSH-LITE ./scripts/provision_cf script is not used: &lt;a href=&#34;http://docs.cloudfoundry.org/deploying/boshlite/deploy_cf_boshlite.html&#34;&gt;http://docs.cloudfoundry.org/deploying/boshlite/deploy_cf_boshlite.html&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating a user</title>
+      <link>http://localhost:1313/ops/create-user/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/create-user/</guid>
+      <description>
+
+&lt;h2 id=&#34;creating-users:4eb6f5a3b8cb68967165dd1ba3bda063&#34;&gt;Creating users&lt;/h2&gt;
+
+&lt;p&gt;Follow the instructions for &lt;a href=&#34;https://github.com/18F/cf-provision-user-space-plugin&#34;&gt;the &lt;code&gt;provision-user-space&lt;/code&gt; CLI plugin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;additional-access:4eb6f5a3b8cb68967165dd1ba3bda063&#34;&gt;Additional access&lt;/h3&gt;
+
+&lt;p&gt;You can grant the user access to additional organizations and spaces by giving them additional roles. Read more in &lt;a href=&#34;http://docs.cloudfoundry.org/concepts/roles.html#roles&#34;&gt;the community Cloud Foundry documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating an admin user</title>
+      <link>http://localhost:1313/ops/creating-a-new-admin-user/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/creating-a-new-admin-user/</guid>
+      <description>
+
+&lt;p&gt;The true &amp;ldquo;root&amp;rdquo; admin user is defined in the initial deployment manifest under uaa &amp;gt; admin. We’ll use those credentials to connect to the deployed UAA instance and create delegated admin users.&lt;/p&gt;
+
+&lt;h4 id=&#34;background:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Background:&lt;/h4&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/cloudfoundry/uaa&#34;&gt;User Account and Authentication server&lt;/a&gt; is the identity management component of Cloud Foundry. Beyond the initial deployment manifest, all users and their permissions are defined in UAA.&lt;/p&gt;
+
+&lt;h4 id=&#34;prerequisites:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Prerequisites:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Knowledge of the secrets specified in the initial deployment manifest.&lt;/li&gt;
+&lt;li&gt;A reachable CF UAA instance.&lt;/li&gt;
+&lt;li&gt;A working ruby install.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;procedure:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Procedure:&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#installing-the-uaa-cli:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Installing the UAA CLI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#specifying-the-uaa-target:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Specifying the UAA Target&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#obtaining-a-token:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Obtaining A Token&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#confirming-authorization:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Confirming Authorization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#missing-permissions:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Missing Permissions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#creating-a-new-user:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Creating A New User&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#adding-user-permissions:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Adding User Permissions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#confirming-creation:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Confirming Creation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#additional-resources:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Additional Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&#34;installing-the-uaa-cli:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Installing the UAA CLI:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install cf-uaac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;specifying-the-uaa-target:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Specifying the UAA Target:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac target uaa.cloud.gov
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;obtaining-a-token:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Obtaining A Token:&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac token client get admin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;At the &lt;code&gt;Client secret:&lt;/code&gt; prompt enter the secret specified in &lt;code&gt;uaa:admin:client_secret&lt;/code&gt; in the deployment manifest.&lt;/p&gt;
+
+&lt;p&gt;Note: The client secret can specified on the command line with the &lt;code&gt;-s&lt;/code&gt; switch, but it’s a good habit to avoid the possibility of leaving secrets in your shell history.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Client secret:  ********************************
+
+Successfully fetched token via client credentials grant.
+Target: https://uaa.cloud.gov
+Context: admin, from client admin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;confirming-authorization:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Confirming Authorization:&lt;/h5&gt;
+
+&lt;p&gt;Use &lt;code&gt;uaac context&lt;/code&gt; to confirm your current authorization and permissions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1]*[https://uaa.cloud.gov]
+  skip_ssl_validation: true
+
+  [0]*[admin]
+    client_id: admin
+    access token: ****
+    token_type: bearer
+      expires_in: ****
+    scope: scim.read uaa.admin password.write scim.write clients.write clients.read clients.secret
+    jti: ****
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the admin user has the scim.write permission which is required to create user accounts. If the admin account is missing this permission we’ll need to add it as described in Missing Permissions. Otherwise, jump ahead to Creating an Admin User.&lt;/p&gt;
+
+&lt;h5 id=&#34;missing-permissions:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Missing Permissions:&lt;/h5&gt;
+
+&lt;p&gt;In the event that the admin user does not have the scim.write permission we can add it. First, we need to record the existing permissions of the admin account as displayed by the uaac context command above. We’ll use that space-delimited list of permissions in place of EXISTING-PERMISSIONS below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac client update admin --authorities “EXISTING-PERMISSIONS scim.write”
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Delete the existing authorization token.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac token delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Obtain a new token bearing the update permissions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac token client get admin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;creating-a-new-user:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Creating A New User:&lt;/h5&gt;
+
+&lt;p&gt;Now that we have a authorization token bearing the scim.write permission in hand we can create a new user.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac user add NEW-ADMIN-USERNAME --emails NEW-ADMIN-EMAIL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You’ll be prompted to provide an initial password.  Currently, we’re using first.last@gsa.gov as the convention for new usernames with the same for email.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The client secret can specified on the command line with the &lt;code&gt;-p&lt;/code&gt; switch, but it’s a good habit to avoid the possibility of leaving secrets in your shell history.&lt;/p&gt;
+
+&lt;h5 id=&#34;adding-user-permissions:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Adding User Permissions:&lt;/h5&gt;
+
+&lt;p&gt;An admin user should be part of the four groups: &lt;code&gt;cloud_controller.admin&lt;/code&gt;, &lt;code&gt;uaa.admin&lt;/code&gt;, &lt;code&gt;scim.read&lt;/code&gt; and &lt;code&gt;scim.write&lt;/code&gt;. Add each with &lt;code&gt;uaac member add&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac member add cloud_controller.admin first.last@gsa.gov
+uaac member add uaa.admin first.last@gsa.gov
+uaac member add scim.read first.last@gsa.gov
+uaac member add scim.write first.last@gsa.gov
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;confirming-creation:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Confirming Creation:&lt;/h5&gt;
+
+&lt;p&gt;We can view information about the newly created user by filtering the output of &lt;code&gt;uaac users&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac users &#39;username eq &amp;quot;first.last@gsa.gov&amp;quot;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;resources:
+  -
+    id: ***
+    meta
+      version: 0
+      created: 2015-02-25T02:10:06.566Z
+      lastmodified: 2015-02-25T02:10:06.566Z
+    name
+    emails:
+    -
+      value: first.last@gsa.gov
+    groups:
+    -
+      value: ***
+      display: cloud_controller.read
+      type: DIRECT
+
+    ...lots of groups...
+
+      value: ***
+      display: oauth.approvals
+      type: DIRECT
+    approvals:
+    active: true
+    verified: false
+    origin: uaa
+    schemas: urn:scim:schemas:core:1.0
+    username: first.last@gsa.gov
+  schemas: urn:scim:schemas:core:1.0
+  startindex: 1
+  itemsperpage: 100
+  totalresults: 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;additional-resources:177d9175941a0113c71cc1b2620a07a7&#34;&gt;Additional Resources:&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;For more information on filtering see the &lt;a href=&#34;https://github.com/cloudfoundry/uaa/blob/master/docs/UAA-APIs.rst#a-note-on-filtering&#34;&gt;UAA API docs&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;The Cloud Foundry documentation includes a comprehensive &lt;a href=&#34;http://docs.cloudfoundry.org/adminguide/uaa-user-management.html#creating-admin-users&#34;&gt;guide to user creation and management via cf-uaac&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploying the Docker Broker</title>
+      <link>http://localhost:1313/ops/deploying-the-docker-broker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/deploying-the-docker-broker/</guid>
+      <description>
+
+&lt;p&gt;This guide covers the high level steps required to configure, deploy and enable docker-boshrelease and included cf-containers-broker.&lt;/p&gt;
+
+&lt;h4 id=&#34;background:649dd0203473c98504ab0713ee2b9187&#34;&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/cf-platform-eng/docker-boshrelease&#34;&gt;docker-boshrelease:&lt;/a&gt;&lt;/strong&gt; Provides a quick way to deploy a bosh-managed Docker host or swarm.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/cf-platform-eng/cf-containers-broker&#34;&gt;cf-containers-broker:&lt;/a&gt;&lt;/strong&gt; A Cloud Foundry &lt;a href=&#34;https://docs.cloudfoundry.org/services/api.html&#34;&gt;service broker&lt;/a&gt; which enables launching containerized services to a Docker backend.&lt;/p&gt;
+
+&lt;h4 id=&#34;prerequisites:649dd0203473c98504ab0713ee2b9187&#34;&gt;Prerequisites&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Access to the bosh director of a functional Cloud Foundry environment.&lt;/li&gt;
+&lt;li&gt;AWS credentials with permission to provision Elastic IPs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;procedure:649dd0203473c98504ab0713ee2b9187&#34;&gt;Procedure&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#deployment:649dd0203473c98504ab0713ee2b9187&#34;&gt;Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#configuration:649dd0203473c98504ab0713ee2b9187&#34;&gt;Configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#operation:649dd0203473c98504ab0713ee2b9187&#34;&gt;Operation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;deployment:649dd0203473c98504ab0713ee2b9187&#34;&gt;Deployment&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Obtain the current release source.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/cf-platform-eng/docker-boshrelease.git
+cd docker-boshrelease
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Upload the latest release.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh upload release releases/docker/docker-XX.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Provision an elastic IP for use by the broker.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;aws ec2 allocate-address --domain vpc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the provided &lt;code&gt;PublicIp&lt;/code&gt; for use as the &lt;code&gt;elastic_ip&lt;/code&gt; variable below.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Choose an appropriate template from the &lt;code&gt;./examples&lt;/code&gt; directory replacing the variables which describe your environment and secrets. For the purpose of this guide we&amp;rsquo;re working with &lt;code&gt;docker-broker-aws.yml&lt;/code&gt; where we&amp;rsquo;ll need to provide the following variables.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deployment_name
+director_uuid
+elastic_ip
+root_domain
+
+
+properties.nats.user
+properties.nats.password
+properties.nats.machines
+
+
+properties.cf.admin_username
+properties.cf.admin_password
+
+
+properties.broker.username
+properties.broker.password
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save the complete manifest to a new file. For example, &lt;code&gt;docker-broker-aws-deploy.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The manifest describes each Docker image to be downloaded and made available as a service in the &lt;code&gt;properties.broker.services&lt;/code&gt; section. Service configuration is covered in greater detail in &lt;a href=&#34;#configuration:649dd0203473c98504ab0713ee2b9187&#34;&gt;Configuration&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Generate a deployment from the manifest.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh deployment docker-broker-aws-deploy.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Initiate the deployment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh deploy 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;configuration:649dd0203473c98504ab0713ee2b9187&#34;&gt;Configuration&lt;/h4&gt;
+
+&lt;p&gt;Docker images are configured in the &lt;code&gt;properties.broker.services&lt;/code&gt; key which contains a list of images, each with its own respective metadata, credential configuration and plans.&lt;/p&gt;
+
+&lt;p&gt;For more information about each field in a service description see:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.cloudfoundry.org/services/catalog-metadata.html#services-metadata-fields&#34;&gt;Services Metadata Fields&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.cloudfoundry.org/services/catalog-metadata.html#plan-metadata-fields&#34;&gt;Plan Metadata Fields&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cf-platform-eng/cf-containers-broker/blob/master/CREDENTIALS.md&#34;&gt;Plan Credentials&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cf-platform-eng/cf-containers-broker/blob/master/DOCKER.md#properties-format&#34;&gt;Docker Properties Format&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;adding-new-services:649dd0203473c98504ab0713ee2b9187&#34;&gt;Adding New Services:&lt;/h5&gt;
+
+&lt;p&gt;If you&amp;rsquo;re thinking about adding an additional service, have a look at the Dockerfiles describing some of the services found in the default templates.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/frodenas/docker-postgresql&#34;&gt;frodenas/postgresql&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/frodenas/docker-mongodb&#34;&gt;frodenas/mongodb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/18F/docker-elasticsearch&#34;&gt;18F/elasticsearch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A few critical things to note when adding a service.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide a &lt;a href=&#34;https://github.com/18F/docker-elasticsearch/blob/master/scripts/start.sh&#34;&gt;runtime script&lt;/a&gt; to capture the broker-inserted &lt;a href=&#34;https://github.com/cf-platform-eng/cf-containers-broker/blob/master/CREDENTIALS.md&#34;&gt;plan credentials&lt;/a&gt; and &lt;a href=&#34;https://github.com/18F/docker-elasticsearch/blob/d71890d8a2dc05c499d5d98127a6051a730c555e/scripts/start.sh#L11-12&#34;&gt;configure your service to use them&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Provide a &lt;a href=&#34;https://github.com/18F/docker-elasticsearch/blob/d71890d8a2dc05c499d5d98127a6051a730c555e/Dockerfile#L92&#34;&gt;volume mount&lt;/a&gt; and configure your service to &lt;a href=&#34;https://github.com/18F/docker-elasticsearch/blob/d71890d8a2dc05c499d5d98127a6051a730c555e/config/elasticsearch.yml#L2-4&#34;&gt;use it for persistent data&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Ensure the &lt;code&gt;id:&lt;/code&gt; of your service and each included plan is unique. Linux and OSX users will find &lt;a href=&#34;https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/uuidgen.1.html&#34;&gt;uuidgen&lt;/a&gt; handy for this.&lt;/li&gt;
+&lt;li&gt;Make the image available on the &lt;a href=&#34;https://hub.docker.com&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;operation:649dd0203473c98504ab0713ee2b9187&#34;&gt;Operation&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Enable the broker.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-service-broker BROKER_NAME BROKER_USER BROKER_PASS https://BROKER_HOST
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where each variable correlates to a section of the manifest used to create the deployment.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BROKER_NAME&lt;/code&gt; = properties.broker.name&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BROKER_USER&lt;/code&gt; = properties.broker.username&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BROKER_PASS&lt;/code&gt; = properties.broker.password&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BROKER_HOST&lt;/code&gt; = properties.broker.host&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Enable services.&lt;/p&gt;
+
+&lt;p&gt;To enable all plans of a service for all orgs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf enable-service-access SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To enable a specific service plan or enable plans in a specific org use the &lt;code&gt;-p&lt;/code&gt; and/or &lt;code&gt;-o&lt;/code&gt; option.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf enable-service-access SERVICE -p PLAN -o ORG
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create service instances.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cf create-service SERVICE PLAN SERVICE_INSTANCE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Bind those services to your apps using &lt;code&gt;cf bind-service&lt;/code&gt; or the &lt;code&gt;services&lt;/code&gt; key in your application &lt;code&gt;manifest.yml&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploying the admin UI</title>
+      <link>http://localhost:1313/ops/deploying-the-admin-ui/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/deploying-the-admin-ui/</guid>
+      <description>
+
+&lt;p&gt;This guide covers the high level stops required to configure, deploy and add users to the Admin UI as part of an existing Cloud Foundry environment.&lt;/p&gt;
+
+&lt;h4 id=&#34;background:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;The Cloud Foundry Admin UI provides a high level overview of metrics pulled from the Cloud Foundry UAA, Cloud Controller, NATS and databases.&lt;/p&gt;
+
+&lt;h4 id=&#34;prerequisites:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Prerequisites&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Knowledge of the secrets and other properties specified in the initial deployment manifest.&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://github.com/cloudfoundry-incubator/spiff&#34;&gt;Spiff&lt;/a&gt; templating tool.&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;https://github.com/cloudfoundry/cf-uaac&#34;&gt;uaac&lt;/a&gt; command line client.&lt;/li&gt;
+&lt;li&gt;A reachable CF UAA instance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;procedure:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Procedure&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#deployment:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#configuration:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#operation:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Operation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;deployment:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Deployment&lt;/h4&gt;
+
+&lt;p&gt;As of this writing, instructions for deploying the Admin UI bosh release default to the v3 release.  We have deployed the v4 release as the included deployment template covers required properties and job definitions not present in v3.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Obtain the current release source.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:cloudfoundry-community/admin-ui-boshrelease.git
+cd admin-ui-boshrelease
+git checkout tags/v4
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Upload the v4 release to do be used during deployment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh upload release releases/admin-ui-4.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Source the required properties outlined in &lt;code&gt;templates/admin-ui-deployment.yml&lt;/code&gt; from the inintial Cloud Foundry deployment manifests and stubs. Elements to source for the resulting &lt;code&gt;admin-ui-properties.yml&lt;/code&gt; include:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compilation:
+meta:
+networks:
+properties:
+resource_pools:
+update:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create a deployment manifest with spiff after sourcing the required properties into &lt;code&gt;admin-ui-properties.yml&lt;/code&gt;. Source the required secrets from the &lt;code&gt;cf-secrets.yml&lt;/code&gt; used during the initial deployment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;spiff merge \
+  templates/admin-ui-deployment.yml \
+  admin-ui-properties.yml \
+  /path/to/cf-secrets.yml &amp;gt; manifest.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Generate a deployment from the manifest.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh deployment manifest.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Initiate the deployment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh deploy 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Run the registration errand.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bosh run errand register_admin_ui
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;configuration:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Configuration&lt;/h4&gt;
+
+&lt;p&gt;Admin UI users and administrators must be part of the groups &lt;code&gt;admin_ui.users&lt;/code&gt; or &lt;code&gt;admin_ui.admins&lt;/code&gt; respectively.  Add new members with the uaac cli:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac member add admin_ui.user USERNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;uaac member add admin_ui.admins USERNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;operation:dcff8b937f4b31b3a1e70aa7fe3b1715&#34;&gt;Operation&lt;/h4&gt;
+
+&lt;p&gt;Access the Admin UI at the uri specified in the deployment manifest. By default this is &lt;code&gt;https://admin.YOUR-SYSTEM-DOMAIN&lt;/code&gt; as generated by &lt;code&gt;meta.subdomain &amp;quot;.&amp;quot; properties.system_domain&lt;/code&gt; in the &lt;code&gt;templates/admin-ui-deployment.yml&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ELB termination</title>
+      <link>http://localhost:1313/ops/elb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/elb/</guid>
+      <description>
+
+&lt;p&gt;Currently, we are fronting Cloud Foundry apps with an Elastic Load Balancer (ELB) in the Cloud Foundry VPC. The ELB terminates HTTPS, and forwards HTTP traffic within the VPC.&lt;/p&gt;
+
+&lt;p&gt;ELBs need to be created directly through the AWS console or API, not using &lt;code&gt;cf&lt;/code&gt; commands.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-and-uploading-the-https-certificate:9e12f281d8a4b1679b13bc1a8c55228d&#34;&gt;Creating and uploading the HTTPS certificate&lt;/h3&gt;
+
+&lt;p&gt;Go get a HTTPS certificate using &lt;a href=&#34;https://github.com/18F/https&#34;&gt;18F&amp;rsquo;s standard  process&lt;/a&gt;, and follow the instructions there to &lt;a href=&#34;https://github.com/18F/https#in-an-elb&#34;&gt;upload the key and certificate to the AWS ELB&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The name you set as part of the ELB certificate upload command will be used later.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-the-elb-with-cloudformation:9e12f281d8a4b1679b13bc1a8c55228d&#34;&gt;Creating the ELB with CloudFormation&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;a href=&#34;https://github.com/18F/cloud-foundry-manifests/blob/master/provisioning/elb.json&#34;&gt;this CloudFormation JSON template&lt;/a&gt; to create the ELB, filling in parameters as needed.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CertName&lt;/strong&gt;: Pick the name of the HTTPS certificate you&amp;rsquo;ve uploaded.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ClientTag&lt;/strong&gt;: The value that corresponds to your project&amp;rsquo;s assigned billing tag. &lt;strong&gt;This is mandatory.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ELBSecGroups&lt;/strong&gt;: Select the security groups. (See &lt;a href=&#34;https://github.com/18F/DevOps/blob/master/cf/create-elb.sh&#34;&gt;&lt;code&gt;create-elb.sh&lt;/code&gt;&lt;/a&gt; for current information.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ELBSubnets&lt;/strong&gt;: Select the subnets. (See &lt;a href=&#34;https://github.com/18F/DevOps/blob/master/cf/create-elb.sh&#34;&gt;&lt;code&gt;create-elb&lt;/code&gt;&lt;/a&gt; for current information.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HostedZoneName&lt;/strong&gt;: Type in the name of the hosted zone, e.g. &lt;code&gt;open.foia.gov&lt;/code&gt;.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;ZoneName&lt;/strong&gt;: Type in the name of the subdomain in front of the hosted zone domain, if one applies.
+t&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-the-elb-by-hand:9e12f281d8a4b1679b13bc1a8c55228d&#34;&gt;Creating the ELB by hand&lt;/h3&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The CloudFormation JSON above is built to represent the following workflow:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create a new ELB in &lt;code&gt;us-east-1&lt;/code&gt; (N. Virginia).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Pick a name, and select the &lt;code&gt;CloudFoundry-live&lt;/code&gt; VPC. Select HTTPS for the Load Balancer protocol, and HTTP for the Instance protocol.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select the HTTPS certificate that corresponds to the domain name being used for the ELB. Find it by the name you selected when you uploaded the certificate and key.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Pick whatever health check makes sense (usually &lt;code&gt;/&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select subnets. (See &lt;a href=&#34;https://github.com/18F/DevOps/blob/master/cf/create-elb.sh&#34;&gt;&lt;code&gt;create-elb&lt;/code&gt;&lt;/a&gt; for current information.)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select security groups. (See &lt;a href=&#34;https://github.com/18F/DevOps/blob/master/cf/create-elb.sh&#34;&gt;&lt;code&gt;create-elb&lt;/code&gt;&lt;/a&gt; for current information.)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Choose which instance to point the Load Balancer to. (See &lt;a href=&#34;https://github.com/18F/DevOps/blob/master/cf/create-elb.sh&#34;&gt;&lt;code&gt;create-elb&lt;/code&gt;&lt;/a&gt; for current information.)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;At the tag screen, &lt;strong&gt;you must tag the ELB&lt;/strong&gt; with a tag named &lt;code&gt;client&lt;/code&gt;, with the value that &lt;strong&gt;corresponds to your project&amp;rsquo;s assigned billing tag&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Github Repos</title>
+      <link>http://localhost:1313/ops/repos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/repos/</guid>
+      <description>&lt;p&gt;Here are the repos with the tools and configuration for the platform:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Docs Repo (this site): &lt;a href=&#34;https://github.com/18F/cloud-foundry-notes&#34;&gt;https://github.com/18F/cloud-foundry-notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CF bosh manifests: &lt;a href=&#34;https://github.com/18F/cloud-foundry-manifests&#34;&gt;https://github.com/18F/cloud-foundry-manifests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Collection of scripts: &lt;a href=&#34;https://github.com/18F/cloud-foundry-scripts&#34;&gt;https://github.com/18F/cloud-foundry-scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Quotas DB: &lt;a href=&#34;https://github.com/18F/cf-quotas-db&#34;&gt;https://github.com/18F/cf-quotas-db&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CF Console: &lt;a href=&#34;https://github.com/18F/cf-console&#34;&gt;https://github.com/18F/cf-console&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hello Worlds: &lt;a href=&#34;https://github.com/18F/cf-hello-worlds&#34;&gt;https://github.com/18F/cf-hello-worlds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Provision User CLI plugin: &lt;a href=&#34;https://github.com/18F/cf-provision-user-space-plugin&#34;&gt;https://github.com/18F/cf-provision-user-space-plugin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cron app: &lt;a href=&#34;https://github.com/18F/cf-cron&#34;&gt;https://github.com/18F/cf-cron&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hubot CF notifications: &lt;a href=&#34;https://github.com/18F/hubot-cf-notifications&#34;&gt;https://github.com/18F/hubot-cf-notifications&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;18F CF custom bosh release: &lt;a href=&#34;https://github.com/18F/18f-cf-release&#34;&gt;https://github.com/18F/18f-cf-release&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hubot helpers: &lt;a href=&#34;https://github.com/18F/hubot-cf&#34;&gt;https://github.com/18F/hubot-cf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;New Relic Bosh Release: &lt;a href=&#34;https://github.com/cloudfoundry-community/newrelic-boshrelease&#34;&gt;https://github.com/cloudfoundry-community/newrelic-boshrelease&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;RDS Service Broker: &lt;a href=&#34;https://github.com/cloudfoundry-community/rds-broker&#34;&gt;https://github.com/cloudfoundry-community/rds-broker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hardening Bosh Release: &lt;a href=&#34;https://github.com/18f/harden-boshrelease&#34;&gt;https://github.com/18f/harden-boshrelease&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Secure Proxy Bosh Release: &lt;a href=&#34;https://github.com/18f/secureproxy-boshrelease&#34;&gt;https://github.com/18f/secureproxy-boshrelease&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hello Worlds: &lt;a href=&#34;https://github.com/18f/cf-hello-worlds&#34;&gt;https://github.com/18f/cf-hello-worlds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cron App: &lt;a href=&#34;https://github.com/18f/cf-cron&#34;&gt;https://github.com/18f/cf-cron&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Making announcements</title>
+      <link>http://localhost:1313/ops/making-announcements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/making-announcements/</guid>
+      <description>
+
+&lt;h3 id=&#34;contents:67977dbe385e051a83e1f826471c8eb0&#34;&gt;Contents&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#announcing-maintenance&#34;&gt;Announcing Maintenance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#announcing-incidents&#34;&gt;Announcing Incidents/Outages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;a-name-announcing-maintenance-a-announcing-maintenance:67977dbe385e051a83e1f826471c8eb0&#34;&gt;&lt;a name=&#34;announcing-maintenance&#34;&gt;&lt;/a&gt;Announcing Maintenance&lt;/h2&gt;
+
+&lt;p&gt;Cloud.gov users want advance notice when potentially disruptive changes are planned. Logging scheduled maintenance on &lt;a href=&#34;https://cloudgov.statuspage.io&#34;&gt;the cloud.gov status page&lt;/a&gt; accomplishes this and improves the chances that users will correctly identify unexpected problems attributable to the maintenance.&lt;/p&gt;
+
+&lt;p&gt;To announce maintenance on the status page:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Log into the &lt;a href=&#34;https://manage.statuspage.io/pages/swcbylb1c30f&#34;&gt;status page management console&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Go to &lt;a href=&#34;https://manage.statuspage.io/pages/swcbylb1c30f/incidents#scheduled-maintenance&#34;&gt;Incidents | Scheduled Maintenance&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Add a maintenance window
+
+&lt;ul&gt;
+&lt;li&gt;Describe the change briefly.&lt;/li&gt;
+&lt;li&gt;Indicate whether you expect any disruption in service as a result.&lt;/li&gt;
+&lt;li&gt;Direct users to support channels if they have questions or are worried about the timing of the maintenance.&lt;/li&gt;
+&lt;li&gt;Use an appropriate time window.
+
+&lt;ul&gt;
+&lt;li&gt;Pay attention to the timezone, which is specified in Eastern Time (EDT)!&lt;/li&gt;
+&lt;li&gt;Be sure to leave a little more time than you expect will be needed. Better to be done earlier than announced than run later than expected!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;If disruption &lt;em&gt;is&lt;/em&gt; expected, &lt;em&gt;check the box that says &amp;ldquo;Automatically remind subscribers&amp;rdquo;&lt;/em&gt; so they are proactively warned in advance of the window.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Extend the window if you&amp;rsquo;re not done in time. End it early if you&amp;rsquo;re done sooner than announced.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;a-name-announcing-incidents-a-announcing-incidents-outages:67977dbe385e051a83e1f826471c8eb0&#34;&gt;&lt;a name=&#34;announcing-incidents&#34;&gt;&lt;/a&gt;Announcing Incidents/Outages&lt;/h2&gt;
+
+&lt;p&gt;As soon as we are aware of a problem, &lt;a href=&#34;https://cloudgov.statuspage.io&#34;&gt;the cloud.gov status page&lt;/a&gt; should be updated reflect the incident. This automatically informs subscribed users, so they will sit tight rather than piling into our support channel.&lt;/p&gt;
+
+&lt;p&gt;To announce an incident on the status page:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Log into the &lt;a href=&#34;https://manage.statuspage.io/pages/swcbylb1c30f&#34;&gt;status page management console&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Create an incident.
+
+&lt;ul&gt;
+&lt;li&gt;If there are user-visible problems, set the status of appropriate components.&lt;/li&gt;
+&lt;li&gt;Summarise the observable symptoms and the state of the incident; don&amp;rsquo;t try to explain the detailed internal state/cause in detail!&lt;/li&gt;
+&lt;li&gt;Remind users of established support channels in case they have questions or are urgently affected.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Investigate and fix the problem.&lt;/li&gt;
+&lt;li&gt;Update the incident to reflect that it&amp;rsquo;s resolved, and that a postmortem is pending. Ensure that the component status is set appropriately.&lt;/li&gt;
+&lt;li&gt;Enter a postmortem for the incident. In the postmortem, include these sections:
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;What Happened&lt;/strong&gt; - Describe in plain language what happened, referring to user-observable symptoms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Remediation Performed&lt;/strong&gt; - Specific steps taken to resolve the situation, eg &amp;ldquo;Restarted UAA and observed that authentication returned to normal&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Regression Prevention&lt;/strong&gt; - Indicate any improvements that we&amp;rsquo;ve added to the backlog which would prevent similar incidents in future, with a link to &lt;a href=&#34;https://18f.storiesonboard.com/m/gov-dev&#34;&gt;the cloud.gov roadmap&lt;/a&gt; so that interested users can follow our progress.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Ideally this portion gets filled in after a &amp;ldquo;&lt;a href=&#34;https://en.wikipedia.org/wiki/5_Whys&#34;&gt;5 Whys&lt;/a&gt;&amp;rdquo; or &amp;ldquo;&lt;a href=&#34;https://en.wikipedia.org/wiki/Ishikawa_diagram&#34;&gt;Ishikawa&lt;/a&gt;&amp;rdquo; root-cause meeting has occurred.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Metrics</title>
+      <link>http://localhost:1313/ops/metrics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/ops/metrics/</guid>
+      <description>
+
+&lt;h1 id=&#34;saving-and-exporting-dashboards:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Saving and Exporting Dashboards&lt;/h1&gt;
+
+&lt;p&gt;The Dashboards created in Metrics provide rich data. Any changes to the configuration need to be exported and put into the &lt;a href=&#34;https://github.com/18F/cg-metrics/tree/master/grafana/dashboards&#34;&gt;repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to export a dashboard:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Navigate to the dashboard via the drop-down menu at the top.&lt;/li&gt;
+&lt;li&gt;Click the Settings cog-wheel at the top to open a dropdown menu&lt;/li&gt;
+&lt;li&gt;Click &lt;code&gt;Export&lt;/code&gt; and it will download the .JSON to your computer locally.&lt;/li&gt;
+&lt;li&gt;Move the file to your local Git repo, add, commit, push it and create a PR.
+
+&lt;ul&gt;
+&lt;li&gt;Make sure there are no spaces in the file name and remove the timestamp from the end.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;requesting-an-account-on-metrics:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Requesting an account on Metrics&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Please &lt;a href=&#34;https://github.com/18f/devops/issues/new&#34;&gt;create a ticket&lt;/a&gt; with the title including &lt;code&gt;[Metrics Acct Req]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Please indicate if you need an &lt;code&gt;admin&lt;/code&gt; account or &lt;code&gt;regular&lt;/code&gt; account.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;updating-the-metrics-containers:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Updating the Metrics containers.&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;SSH into jumpbox &lt;code&gt;ssh &amp;lt;username&amp;gt;@&amp;lt;jumpbox-address&amp;gt;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make a ticket in the &lt;code&gt;DevOps&lt;/code&gt; repository with the title &lt;code&gt;[JumpBox Access Req]&lt;/code&gt; to be given access.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Go into the metrics folder &lt;code&gt;cd ~/workspace/deployments/monitoring-services/cf-metrics-18f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Pull all the recent changes for that project &lt;code&gt;git pull&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;eval &amp;quot;$(docker-machine env cfmetrics-chili)&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docker-compose build &amp;amp;&amp;amp; docker-compose up -d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Verify none of the components went down by running &lt;code&gt;docker-compose ps&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;warning-any-commits-that-update-the-version-of-grafana-will-wipe-out-dashboards-and-users-for-now-the-following-actions-should-be-taken-in-case:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Warning: Any commits that update the version of Grafana will wipe out dashboards and users for now. The following actions should be taken in case.&lt;/h3&gt;
+
+&lt;h1 id=&#34;pointing-grafana-to-new-datasource-or-updating-datasoruce-grafana-admins:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Pointing Grafana to new Datasource or Updating Datasoruce (Grafana admins)&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Currently, the dashboards are looking for the &lt;code&gt;Name&lt;/code&gt; to be &lt;code&gt;cf_prd&lt;/code&gt;, &lt;code&gt;cf_np&lt;/code&gt;, &lt;code&gt;bosh_prd&lt;/code&gt;, or &lt;code&gt;bosh_np&lt;/code&gt;. So if you are updating one of those, please ensure the name fits exactly.&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;Type&lt;/code&gt; to &lt;code&gt;InfluxDB 0.9.x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Given the AWS Internal IP of the &lt;code&gt;cfmetrics-chili&lt;/code&gt; EC2 instance (Please refer to the &lt;a href=&#34;http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#using-instance-addressing-common&#34;&gt;AWS EC2 Console for the IP&lt;/a&gt;), Set the &lt;code&gt;Url&lt;/code&gt; to &lt;code&gt;http://&amp;lt;internal-ip&amp;gt;:8086&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;Database&lt;/code&gt;, &lt;code&gt;User&lt;/code&gt;, and &lt;code&gt;Password&lt;/code&gt; as appropriate.
+
+&lt;ul&gt;
+&lt;li&gt;Current &lt;code&gt;Database&lt;/code&gt; options are &lt;code&gt;cf_prd&lt;/code&gt;, &lt;code&gt;cf_np&lt;/code&gt;, &lt;code&gt;bosh_prd&lt;/code&gt;, or &lt;code&gt;bosh_np&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Password&lt;/code&gt; and &lt;code&gt;User&lt;/code&gt; can be found in the &lt;code&gt;~/workspace/deployments/monitoring-services/cf-metrics-18fi/influxdb/run.sh&lt;/code&gt; file on the Jumpbox&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;importing-dashboards:ad85a46ccb5d15dbaf3cad93f2560710&#34;&gt;Importing Dashboards&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;SSH into jumpbox &lt;code&gt;ssh &amp;lt;username&amp;gt;@&amp;lt;jumpbox-address&amp;gt;&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make a ticket in the &lt;code&gt;DevOps&lt;/code&gt; repository with the title &lt;code&gt;[JumpBox Access Req]&lt;/code&gt; to be given access.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Go into the metrics folder &lt;code&gt;cd ~/workspace/deployments/monitoring-services/cf-metrics-18f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;for f in grafana/dashboards/*.json; do curl --user &amp;lt;insert username&amp;gt;:&amp;lt;insert password&amp;gt; &#39;http://&amp;lt;internal AWS IP For Docker Host&amp;gt;:3000/api/dashboards/db&#39; -X POST -H &#39;Content-Type: application/json;charset=UTF-8&#39; --data-binary @$f; done&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

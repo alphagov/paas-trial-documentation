@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Govt PaaS documentation">
+    <meta name="author" content="Brett Ansley">
+    <meta name="generator" content="Hugo 0.14" />
+
+    <title>General Deployment Tips</title>
+
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/monokai_sublime.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+  
+  <section id="container" class="">
+
+      
+      <header class="header black-bg">
+            <div class="toggle-nav">
+                <i class="fa fa-bars"></i>
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            
+            <a href="/" title="Home">
+              <h2 class="main">Govt PaaS</h2>
+            </a>
+            
+            <div class="top-nav notification-row">
+            </div>
+
+            <div class="nav title-row" id="top_menu">
+                <h1 class="nav top-menu">General Deployment Tips</h1>
+            </div>
+      </header>
+      
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        
+        <ul class="sidebar-menu">
+          
+          
+              
+
+            <li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class='fa fa-road'></i>
+                
+                <span>Getting Started</span>
+                <span class="menu-arrow fa fa-angle-right"></span>
+            </a>
+                <ul class="sub">
+                    
+                    <li><a href="/getting-started/setup/">Setup</a> </li>
+                    
+                    <li><a href="/getting-started/bucketlist/">Things to try out</a> </li>
+                    
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
+                    
+                    <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+              
+
+            <li class="sub-menu active">
+            <a href="javascript:;" class="">
+                <i class='fa fa-file-text'></i>
+                
+                <span>Deploying Apps</span>
+                <span class="menu-arrow fa fa-angle-down"></span>
+            </a>
+                <ul class="sub open">
+                    
+                    <li class="active"><a href="/apps/deployment/">General Deployment Tips</a> </li>
+                    
+                    <li><a href="/apps/quotas/">Quotas</a> </li>
+                    
+                    <li><a href="/apps/sample-apps/">Sample apps</a> </li>
+                    
+                    <li><a href="/apps/basic-deploy-troubleshooting/">Basic Deploy Troubleshooting</a> </li>
+                    
+                    <li><a href="/apps/cloning/">Cloning Applications</a> </li>
+                    
+                    <li><a href="/apps/databases/">Databases</a> </li>
+                    
+                    <li><a href="/apps/django/">Deploying Django</a> </li>
+                    
+                    <li><a href="/apps/flask/">Deploying Flask</a> </li>
+                    
+                    <li><a href="/apps/static/">Deploying Static Sites</a> </li>
+                    
+                    <li><a href="/apps/node/">Deploying node.js</a> </li>
+                    
+                    <li><a href="/apps/moving-apps/">Moving apps between spaces</a> </li>
+                    
+                    <li><a href="/apps/apt-get/">Using apt-get</a> </li>
+                    
+                </ul>
+              
+              </li>
+          
+            <li> <a href="/index.html" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+        </ul>
+        
+    </div>
+</aside>
+
+
+
+      
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-md-1">
+                      
+                      
+                      
+                  </div>
+                <div class="col-md-10">
+                    <section class="panel">
+                      <div class="panel-body">
+
+
+
+<h2 id="how-deployment-works:98159bafc57a07057ca8a36ea636fe50">How deployment works</h2>
+
+<p>The command to create a new app and to push a new version of an existing one are the same: <code>cf push</code>. The basic steps:</p>
+
+<ol>
+<li><p>Check out whatever version of the code you want to deploy.</p>
+
+<pre><code class="language-bash">git checkout master
+</code></pre></li>
+
+<li><p><a href="/getting-started/concepts/#target:f672fea773fb5554fdcc9faa6e7b5093">Target</a> the appropriate <a href="/getting-started/concepts/#organizations:f672fea773fb5554fdcc9faa6e7b5093">organization</a>/<a href="/getting-started/concepts/#spaces:f672fea773fb5554fdcc9faa6e7b5093">space</a>.</p>
+
+<pre><code class="language-bash">cf target -o &lt;SOMEORG&gt; -s &lt;SOMESPACE&gt;
+</code></pre></li>
+
+<li><p>Deploy the application.</p>
+
+<pre><code class="language-bash">cf push &lt;APPNAME&gt;
+</code></pre></li>
+</ol>
+
+<p>The app should now be live at <code>APPNAME.trial.cf.paas.alphagov.co.uk</code>.</p>
+
+<h2 id="twelve-factor-apps:98159bafc57a07057ca8a36ea636fe50">Twelve-Factor Apps</h2>
+
+<p>In general, applications will be easiest to deploy to Cloud Foundry if they follow the <a href="http://12factor.net/">Twelve Factor App</a> guidelines.</p>
+
+<h2 id="exclude-files:98159bafc57a07057ca8a36ea636fe50">Exclude files</h2>
+
+<p>Cloud Foundry isn&rsquo;t version-control-aware, so <code>cf push</code> will deploy the working state of whatever files you have in that directory. In most cases, you will want to <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html#exclude">exclude files</a> ignored by Git. From within your project directory, run</p>
+
+<pre><code class="language-bash">ln -s .gitignore .cfignore
+</code></pre>
+
+<p>and commit the <code>.cfignore</code> to your repository. However, read on if you have a more advanced CF setup.</p>
+
+<p>A couple of important points on the <code>.cfignore</code>:</p>
+
+<ol>
+<li>if you have a more advanced app setup and have apps with a <code>path</code> other than the project root (where you run <code>cf push</code> from), you will need an additional <code>.cfignore</code> file located in each app <code>path</code>;</li>
+<li>also note that more advanced <code>.gitignore</code> syntax, such as the <code>**</code> recursive subdirectory wildcard, are <em>not</em> supported by <code>.cfignore</code>.</li>
+</ol>
+
+                      <hr style="margin: 2em auto 0.25em;">
+                    </div>
+                    </section>
+
+                    <footer>
+                      Built by the Government PaaS team | 
+                      <a href="mailto:support@governmentpaas.zendesk.com">
+                        Send us feedback
+                      </a>
+                    </footer>
+
+                </div>
+                <div class="col-md-1">
+                    
+                    
+                    
+                </div>
+              </div>
+              
+          </section>
+      </section>
+     
+  </section>
+  
+    
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/scripts.js"></script>
+  </body>
+</html>
+
