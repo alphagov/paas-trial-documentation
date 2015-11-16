@@ -32,11 +32,7 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
-  </url>
-  
-  <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</loc>
   </url>
   
   <url>
@@ -44,7 +40,7 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
   </url>
   
   <url>
@@ -52,15 +48,19 @@
   </url>
   
   <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
+  </url>
+  
+  <url>
     <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/django/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
   </url>
   
   <url>
@@ -76,11 +76,11 @@
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
   </url>
   
   <url>
-    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
   </url>
   
 </urlset>

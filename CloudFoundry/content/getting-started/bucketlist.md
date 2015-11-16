@@ -8,7 +8,7 @@ weight: 50
 
 
 
-##We'd love you to try doing some of these:##
+## We'd love you to try doing some of these: 
 
 While you're experimenting with the platform we'd love for you to try to perform some (or all) of these tasks (and then give us feedback on how it went):
 
