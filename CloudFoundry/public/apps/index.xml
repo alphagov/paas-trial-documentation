@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Apps on Govt PaaS</title>
-    <link>http://localhost:1313/apps/</link>
+    <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/</link>
     <description>Recent content in Apps on Govt PaaS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <atom:link href="http://localhost:1313/apps/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://documentation.trial.cf.paas.alphagov.co.uk/apps/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>General Deployment Tips</title>
-      <link>http://localhost:1313/apps/deployment/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/deployment/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/</guid>
       <description>
 
 &lt;h2 id=&#34;how-deployment-works:98159bafc57a07057ca8a36ea636fe50&#34;&gt;How deployment works&lt;/h2&gt;
@@ -25,7 +25,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git checkout master
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://localhost:1313/getting-started/concepts/#target:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Target&lt;/a&gt; the appropriate &lt;a href=&#34;http://localhost:1313/getting-started/concepts/#organizations:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;organization&lt;/a&gt;/&lt;a href=&#34;http://localhost:1313/getting-started/concepts/#spaces:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;space&lt;/a&gt;.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/#target:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;Target&lt;/a&gt; the appropriate &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/#organizations:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;organization&lt;/a&gt;/&lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/#spaces:f672fea773fb5554fdcc9faa6e7b5093&#34;&gt;space&lt;/a&gt;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cf target -o &amp;lt;SOMEORG&amp;gt; -s &amp;lt;SOMESPACE&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -62,10 +62,10 @@
     
     <item>
       <title>Quotas</title>
-      <link>http://localhost:1313/apps/quotas/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/quotas/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/quotas/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/quotas/</guid>
       <description>
 
 &lt;h4 id=&#34;quotas:1b7cbd6ff4a5f6ecee0c1df5ee074493&#34;&gt;Quotas:&lt;/h4&gt;
@@ -193,10 +193,10 @@ last uploaded: Wed Jul 22 20:09:56 UTC 2015
     
     <item>
       <title>Sample apps</title>
-      <link>http://localhost:1313/apps/sample-apps/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/sample-apps/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/sample-apps/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/sample-apps/</guid>
       <description>
 
 &lt;h2 id=&#34;deploying-some-sample-apps:b48eb78eb73a63686d5f48ab65f6f075&#34;&gt;Deploying some sample apps&lt;/h2&gt;
@@ -282,10 +282,10 @@ cf push etherpad-lite -m 512M
     
     <item>
       <title>Deploying Multi-language Projects</title>
-      <link>http://localhost:1313/apps/multi-buildpack-deploys/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</link>
       <pubDate>Fri, 10 Jul 2015 14:32:59 -0400</pubDate>
       
-      <guid>http://localhost:1313/apps/multi-buildpack-deploys/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</guid>
       <description>
 
 &lt;p&gt;CloudFoundry is capable of deploying, multi-language projects by using a special &lt;a href=&#34;https://github.com/ddollar/heroku-buildpack-multi&#34;&gt;buildpack&lt;/a&gt;. In short, this buildpack applies any buildpacks listed in &lt;code&gt;.buildpacks&lt;/code&gt; file.&lt;/p&gt;
@@ -320,10 +320,10 @@ https://github.com/cloudfoundry/nodejs-buildpack
     
     <item>
       <title>Basic Deploy Troubleshooting</title>
-      <link>http://localhost:1313/apps/basic-deploy-troubleshooting/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/basic-deploy-troubleshooting/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</guid>
       <description>
 
 &lt;p&gt;The most direct way to view events related to your application through the deploy process is &lt;code&gt;cf logs APPNAME&lt;/code&gt;. Used alone, &lt;code&gt;cf logs&lt;/code&gt; will tail the combined stream of logs from each Cloud Foundry service involved in your application deploy. Running with the recent flag as in &lt;code&gt;cf logs APPNAME --recent&lt;/code&gt; will stream the entire loggregator buffer for your app.&lt;/p&gt;
@@ -427,10 +427,10 @@ Buildpack activity.&lt;/p&gt;
     
     <item>
       <title>Cloning Applications</title>
-      <link>http://localhost:1313/apps/cloning/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/cloning/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</guid>
       <description>
 
 &lt;p&gt;Say you have an existing deployment on Cloud Foundry, and you want to make a new staging environment. Below are the different scenarios around &lt;a href=&#34;http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html&#34;&gt;application manifests&lt;/a&gt;.&lt;/p&gt;
@@ -480,10 +480,10 @@ cp &amp;lt;EXISTING_APP_NAME&amp;gt;_manifest.yml &amp;lt;NEW_APP_NAME&amp;gt;_m
     
     <item>
       <title>Continuous Deployment</title>
-      <link>http://localhost:1313/apps/continuous-deployment/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/continuous-deployment/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</guid>
       <description>
 
 &lt;p&gt;Setting up continuous deployment allows you to automatically upload your
@@ -668,10 +668,10 @@ deploy:
     
     <item>
       <title>Databases</title>
-      <link>http://localhost:1313/apps/databases/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/databases/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</guid>
       <description>
 
 &lt;h2 id=&#34;services:063b65ec7c2204b9aadd81138ab83dc3&#34;&gt;Services&lt;/h2&gt;
@@ -698,10 +698,10 @@ cf restage myapp
     
     <item>
       <title>Deploying Django</title>
-      <link>http://localhost:1313/apps/django/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/django/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/django/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/django/</guid>
       <description>
 
 &lt;h2 id=&#34;creating-the-app:b11fc00eb39746fdffafa1227b594e02&#34;&gt;Creating the App&lt;/h2&gt;
@@ -717,7 +717,7 @@ cf restage myapp
 
 &lt;ol&gt;
 &lt;li&gt;Add &lt;code&gt;*.pyc&lt;/code&gt; and &lt;code&gt;local_settings.py&lt;/code&gt; to your &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/apps/deployment/#excluding-files:98159bafc57a07057ca8a36ea636fe50&#34;&gt;Exclude your &lt;code&gt;.gitignore&lt;/code&gt;d files from Cloud Foundry.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/#excluding-files:98159bafc57a07057ca8a36ea636fe50&#34;&gt;Exclude your &lt;code&gt;.gitignore&lt;/code&gt;d files from Cloud Foundry.&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;the-python-runtime:b11fc00eb39746fdffafa1227b594e02&#34;&gt;The Python runtime&lt;/h3&gt;
@@ -818,7 +818,7 @@ applications:
 
 &lt;h2 id=&#34;setting-up-the-database:b11fc00eb39746fdffafa1227b594e02&#34;&gt;Setting Up the Database&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;First, read &lt;a href=&#34;http://localhost:1313/apps/databases/&#34;&gt;the database guide&lt;/a&gt;.&lt;/strong&gt; If you are using RDS, you&amp;rsquo;ll need to change your &lt;code&gt;settings.py&lt;/code&gt; and set one environment variable to get the database up and connect. In your &lt;code&gt;settings.py&lt;/code&gt; make sure you import the package we added to the &lt;code&gt;requirements.txt&lt;/code&gt; file above:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First, read &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/&#34;&gt;the database guide&lt;/a&gt;.&lt;/strong&gt; If you are using RDS, you&amp;rsquo;ll need to change your &lt;code&gt;settings.py&lt;/code&gt; and set one environment variable to get the database up and connect. In your &lt;code&gt;settings.py&lt;/code&gt; make sure you import the package we added to the &lt;code&gt;requirements.txt&lt;/code&gt; file above:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import dj_database_url
 &lt;/code&gt;&lt;/pre&gt;
@@ -842,10 +842,10 @@ DATABASES[&#39;default&#39;] =  dj_database_url.config()
     
     <item>
       <title>Deploying Flask</title>
-      <link>http://localhost:1313/apps/flask/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/flask/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</guid>
       <description>
 
 &lt;p&gt;Deploying a Flask app is similar to deploying a Django app but is a bit simpler.&lt;/p&gt;
@@ -863,7 +863,7 @@ DATABASES[&#39;default&#39;] =  dj_database_url.config()
 
 &lt;ol&gt;
 &lt;li&gt;Add &lt;code&gt;*.pyc&lt;/code&gt; and any other files you want Cloud Foundry to your &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/apps/deployment/#excluding-files:98159bafc57a07057ca8a36ea636fe50&#34;&gt;Exclude your &lt;code&gt;.gitignore&lt;/code&gt;d files from Cloud Foundry.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/#excluding-files:98159bafc57a07057ca8a36ea636fe50&#34;&gt;Exclude your &lt;code&gt;.gitignore&lt;/code&gt;d files from Cloud Foundry.&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;wsgi-configuration:c35eab89814973a38e39d2a98101f8ad&#34;&gt;WSGI Configuration&lt;/h3&gt;
@@ -948,7 +948,7 @@ applications:
 
 &lt;h2 id=&#34;setting-up-the-database:c35eab89814973a38e39d2a98101f8ad&#34;&gt;Setting Up the Database&lt;/h2&gt;
 
-&lt;p&gt;You don&amp;rsquo;t need a database to work with Flask but if you want to try, be sure to update this page with how you did it. &lt;strong&gt;I&amp;rsquo;d start with reading &lt;a href=&#34;http://localhost:1313/apps/databases/&#34;&gt;the database guide&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You don&amp;rsquo;t need a database to work with Flask but if you want to try, be sure to update this page with how you did it. &lt;strong&gt;I&amp;rsquo;d start with reading &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/&#34;&gt;the database guide&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;running-the-app:c35eab89814973a38e39d2a98101f8ad&#34;&gt;Running the app&lt;/h3&gt;
 
@@ -963,10 +963,10 @@ applications:
     
     <item>
       <title>Deploying Static Sites</title>
-      <link>http://localhost:1313/apps/static/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/static/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/static/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/static/</guid>
       <description>
 
 &lt;p&gt;Create &lt;code&gt;index.html&lt;/code&gt;:&lt;/p&gt;
@@ -1026,10 +1026,10 @@ applications:
     
     <item>
       <title>Deploying node.js</title>
-      <link>http://localhost:1313/apps/node/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/node/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</guid>
       <description>&lt;p&gt;Deploying a basic node.js application to Cloud Foundry is relatively uncomplicated. The &lt;a href=&#34;http://docs.cloudfoundry.org/buildpacks/node/node-tips.html&#34;&gt;node.js tips document&lt;/a&gt; on cloudfoundry.org covers the process in detail.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;/p&gt;
@@ -1086,14 +1086,14 @@ uri = appEnv.getServiceURL(&amp;quot;beckley-es&amp;quot;);
     
     <item>
       <title>Moving apps between spaces</title>
-      <link>http://localhost:1313/apps/moving-apps/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/moving-apps/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</guid>
       <description>&lt;p&gt;If you have an app that exists in one org/space but you need to move it to another:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Deploy the new application instance using the appropriate steps on the &lt;a href=&#34;http://localhost:1313/apps/cloning/&#34;&gt;cloning&lt;/a&gt; page.
+&lt;li&gt;Deploy the new application instance using the appropriate steps on the &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/&#34;&gt;cloning&lt;/a&gt; page.
 
 &lt;ul&gt;
 &lt;li&gt;Make sure to run &lt;code&gt;cf target -o &amp;lt;NEW_ORG&amp;gt; -s &amp;lt;NEW_SPACE&amp;gt;&lt;/code&gt; before running &lt;code&gt;cf push&lt;/code&gt;.&lt;/li&gt;
@@ -1128,10 +1128,10 @@ cf delete &amp;lt;APP_NAME&amp;gt;
     
     <item>
       <title>Using apt-get</title>
-      <link>http://localhost:1313/apps/apt-get/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/apps/apt-get/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</guid>
       <description>&lt;p&gt;The Govt Trial Cloud Foundry does not allow the use of &lt;code&gt;sudo&lt;/code&gt; inside of buildpacks. If your app depends on a library that is &lt;code&gt;apt-get&lt;/code&gt; installable, use the CF-flavor of the &lt;a href=&#34;https://github.com/pivotal-cf-experimental/apt-buildpack&#34;&gt;&lt;code&gt;apt-buildpack&lt;/code&gt;&lt;/a&gt;. This works great with &lt;a href=&#34;http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/&#34;&gt;&lt;code&gt;buildpack-multi&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>

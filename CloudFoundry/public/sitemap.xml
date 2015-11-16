@@ -2,81 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/getting-started/setup/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/deployment/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/deployment/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/quotas/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/quotas/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/sample-apps/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/sample-apps/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/multi-buildpack-deploys/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/multi-buildpack-deploys/</loc>
     <lastmod>2015-07-10T14:32:59-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/apt-get/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/basic-deploy-troubleshooting/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/continuous-deployment/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/cloning/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/basic-deploy-troubleshooting/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/apt-get/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/databases/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/continuous-deployment/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/cloning/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/databases/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/django/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/django/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/moving-apps/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/moving-apps/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/flask/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/flask/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/node/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/node/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/apps/static/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/apps/static/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/getting-started/cf-ssh/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/getting-started/concepts/</loc>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</loc>
+  </url>
+  
+  <url>
+    <loc>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</loc>
   </url>
   
 </urlset>

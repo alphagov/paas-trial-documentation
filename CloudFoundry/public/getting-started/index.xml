@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting-Starteds on Govt PaaS</title>
-    <link>http://localhost:1313/getting-started/</link>
+    <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/</link>
     <description>Recent content in Getting-Starteds on Govt PaaS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <atom:link href="http://localhost:1313/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Setup</title>
-      <link>http://localhost:1313/getting-started/setup/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/getting-started/setup/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/setup/</guid>
       <description>
 
 &lt;h2 id=&#34;installing-the-cli:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Installing the CLI&lt;/h2&gt;
@@ -62,11 +62,33 @@ sudo mv cf /usr/local/bin
     </item>
     
     <item>
-      <title>Concepts</title>
-      <link>http://localhost:1313/getting-started/concepts/</link>
+      <title>Things to try out</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/getting-started/concepts/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/bucketlist/</guid>
+      <description>&lt;p&gt;##We&amp;rsquo;d love you to try doing some of these:##&lt;/p&gt;
+
+&lt;p&gt;While you&amp;rsquo;re experimenting with the platform we&amp;rsquo;d love for you to try to perform some (or all) of these tasks (and then give us feedback on how it went):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Deploy an application&lt;/li&gt;
+&lt;li&gt;Bind an application to a backing service (Postgres / Redis)&lt;/li&gt;
+&lt;li&gt;Scale the number of instances of your app (up and down)&lt;/li&gt;
+&lt;li&gt;Connect to your application from the outside world to ensure it works&lt;/li&gt;
+&lt;li&gt;Drive traffic to your application (if you have the tools to do this)&lt;/li&gt;
+&lt;li&gt;Perform a zero-downtime deploy of a new version of your app (for bonus points try this with traffic being driven to the app at the same time)&lt;/li&gt;
+&lt;li&gt;Remove your app&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Concepts</title>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/concepts/</guid>
       <description>
 
 &lt;p&gt;Official glossary: &lt;a href=&#34;http://docs.cloudfoundry.org/concepts/glossary.html&#34;&gt;http://docs.cloudfoundry.org/concepts/glossary.html&lt;/a&gt;&lt;/p&gt;
@@ -143,10 +165,10 @@ sudo mv cf /usr/local/bin
     
     <item>
       <title>Running one off tasks</title>
-      <link>http://localhost:1313/getting-started/cf-ssh/</link>
+      <link>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/getting-started/cf-ssh/</guid>
+      <guid>http://documentation.trial.cf.paas.alphagov.co.uk/getting-started/cf-ssh/</guid>
       <description>
 
 &lt;p&gt;There are a couple ways to run one off tasks in Cloud Foundry. The easiest one is running CF SSH.&lt;/p&gt;
@@ -156,8 +178,6 @@ sudo mv cf /usr/local/bin
 &lt;p&gt;&lt;code&gt;cf-ssh&lt;/code&gt; is a shared ssh session with an application container that you can connect to. This allows you to debug the environment and your application without disturbing a running container.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;cf-ssh&lt;/code&gt; will spin up an instance of your environment uploading your &lt;strong&gt;local&lt;/strong&gt; code. Note that this may not be in sync with your running container.&lt;/p&gt;
-
-&lt;p&gt;Our &lt;code&gt;cf-ssh&lt;/code&gt; is customized to our Cloud Foundry installation so please &lt;strong&gt;do not use the community version&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;install-cf-ssh:af54944f4e53a8258f8891c10a30381e&#34;&gt;Install &lt;code&gt;cf-ssh&lt;/code&gt;&lt;/h3&gt;
 

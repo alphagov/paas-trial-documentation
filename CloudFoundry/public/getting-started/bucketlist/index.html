@@ -7,7 +7,7 @@
     <meta name="author" content="Brett Ansley">
     <meta name="generator" content="Hugo 0.14" />
 
-    <title>Concepts</title>
+    <title>Things to try out</title>
 
     <link href="/css/bootstrap-theme.css" rel="stylesheet">
     <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -37,7 +37,7 @@
             </div>
 
             <div class="nav title-row" id="top_menu">
-                <h1 class="nav top-menu">Concepts</h1>
+                <h1 class="nav top-menu">Things to try out</h1>
             </div>
       </header>
       
@@ -62,9 +62,9 @@
                     
                     <li><a href="/getting-started/setup/">Setup</a> </li>
                     
-                    <li><a href="/getting-started/bucketlist/">Things to try out</a> </li>
+                    <li class="active"><a href="/getting-started/bucketlist/">Things to try out</a> </li>
                     
-                    <li class="active"><a href="/getting-started/concepts/">Concepts</a> </li>
+                    <li><a href="/getting-started/concepts/">Concepts</a> </li>
                     
                     <li><a href="/getting-started/cf-ssh/">Running one off tasks</a> </li>
                     
@@ -137,77 +137,19 @@
                     <section class="panel">
                       <div class="panel-body">
 
+<p>##We&rsquo;d love you to try doing some of these:##</p>
 
+<p>While you&rsquo;re experimenting with the platform we&rsquo;d love for you to try to perform some (or all) of these tasks (and then give us feedback on how it went):</p>
 
-<p>Official glossary: <a href="http://docs.cloudfoundry.org/concepts/glossary.html">http://docs.cloudfoundry.org/concepts/glossary.html</a></p>
-
-<h2 id="organizations:f672fea773fb5554fdcc9faa6e7b5093">Organizations</h2>
-
-<p>Cloud Foundry groups its users by <a href="http://docs.cloudfoundry.org/concepts/roles.html#orgs">organizations</a>, or &ldquo;orgs&rdquo; for short. Orgs group together users for management and present a shared perimeter for services, domains and quotas. When your account is created, it will be given permissions to an org and a personal space.</p>
-
-<h3 id="naming-convention:f672fea773fb5554fdcc9faa6e7b5093">Naming convention</h3>
-
-<p>Within the trial, the <code>ORGNAME</code> will correspond to a project/client.</p>
-
-<h3 id="list-available-orgs:f672fea773fb5554fdcc9faa6e7b5093">List available orgs</h3>
-
-<pre><code class="language-bash">cf orgs
-</code></pre>
-
-<p>Only orgs where you&rsquo;ve been assigned an org-role or those which contain a space where you&rsquo;ve been assigned a space-role will appear.</p>
-
-<h3 id="see-details-about-a-specific-org:f672fea773fb5554fdcc9faa6e7b5093">See details about a specific org</h3>
-
-<p>&hellip;including quotas, routing domains and which spaces it includes:</p>
-
-<pre><code class="language-bash">cf org ORGNAME
-</code></pre>
-
-<h3 id="target-an-org:f672fea773fb5554fdcc9faa6e7b5093">Target an org</h3>
-
-<p>In order to work with spaces, you&rsquo;ll need to do this first:</p>
-
-<pre><code class="language-bash">cf target -o ORGNAME
-</code></pre>
-
-<h2 id="spaces:f672fea773fb5554fdcc9faa6e7b5093">Spaces</h2>
-
-<p>Every application is scoped to a <a href="http://docs.cloudfoundry.org/concepts/roles.html#spaces">space</a>. Applications in the same space share a location for app development, deployment, and maintenance.</p>
-
-<h3 id="naming-convention-1:f672fea773fb5554fdcc9faa6e7b5093">Naming convention</h3>
-
-<p>Within the trial, the <code>SPACENAME</code> will correspond to an environment, e.g. <code>dev</code> or <code>prod</code>. If the org is more general (e.g. <code>devops</code>), the space may correspond to the name of the project (e.g. <code>hubot</code>).</p>
-
-<h3 id="management:f672fea773fb5554fdcc9faa6e7b5093">Management</h3>
-
-<p>To create a space:</p>
-
-<pre><code class="language-bash">cf create-space SPACENAME
-</code></pre>
-
-<p><strong>Note:</strong>  To create a space within a given org you must have the <code>OrgManager</code> role. You can check to see which users and managers for your org with:</p>
-
-<pre><code class="language-bash">cf org-users ORGNAME
-</code></pre>
-
-<h2 id="target:f672fea773fb5554fdcc9faa6e7b5093">Target</h2>
-
-<p>The Cloud Foundry CLI keeps a global state of whatever <a href="#organizations:f672fea773fb5554fdcc9faa6e7b5093">organization</a>+<a href="#spaces:f672fea773fb5554fdcc9faa6e7b5093">space</a> you&rsquo;re interacting with. This is known as the &ldquo;target&rdquo;, and is set via</p>
-
-<pre><code class="language-bash">cf target -o ORGNAME -s SPACENAME
-</code></pre>
-
-<h2 id="buildpacks:f672fea773fb5554fdcc9faa6e7b5093">Buildpacks</h2>
-
-<p>All apps need to use a &lsquo;buildpack&rsquo; specific to their language, which sets up dependencies for particular language stacks. There are standard buildpacks for most lanugages, and they will usually be auto-detected by CF. Using the standard buildpacks is strongly encouraged. In the rare case where the buildpack does not get detected correctly, or to use a custom buildpack, it can be specified in the manifest (as below) or with the <code>-b</code> flag. Use either the buildpack name:</p>
-
-<pre><code>buildpack: python_buildpack
-</code></pre>
-
-<p>or a URL to reference it.</p>
-
-<pre><code>buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
-</code></pre>
+<ol>
+<li>Deploy an application</li>
+<li>Bind an application to a backing service (Postgres / Redis)</li>
+<li>Scale the number of instances of your app (up and down)</li>
+<li>Connect to your application from the outside world to ensure it works</li>
+<li>Drive traffic to your application (if you have the tools to do this)</li>
+<li>Perform a zero-downtime deploy of a new version of your app (for bonus points try this with traffic being driven to the app at the same time)</li>
+<li>Remove your app</li>
+</ol>
 
                       <hr style="margin: 2em auto 0.25em;">
                     </div>
