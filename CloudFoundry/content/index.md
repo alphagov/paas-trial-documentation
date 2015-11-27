@@ -9,4 +9,4 @@ Welcome! Cloud Foundry is an open source Platform-as-a-Service (PaaS) system for
 ## Help!
 
 - Find the section you need on the left. 
-- Reach out with our support email [support@governmentpaas.zendesk.com](support@governmentpaas.zendesk.com).
+- Reach out with our support email <support@governmentpaas.zendesk.com>.
