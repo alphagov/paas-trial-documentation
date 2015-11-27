@@ -70,9 +70,38 @@ The Cloud Foundry CLI keeps a global state of whatever [organization]({{< relref
 cf target -o ORGNAME -s SPACENAME
 ```
 
+## Manifest Files
+
+Application manifests tell `cf push` what to do with applications. This includes everything from how many instances to create and how much memory to allocate to what services applications should use.
+
+A manifest can help you automate deployment, especially of multiple applications at once.
+
+### Example Manifest
+
+You can deploy applications without ever using a manifest. The benefits manifests may provide include consistency and reproducibility. 
+
+Manifests are written in YAML. The manifest below illustrates some YAML conventions, as follows:
+
+- The manifest begins with three dashes.
+- The `applications` block begins with a heading followed by a colon.
+- The application `name` is preceded by a single dash and one space.
+- Subsequent lines in the block are indented two spaces to align with `name`.
+
+```
+---
+applications:
+- name: nifty-gui
+  memory: 512M
+  host: nifty
+```
+
+A minimal manifest requires only an application `name`. To create a valid minimal manifest, remove the `memory` and `host` properties from this example.
+
+Place your `manifest.yml` in the directory that contains the application files that you want to push and run `cf push`. `cf push` searches the current directory for a manifest unless you specify another path with the `-p` option
+
 ## Buildpacks
 
-All apps need to use a 'buildpack' specific to their language, which sets up dependencies for particular language stacks. There are standard buildpacks for most lanugages, and they will usually be auto-detected by CF. Using the standard buildpacks is strongly encouraged. In the rare case where the buildpack does not get detected correctly, or to use a custom buildpack, it can be specified in the manifest (as below) or with the `-b` flag. Use either the buildpack name:
+All apps need to use a 'buildpack' specific to their language, which sets up dependencies for particular language stacks. There are standard buildpacks for most lanugages, and they will usually be auto-detected by CF. Using the standard buildpacks is strongly encouraged. In the rare case where the buildpack does not get detected correctly, or to use a custom buildpack, it can be specified in the manifest (as below) or with the `-b` flag on the `cf push` command.
 
     buildpack: python_buildpack
 
