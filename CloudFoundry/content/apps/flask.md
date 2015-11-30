@@ -95,10 +95,10 @@ applications:
 - name: APPNAME
   path: .
   timeout: 180
-  host: trial.cf.paas.alphagov.co.uk
+  host: flaskapp-${random-word}
 ```
 
-As you can see, it specifies the number of instances, the memory allocated to the application, and the application itself.
+As you can see, it specifies the number of instances, the memory allocated to the application, the application itself, and the host the application will be available at. In the above example, we add a random word to the host name to allow the example to work multiple times.
 
 ### Create the App
 
