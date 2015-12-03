@@ -10,7 +10,7 @@ Environment variables are the means by which the Cloud Foundry runtime communica
 
 ## Setting environment variables in the manifest file
 
-You can set environment variables in your app by adding an `env` block to the manifest file. The `env` block consists of a heading, then one or more environment variable/value pairs.
+You can set environment variables in your app by adding an `env` block to the `manifest.yml` file for your app. The `env` block consists of a heading, then one or more environment variable/value pairs.
 
 For example:
 
