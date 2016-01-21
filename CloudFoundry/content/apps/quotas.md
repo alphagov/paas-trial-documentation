@@ -44,7 +44,7 @@ In this situation you have three options:
 
 1. Delete existing resources with `cf delete`, `delete-service`, `delete-route` or similar.
 2. Reconfigure existing [Application Quotas](#application-quotas) and redeploy.
-3. Request a quota change [support@governmentpaas.zendesk.com](support@governmentpaas.zendesk.com).
+3. Request a quota change <gov-uk-paas-support@digital.cabinet-office.gov.uk>.
 
 ### Application Quotas:
 
