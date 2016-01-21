@@ -17,4 +17,4 @@ We are working to make the platform production ready.
 ## Help!
 
 - Find the section you need on the left. 
-- Reach out with our support email <support@governmentpaas.zendesk.com>.
+- Reach out with our support email <gov-uk-paas-support@digital.cabinet-office.gov.uk>.
