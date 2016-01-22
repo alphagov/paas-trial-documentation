@@ -1,9 +1,9 @@
 baseurl = "http://documentation.trial.cf.paas.alphagov.co.uk/"
 MetaDataFormat = "yaml"
-title = "Govt PaaS"
+title = "Government PaaS"
 
 [params]
-  description = "Govt PaaS documentation"
+  description = "Government PaaS documentation"
   author = "Brett Ansley"
 
 
