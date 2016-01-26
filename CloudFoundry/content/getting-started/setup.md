@@ -56,3 +56,5 @@ Once you log in for the first time, you'll probably want to change your password
 cf passwd
 ```
 
+*Note:* depending on your network configuration you might need to set an ```HTTP_PROXY``` environment variable for the CLI to connect. Contact your network administrators to work out the correct settings for your configuration.
+
